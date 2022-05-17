@@ -5,7 +5,7 @@ bidirectional texts with plain TeX and LaTeX.
 The package includes adaptations for use with many other commonly-used 
 packages.
 
-The official versions of the package is released on [CTAN](https://ctan.org/pkg/bidi).
+The official versions of the package are released on [CTAN](https://ctan.org/pkg/bidi).
 
 ## Using the Package
 The following example illustrates how the package can be used.
