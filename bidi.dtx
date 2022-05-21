@@ -18820,7 +18820,7 @@ to\rtside{\box\bslice\hfil}}
         }%
       }%
     }%
-    \newcommand*{\scr@LT@array}{}%
+    \renewcommand*{\scr@LT@array}{}%
     \let\scr@LT@array=\LT@array
     \renewcommand*{\LT@array}{%
       \let\scr@caption=\LT@caption
@@ -18843,20 +18843,20 @@ to\rtside{\box\bslice\hfil}}
 
 \CloneTOCEntryStyle{tocline}{part}
 \TOCEntryStyleStartInitCode{part}{%
-  \expandafter\providecommand%
+  \expandafter\renewcommand%
   \csname scr@tso@#1@linefill\endcsname{\hfill}%
-  \expandafter\providecommand%
+  \expandafter\renewcommand%
   \csname scr@tso@#1@entryformat\endcsname[1]{\usekomafont{partentry}{##1}}%
-  \expandafter\providecommand%
+  \expandafter\renewcommand%
   \csname scr@tso@#1@pagenumberformat\endcsname[1]{%
     \usekomafont{partentry}{\usekomafont{partentrypagenumber}{##1}}}%
-  \expandafter\providecommand\expandafter*%
+  \expandafter\renewcommand\expandafter*%
   \csname scr@tso@#1@beforeskip\endcsname{2.25em \@plus\p@}%
 }
 
 \CloneTOCEntryStyle{tocline}{section}
 \TOCEntryStyleStartInitCode{section}{%
-  \expandafter\providecommand%
+  \expandafter\renewcommand%
   \csname scr@tso@#1@linefill\endcsname{%
     \if@sectionentrywithdots
       {\usekomafont{sectionentrydots}{\TOCLineLeaderFill}}\relax
@@ -18864,17 +18864,17 @@ to\rtside{\box\bslice\hfil}}
       \hfill
     \fi
   }%
-  \expandafter\providecommand%
+  \expandafter\renewcommand%
   \csname scr@tso@#1@entryformat\endcsname{\usekomafont{sectionentry}}%
-  \expandafter\providecommand%
+  \expandafter\renewcommand%
   \csname scr@tso@#1@pagenumberformat\endcsname[1]{\usekomafont{sectionentry}{\usekomafont{sectionentrypagenumber}{##1}}}%
-  \expandafter\providecommand\expandafter*%
+  \expandafter\renewcommand\expandafter*%
   \csname scr@tso@#1@beforeskip\endcsname{1.0em \@plus\p@}%
 }
 
 \CloneTOCEntryStyle{tocline}{subsection}
 \TOCEntryStyleStartInitCode{subsection}{%
-  \expandafter\providecommand%
+  \expandafter\renewcommand%
   \csname scr@tso@#1@linefill\endcsname{\TOCLineLeaderFill\relax}%
 }
 
