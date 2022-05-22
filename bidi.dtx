@@ -23315,7 +23315,6 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \if@bidi@csundef{@idxitem}{}{%
 \renewcommand\@idxitem{\par\hangindent \if@RTL-\fi40\p@}%
 }
-\@ifpackageloaded{tocbasic}{\input{tocbasic-xetex-bidi.def}}{}
 \@ifclassloaded{article}{\@ifclassloaded{svmult}{}{\input{article-xetex-bidi.def}}}{}
 \@ifclassloaded{extarticle}{\input{extarticle-xetex-bidi.def}}{}
 \@ifclassloaded{artikel1}{\input{artikel1-xetex-bidi.def}}{}
@@ -23453,6 +23452,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{tabls}{\input{tabls-xetex-bidi.def}}{}
 \@ifpackageloaded{tabulary}{\input{tabulary-xetex-bidi.def}}{}
 \@ifpackageloaded{tcolorbox}{\input{tcolorbox-xetex-bidi.def}}{}
+\@ifpackageloaded{tocbasic}{\input{tocbasic-xetex-bidi.def}}{}
 \@ifpackageloaded{tocstyle}{\input{tocstyle-xetex-bidi.def}}{}
 \@ifpackageloaded{tocbibind}{\@ifclassloaded{memoir}{}{\input{tocbibind-xetex-bidi.def}}}{}
 \@ifpackageloaded{tocloft}{\@ifclassloaded{memoir}{}{\input{tocloft-xetex-bidi.def}}}{}
