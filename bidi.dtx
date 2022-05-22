@@ -179,7 +179,6 @@ by Vafa Khalighi.
 \generate{\file{rotating-xetex-bidi.def}{\from{\jobname.dtx}{table,rotating-xetex-bidi.def}}}
 \generate{\file{scrartcl-xetex-bidi.def}{\from{\jobname.dtx}{table,scrartcl-xetex-bidi.def}}}
 \generate{\file{scrbook-xetex-bidi.def}{\from{\jobname.dtx}{table,scrbook-xetex-bidi.def}}}
-\generate{\file{scrlettr-xetex-bidi.def}{\from{\jobname.dtx}{table,scrlettr-xetex-bidi.def}}}
 \generate{\file{scrreprt-xetex-bidi.def}{\from{\jobname.dtx}{table,scrreprt-xetex-bidi.def}}}
 \generate{\file{sidecap-xetex-bidi.def}{\from{\jobname.dtx}{table,sidecap-xetex-bidi.def}}}
 \generate{\file{soul-xetex-bidi.def}{\from{\jobname.dtx}{table,soul-xetex-bidi.def}}}
@@ -19634,121 +19633,6 @@ to\rtside{\box\bslice\hfil}}
 %    \end{macrocode}
 % \iffalse
 %</scrbook-xetex-bidi.def>
-%<*scrlettr-xetex-bidi.def>
-%\fi
-% \section{File \texttt{scrlettr-xetex-bidi.def}}
-%    \begin{macrocode}
-\ProvidesFile{scrlettr-xetex-bidi.def}[2015/11/14 v0.3 bidi adaptations for scrlettr class for XeTeX engine]
-\renewcommand\deffootnote[4][]{%
-  \long\def\@makefntext##1{%
-    \edef\@tempa{#1}\ifx\@tempa\@empty
-      \@setpar{\@@par
-        \@tempdima = \hsize
-        \addtolength{\@tempdima}{-#2}
-        \if@RTL\parshape \@ne 0pt \@tempdima\else\parshape \@ne #2 \@tempdima\fi}%
-    \else
-      \@setpar{\@@par
-        \@tempdima = \hsize
-        \addtolength{\@tempdima}{-#1}
-        \@tempdimb = \hsize
-        \addtolength{\@tempdimb}{-#2}
-        \if@RTL\parshape \tw@ 0pt \@tempdima 0pt \@tempdimb\else\parshape \tw@ #1 \@tempdima #2 \@tempdimb\fi}%
-    \fi
-    \par
-    \parindent #3\noindent
-    \hbox to \z@{\hss\@@makefnmark}##1}
-  \def\@@makefnmark{\hbox{#4}}
-}
-\deffootnote[1em]{1.5em}{1em}
-  {\textsuperscript{\thefootnotemark}}
-\def\left@footnoterule{\kern-1\p@
- \hrule width 0.4\columnwidth
- \kern .6\p@}
-\def\right@footnoterule{%
-  \kern-1\p@
-  \hbox to \columnwidth{\hskip .6\columnwidth \hrulefill }
-  \kern .6\p@}
-\def\@datefield{\@reffalse
- \ifx\varyourref\@empty \else \@reftrue \fi
- \ifx\varyourmail\@empty \else \@reftrue \fi
- \ifx\varmyref\@empty \else \@reftrue \fi
- \ifx\varcustomer\@empty \else \@reftrue \fi
- \ifx\varinvoice\@empty \else \@reftrue \fi
- \ifx\varrefitemi\@empty \else \@reftrue \fi
- \ifx\varrefitemii\@empty \else \@reftrue \fi
- \ifx\varrefitemiii\@empty \else \@reftrue \fi
- \vskip -\parskip
- \vskip \refvskip
- \if@ref
-  \ifx\varyourref\@empty \else
-   \settowidth{\sc@temp}{\varyourref}
-   \setbox0\hbox{\scriptsize \sf \yourrefname}
-   \ifdim \sc@temp > \wd0 \sc@@temp\sc@temp \else \sc@@temp\wd0 \fi
-   \parbox[t]{\sc@@temp}{\noindent \box0\par \varyourref}\hfill
-  \fi
-  \ifx\varyourmail\@empty \else
-   \settowidth{\sc@temp}{\varyourmail}
-   \setbox0\hbox{\scriptsize \sf \yourmailname}
-   \ifdim \sc@temp > \wd0 \sc@@temp\sc@temp \else \sc@@temp\wd0 \fi
-   \parbox[t]{\sc@@temp}{\noindent \box0\par \varyourmail}\hfill
-  \fi
-  \ifx\varmyref\@empty \else
-   \settowidth{\sc@temp}{\varmyref}
-   \setbox0\hbox{\scriptsize \sf \myrefname}
-   \ifdim \sc@temp > \wd0 \sc@@temp\sc@temp \else \sc@@temp\wd0 \fi
-   \parbox[t]{\sc@@temp}{\noindent \box0\par \varmyref}\hfill
-  \fi
-  \ifx\varcustomer\@empty \else
-   \settowidth{\sc@temp}{\varcustomer}
-   \setbox0\hbox{\scriptsize \sf \customername}
-   \ifdim \sc@temp > \wd0 \sc@@temp\sc@temp \else \sc@@temp\wd0 \fi
-   \parbox[t]{\sc@@temp}{\noindent \box0\par \varcustomer}\hfill
-  \fi
-  \ifx\varinvoice\@empty \else
-   \settowidth{\sc@temp}{\varinvoice}
-   \setbox0\hbox{\scriptsize \sf \invoicename}
-   \ifdim \sc@temp > \wd0 \sc@@temp\sc@temp \else \sc@@temp\wd0 \fi
-   \parbox[t]{\sc@@temp}{\noindent \box0\par \varinvoice}\hfill
-  \fi
-  \ifx\varrefitemi\@empty \else
-   \settowidth{\sc@temp}{\varrefitemi}
-   \setbox0\hbox{\scriptsize \sf \varrefitemnamei}
-   \ifdim \sc@temp > \wd0 \sc@@temp\sc@temp \else \sc@@temp\wd0 \fi
-   \parbox[t]{\sc@@temp}{\noindent \box0\par \varrefitemi}\hfill
-  \fi
-  \ifx\varrefitemii\@empty \else
-   \settowidth{\sc@temp}{\varrefitemii}
-   \setbox0\hbox{\scriptsize \sf \varrefitemnameii}
-   \ifdim \sc@temp > \wd0 \sc@@temp\sc@temp \else \sc@@temp\wd0 \fi
-   \parbox[t]{\sc@@temp}{\noindent \box0\par \varrefitemii}\hfill
-  \fi
-  \ifx\varrefitemiii\@empty \else
-   \settowidth{\sc@temp}{\varrefitemiii}
-   \setbox0\hbox{\scriptsize \sf \varrefitemnameiii}
-   \ifdim \sc@temp > \wd0 \sc@@temp\sc@temp \else \sc@@temp\wd0 \fi
-   \parbox[t]{\sc@@temp}{\noindent \box0\par \varrefitemiii}\hfill
-  \fi
-  \ifx\@date\@empty \else
-   \settowidth{\sc@temp}{\@date}
-   \setbox0\hbox{\scriptsize \sf \datename}
-   \ifdim \sc@temp > \wd0 \sc@@temp\sc@temp \else \sc@@temp\wd0 \fi
-   \parbox[t]{\sc@@temp}{\noindent \box0\par \@date}
-  \fi
-  \par
-  \vspace{2.5\baselineskip}
- \else
-  {\ifx\@date\@empty \else \if@RTL\raggedright\else\raggedleft\fi\fromplace\ \@date\par \fi}
-  \vspace{1.5\baselineskip}
- \fi}
-\long\def\closing#1{\par\nobreak\vspace{0.5\baselineskip}
- \stopbreaks \noindent \sc@temp\textwidth \advance\sc@temp by
- -\sigindent \hspace{\sigindent}%
- \parbox{\sc@temp}{\if@RTL\raggedleft\else\raggedright\fi\ignorespaces #1\mbox{}\\[\presig@skip]
- \fromsig\strut}\par
- \vspace{1.5\baselineskip}}
-%    \end{macrocode}
-% \iffalse
-%</scrlettr-xetex-bidi.def>
 %<*scrreprt-xetex-bidi.def>
 %\fi
 % \section{File \texttt{scrreprt-xetex-bidi.def}}
@@ -23230,7 +23114,6 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifclassloaded{artikel3}{\input{artikel3-xetex-bidi.def}}{}
 \@ifclassloaded{amsart}{\input{amsart-xetex-bidi.def}}{}
 \@ifclassloaded{letter}{\input{letter-xetex-bidi.def}}{}
-\@ifclassloaded{scrlettr}{\input{scrlettr-xetex-bidi.def}}{}
 \@ifclassloaded{extletter}{\input{extletter-xetex-bidi.def}}{}
 \@ifclassloaded{memoir}{\input{memoir-xetex-bidi.def}}{}
 \@ifclassloaded{refrep}{\input{refrep-xetex-bidi.def}}{}
