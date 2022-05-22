@@ -312,7 +312,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{50563}
+%% \CheckSum{50672}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -21155,7 +21155,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{tocbasic-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{tocbasic-xetex-bidi.def}[2016/09/14 v0.2 bidi adaptations for tocbasic package for XeTeX engine]
+\ProvidesFile{tocbasic-xetex-bidi.def}[2022/06/01 v0.3 bidi adaptations for tocbasic package for XeTeX engine]
 \bidi@undef\scr@dte@def@l@undottedtocline
 \bidi@undef\scr@dte@undottedtocline@init
 \DeclareTOCEntryStyle{undottedtocline}[{%
@@ -21164,15 +21164,15 @@ to\rtside{\box\bslice\hfil}}
   \DefineTOCEntryLengthOption{numwidth}%
     {scr@tso@}{@numwidth}{entry number width}%
   \@ifundefined{#1tocdepth}{%
-    \ifstr{#1}{part}{\@namedef{#1tocdepth}{-1}}{%
-      \ifstr{#1}{chapter}{\@namedef{#1tocdepth}{0}}{%
-        \ifstr{#1}{section}{\@namedef{#1tocdepth}{1}}{%
-          \ifstr{#1}{subsection}{\@namedef{#1tocdepth}{2}}{%
-            \ifstr{#1}{subsubsection}{\@namedef{#1tocdepth}{3}}{%
-              \ifstr{#1}{paragraph}{\@namedef{#1tocdepth}{4}}{%
-                \ifstr{#1}{subparagraph}{\@namedef{#1tocdepth}{5}}{%
-                  \ifstr{#1}{figure}{\@namedef{#1tocdepth}{1}}{%
-                    \ifstr{#1}{table}{\@namedef{#1tocdepth}{1}}{%
+    \Ifstr{#1}{part}{\@namedef{#1tocdepth}{-1}}{%
+      \Ifstr{#1}{chapter}{\@namedef{#1tocdepth}{0}}{%
+        \Ifstr{#1}{section}{\@namedef{#1tocdepth}{1}}{%
+          \Ifstr{#1}{subsection}{\@namedef{#1tocdepth}{2}}{%
+            \Ifstr{#1}{subsubsection}{\@namedef{#1tocdepth}{3}}{%
+              \Ifstr{#1}{paragraph}{\@namedef{#1tocdepth}{4}}{%
+                \Ifstr{#1}{subparagraph}{\@namedef{#1tocdepth}{5}}{%
+                  \Ifstr{#1}{figure}{\@namedef{#1tocdepth}{1}}{%
+                    \Ifstr{#1}{table}{\@namedef{#1tocdepth}{1}}{%
                       \expandafter\let\csname #1tocdepth\expandafter\endcsname
                       \csname #1numdepth\endcsname
                     }%
@@ -21187,20 +21187,20 @@ to\rtside{\box\bslice\hfil}}
   }{}%
   \@ifundefined{scr@tso@#1@indent}{%
     \@ifundefined{scr@#1@tocindent}{%
-      \ifstr{#1}{figure}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
-        \ifstr{#1}{table}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
-          \ifstr{#1}{part}{\@namedef{scr@tso@#1@indent}{0em}}{%
-            \ifstr{#1}{chapter}{\@namedef{scr@tso@#1@indent}{0em}}{%
+      \Ifstr{#1}{figure}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
+        \Ifstr{#1}{table}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
+          \Ifstr{#1}{part}{\@namedef{scr@tso@#1@indent}{0em}}{%
+            \Ifstr{#1}{chapter}{\@namedef{scr@tso@#1@indent}{0em}}{%
               \scr@ifundefinedorrelax{l@chapter}{%
-                \ifstr{#1}{section}{\@namedef{scr@tso@#1@indent}{0pt}}{%
-                  \ifstr{#1}{subsection}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
-                    \ifstr{#1}{subsubsection}{%
+                \Ifstr{#1}{section}{\@namedef{scr@tso@#1@indent}{0pt}}{%
+                  \Ifstr{#1}{subsection}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
+                    \Ifstr{#1}{subsubsection}{%
                       \@namedef{scr@tso@#1@indent}{3.8em}%
                     }{%
-                      \ifstr{#1}{paragraph}{%
+                      \Ifstr{#1}{paragraph}{%
                         \@namedef{scr@tso@#1@indent}{7em}%
                       }{%
-                        \ifstr{#1}{subparagraph}{%
+                        \Ifstr{#1}{subparagraph}{%
                           \@namedef{scr@tso@#1@indent}{10em}%
                         }{%
                         }%
@@ -21209,15 +21209,15 @@ to\rtside{\box\bslice\hfil}}
                   }%
                 }%
               }{%
-                \ifstr{#1}{section}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
-                  \ifstr{#1}{subsection}{\@namedef{scr@tso@#1@indent}{3.8em}}{%
-                    \ifstr{#1}{subsubsection}{%
+                \Ifstr{#1}{section}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
+                  \Ifstr{#1}{subsection}{\@namedef{scr@tso@#1@indent}{3.8em}}{%
+                    \Ifstr{#1}{subsubsection}{%
                       \@namedef{scr@tso@#1@indent}{7.0em}%
                     }{%
-                      \ifstr{#1}{paragraph}{%
+                      \Ifstr{#1}{paragraph}{%
                         \@namedef{scr@tso@#1@indent}{10em}%
                       }{%
-                        \ifstr{#1}{subparagraph}{%
+                        \Ifstr{#1}{subparagraph}{%
                           \@namedef{scr@tso@#1@indent}{12em}%
                         }{%
                         }%
@@ -21236,19 +21236,19 @@ to\rtside{\box\bslice\hfil}}
   }{}%
   \@ifundefined{scr@tso@#1@numwidth}{%
     \@ifundefined{scr@#1@tocnumwidth}{%
-      \ifstr{#1}{figure}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
-        \ifstr{#1}{table}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
-          \ifstr{#1}{chapter}{\@namedef{scr@tso@#1@numwidth}{1.5em}}{%
+      \Ifstr{#1}{figure}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
+        \Ifstr{#1}{table}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
+          \Ifstr{#1}{chapter}{\@namedef{scr@tso@#1@numwidth}{1.5em}}{%
             \scr@ifundefinedorrelax{chapter}{%
-              \ifstr{#1}{section}{\@namedef{scr@tso@#1@numwidth}{1.5em}}{%
-                \ifstr{#1}{subsection}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
-                  \ifstr{#1}{subsubsection}{%
+              \Ifstr{#1}{section}{\@namedef{scr@tso@#1@numwidth}{1.5em}}{%
+                \Ifstr{#1}{subsection}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
+                  \Ifstr{#1}{subsubsection}{%
                     \@namedef{scr@tso@#1@numwidth}{3.2em}%
                   }{%
-                    \ifstr{#1}{paragraph}{%
+                    \Ifstr{#1}{paragraph}{%
                       \@namedef{scr@tso@#1@numwidth}{4.1em}%
                     }{%
-                      \ifstr{#1}{subparagraph}{%
+                      \Ifstr{#1}{subparagraph}{%
                         \@namedef{scr@tso@#1@numwidth}{5m}%
                       }{%
                       }%
@@ -21257,15 +21257,15 @@ to\rtside{\box\bslice\hfil}}
                 }%
               }%
             }{%
-              \ifstr{#1}{section}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
-                \ifstr{#1}{subsection}{\@namedef{scr@tso@#1@numwidth}{3.2em}}{%
-                  \ifstr{#1}{subsubsection}{%
+              \Ifstr{#1}{section}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
+                \Ifstr{#1}{subsection}{\@namedef{scr@tso@#1@numwidth}{3.2em}}{%
+                  \Ifstr{#1}{subsubsection}{%
                     \@namedef{scr@tso@#1@numwidth}{3.1em}%
                   }{%
-                    \ifstr{#1}{paragraph}{%
+                    \Ifstr{#1}{paragraph}{%
                       \@namedef{scr@tso@#1@numwidth}{5em}%
                     }{%
-                      \ifstr{#1}{subparagraph}{%
+                      \Ifstr{#1}{subparagraph}{%
                         \@namedef{scr@tso@#1@numwidth}{6em}%
                       }{%
                       }%
@@ -21302,8 +21302,12 @@ to\rtside{\box\bslice\hfil}}
       \leavevmode
       \bfseries
       \advance\bidi@leftskip\@tempdima
-      \advance\bidi@leftskip\@nameuse{scr@tso@#1@indent}%
-      \hskip -\dimexpr \bidi@leftskip-\@nameuse{scr@tso@#1@indent}\relax
+      \Iftocfeature{\@currext}{noindent}{%
+        \hskip -\bidi@leftskip
+      }{%
+        \advance\bidi@leftskip\@nameuse{scr@tso@#1@indent}%
+        \hskip -\dimexpr \bidi@leftskip-\@nameuse{scr@tso@#1@indent}\relax
+      }%
       ##1%
       \nobreak
       \hfil \nobreak\hb@xt@\@pnumwidth{\hss ##2}%
@@ -21319,15 +21323,15 @@ to\rtside{\box\bslice\hfil}}
   \DefineTOCEntryLengthOption{indent}%
     {scr@tso@}{@indent}{entry indent}%
   \@ifundefined{#1tocdepth}{%
-    \ifstr{#1}{part}{\@namedef{#1tocdepth}{-1}}{%
-      \ifstr{#1}{chapter}{\@namedef{#1tocdepth}{0}}{%
-        \ifstr{#1}{section}{\@namedef{#1tocdepth}{1}}{%
-          \ifstr{#1}{subsection}{\@namedef{#1tocdepth}{2}}{%
-            \ifstr{#1}{subsubsection}{\@namedef{#1tocdepth}{3}}{%
-              \ifstr{#1}{paragraph}{\@namedef{#1tocdepth}{4}}{%
-                \ifstr{#1}{subparagraph}{\@namedef{#1tocdepth}{5}}{%
-                  \ifstr{#1}{figure}{\@namedef{#1tocdepth}{1}}{%
-                    \ifstr{#1}{table}{\@namedef{#1tocdepth}{1}}{%
+    \Ifstr{#1}{part}{\@namedef{#1tocdepth}{-1}}{%
+      \Ifstr{#1}{chapter}{\@namedef{#1tocdepth}{0}}{%
+        \Ifstr{#1}{section}{\@namedef{#1tocdepth}{1}}{%
+          \Ifstr{#1}{subsection}{\@namedef{#1tocdepth}{2}}{%
+            \Ifstr{#1}{subsubsection}{\@namedef{#1tocdepth}{3}}{%
+              \Ifstr{#1}{paragraph}{\@namedef{#1tocdepth}{4}}{%
+                \Ifstr{#1}{subparagraph}{\@namedef{#1tocdepth}{5}}{%
+                  \Ifstr{#1}{figure}{\@namedef{#1tocdepth}{1}}{%
+                    \Ifstr{#1}{table}{\@namedef{#1tocdepth}{1}}{%
                       \expandafter\let\csname #1tocdepth\expandafter\endcsname
                       \csname #1numdepth\endcsname
                     }%
@@ -21342,20 +21346,20 @@ to\rtside{\box\bslice\hfil}}
   }{}%
   \@ifundefined{scr@tso@#1@indent}{%
     \@ifundefined{scr@#1@tocindent}{%
-      \ifstr{#1}{figure}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
-        \ifstr{#1}{table}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
-          \ifstr{#1}{part}{\@namedef{scr@tso@#1@indent}{0em}}{%
-            \ifstr{#1}{chapter}{\@namedef{scr@tso@#1@indent}{0em}}{%
+      \Ifstr{#1}{figure}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
+        \Ifstr{#1}{table}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
+          \Ifstr{#1}{part}{\@namedef{scr@tso@#1@indent}{0em}}{%
+            \Ifstr{#1}{chapter}{\@namedef{scr@tso@#1@indent}{0em}}{%
               \scr@ifundefinedorrelax{l@chapter}{%
-                \ifstr{#1}{section}{\@namedef{scr@tso@#1@indent}{0pt}}{%
-                  \ifstr{#1}{subsection}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
-                    \ifstr{#1}{subsubsection}{%
+                \Ifstr{#1}{section}{\@namedef{scr@tso@#1@indent}{0pt}}{%
+                  \Ifstr{#1}{subsection}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
+                    \Ifstr{#1}{subsubsection}{%
                       \@namedef{scr@tso@#1@indent}{3.8em}%
                     }{%
-                      \ifstr{#1}{paragraph}{%
+                      \Ifstr{#1}{paragraph}{%
                         \@namedef{scr@tso@#1@indent}{7em}%
                       }{%
-                        \ifstr{#1}{subparagraph}{%
+                        \Ifstr{#1}{subparagraph}{%
                           \@namedef{scr@tso@#1@indent}{10em}%
                         }{%
                         }%
@@ -21364,15 +21368,15 @@ to\rtside{\box\bslice\hfil}}
                   }%
                 }%
               }{%
-                \ifstr{#1}{section}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
-                  \ifstr{#1}{subsection}{\@namedef{scr@tso@#1@indent}{3.8em}}{%
-                    \ifstr{#1}{subsubsection}{%
+                \Ifstr{#1}{section}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
+                  \Ifstr{#1}{subsection}{\@namedef{scr@tso@#1@indent}{3.8em}}{%
+                    \Ifstr{#1}{subsubsection}{%
                       \@namedef{scr@tso@#1@indent}{7.0em}%
                     }{%
-                      \ifstr{#1}{paragraph}{%
+                      \Ifstr{#1}{paragraph}{%
                         \@namedef{scr@tso@#1@indent}{10em}%
                       }{%
-                        \ifstr{#1}{subparagraph}{%
+                        \Ifstr{#1}{subparagraph}{%
                           \@namedef{scr@tso@#1@indent}{12em}%
                         }{%
                         }%
@@ -21410,7 +21414,10 @@ to\rtside{\box\bslice\hfil}}
       \leavevmode
       \large
       \bfseries
-      \advance\bidi@leftskip\@nameuse{scr@tso@#1@indent}%
+      \Iftocfeature{\@currext}{noindent}{%
+      }{%
+        \advance\bidi@leftskip\@nameuse{scr@tso@#1@indent}%
+      }%
       ##1%
       \hfil \nobreak\hb@xt@\@pnumwidth{\hss ##2}%
       \par
@@ -21429,14 +21436,57 @@ to\rtside{\box\bslice\hfil}}
   \else
     \tocbasic@DependOnPenaltyAndTOCLevel{#1}%
     \addvspace{\@nameuse{scr@tso@#1@beforeskip}}\relax
+    \@nameuse{Ifscr@tso@#1@dynindent}{%
+      \expandafter\ifx\csname scr@tso@#1@indentfollows\endcsname\@empty
+        \PackageWarning{tocbasic}{`dynindent' for `#1' not available}%
+      \else
+        \edef\reserved@a{\@nameuse{scr@tso@#1@indentfollows}}%
+        \@for \reserved@a:=\reserved@a\do {%
+          \scr@trim@spaces\reserved@a
+          \ifx\reserved@a\@empty\else
+            \scr@ifundefinedorrelax{\reserved@a tocdepth}{%
+            }{%
+              \ifnum \@nameuse{\reserved@a tocdepth}<\@nameuse{#1tocdepth}%
+                \@tempdima\@nameuse{scr@tso@\reserved@a @indent}\relax
+                \@nameuse{Ifscr@tso@\reserved@a @dynnumwidth}{%
+                  \scr@ifundefinedorrelax
+                  {scr@dte@\reserved@a @lastmaxnumwidth}{%
+                    \advance\@tempdima
+                    \@nameuse{scr@tso@\reserved@a @numwidth}\relax
+                  }{%
+                    \advance\@tempdima
+                    \@nameuse{scr@dte@\reserved@a @lastmaxnumwidth}\relax
+                  }%
+                }{%
+                  \advance\@tempdima
+                  \@nameuse{scr@tso@\reserved@a @numwidth}\relax
+                }%
+                \ifdim \@tempdima>\@nameuse{scr@tso@#1@indent}\relax
+                  \expandafter\edef\csname scr@tso@#1@indent\endcsname
+                  {\the\@tempdima}%
+                \fi
+              \fi
+            }%
+          \fi
+        }%
+      \fi
+    }{}%
     {%
-      \bidi@leftskip \@nameuse{scr@tso@#1@indent}\relax
-      \bidi@rightskip \@tocrmarg
+      \Iftocfeature{\@currext}{noindent}{%
+        \bidi@leftskip \z@
+      }{%
+        \bidi@leftskip \@nameuse{scr@tso@#1@indent}\relax
+      }%
+      \bidi@rightskip \@nameuse{scr@tso@#1@rightindent}\relax
       \parfillskip -\bidi@rightskip
       \@nameuse{Ifscr@tso@#1@raggedpage}{%
         \addtolength{\parfillskip}{\z@ \@plus 1fil}%
       }{}%
-      \parindent \@nameuse{scr@tso@#1@indent}\relax
+      \Iftocfeature{\@currext}{noindent}{%
+        \parindent \z@
+      }{%
+        \parindent \@nameuse{scr@tso@#1@indent}\relax
+      }%
       \@afterindenttrue
       \interlinepenalty\@M
       \expandafter\ifx\csname ragged#1entry\endcsname\raggedright
@@ -21470,6 +21520,7 @@ to\rtside{\box\bslice\hfil}}
           \sbox\scr@dte@tocline@numbox{\@nameuse{scr@tso@#1@numberformat}{##1}}%
           \global\scr@dte@tocline@numberwidth
           \dimexpr\wd\scr@dte@tocline@numbox+\@nameuse{scr@tso@#1@numsep}\relax
+          \relax
           \ifdim \scr@dte@tocline@numberwidth
                 >\@nameuse{scr@dte@#1@maxnumwidth}\relax
             \global\@nameuse{scr@dte@#1@maxnumwidth}\scr@dte@tocline@numberwidth
@@ -21477,9 +21528,8 @@ to\rtside{\box\bslice\hfil}}
           \@nameuse{Ifscr@tso@#1@dynnumwidth}{}{%
             \ifdim \scr@dte@tocline@numberwidth
                   >\dimexpr \@nameuse{scr@tso@#1@numwidth}%
-                           +\@nameuse{scr@tso@#1@numsep}\relax
-              \PackageWarning{tocbasic%
-              }{%
+                           +\@nameuse{scr@tso@#1@numsep}\relax\relax
+              \PackageWarning{tocbasic}{%
                 number width of #1 toc entries should be
                 increased!\MessageBreak
                 Currently used number width =
@@ -21503,6 +21553,8 @@ to\rtside{\box\bslice\hfil}}
           {%
             \normalfont\normalsize\@nameuse{scr@tso@#1@linefill}%
             \nobreak
+            \expandafter\let\expandafter\scr@dte@pagenumberwidth
+            \csname scr@tso@#1@pagenumberwidth\endcsname
             \@nameuse{scr@tso@#1@pagenumberbox}{%
               \@nameuse{scr@tso@#1@pagenumberformat}{#3}%
             }%
@@ -21515,6 +21567,7 @@ to\rtside{\box\bslice\hfil}}
   \fi
 }
 
+
 \bidi@undef\scr@dte@def@l@tocline
 \bidi@undef\scr@dte@tocline@init
 \DeclareTOCEntryStyle{tocline}[{%
@@ -21524,6 +21577,10 @@ to\rtside{\box\bslice\hfil}}
     {scr@tso@}{@breakafternumber}{line break after number flag}%
   \DefineTOCEntryIfOption{dynnumwidth}%
     {scr@tso@}{@dynnumwidth}{dynamic number width flag}%
+  \DefineTOCEntryListOption{indentfollows}%
+    {scr@tso@}{@indentfollows}{list of levels that define the indent}%
+  \DefineTOCEntryIfOption{dynindent}%
+    {scr@tso@}{@dynindent}{dynamic indent width flag}%
   \DefineTOCEntryCommandOption{entryformat}%
     {scr@tso@}{@entryformat}[1]{entry format}%
   \DefineTOCEntryCommandOption{entrynumberformat}%
@@ -21542,6 +21599,10 @@ to\rtside{\box\bslice\hfil}}
     {scr@tso@}{@pagenumberbox}[1]{page number box}%
   \DefineTOCEntryCommandOption{pagenumberformat}%
     {scr@tso@}{@pagenumberformat}[1]{page number format}%
+  \DefineTOCEntryLengthOption{pagenumberwidth}%
+    {scr@tso@}{@pagenumberwidth}{width of page number box}%
+  \DefineTOCEntryLengthOption{rightindent}%
+    {scr@tso@}{@rightindent}{entry's text right indent}%
   \DefineTOCEntryOption{raggedentrytext}[true]{%
     \FamilySetBool{KOMAarg}{raggedentrytext}{@tempswa}{##1}%
     \ifx\FamilyKeyState\FamilyKeyStateProcessed
@@ -21561,7 +21622,7 @@ to\rtside{\box\bslice\hfil}}
   \DefineTOCEntryLengthOption{numwidth}%
     {scr@tso@}{@numwidth}{entry number width}%
   \scr@ifundefinedorrelax{#1tocdepth}{%
-    \ifstrstart{#1}{sub}{%
+    \Ifstrstart{#1}{sub}{%
       \scr@ifundefinedorrelax{\scr@dte@nosub{#1}tocdepth}{}{%
         \expandafter\edef\csname #1tocdepth\endcsname{%
           \the\numexpr \noexpand\@nameuse{\scr@dte@nosub{#1}tocdepth}+\@ne\relax
@@ -21570,15 +21631,15 @@ to\rtside{\box\bslice\hfil}}
     }{}%
   }{}%
   \@ifundefined{#1tocdepth}{%
-    \ifstr{#1}{part}{\@namedef{#1tocdepth}{-1}}{%
-      \ifstr{#1}{chapter}{\@namedef{#1tocdepth}{0}}{%
-        \ifstr{#1}{section}{\@namedef{#1tocdepth}{1}}{%
-          \ifstr{#1}{subsection}{\@namedef{#1tocdepth}{2}}{%
-            \ifstr{#1}{subsubsection}{\@namedef{#1tocdepth}{3}}{%
-              \ifstr{#1}{paragraph}{\@namedef{#1tocdepth}{4}}{%
-                \ifstr{#1}{subparagraph}{\@namedef{#1tocdepth}{5}}{%
-                  \ifstr{#1}{figure}{\@namedef{#1tocdepth}{1}}{%
-                    \ifstr{#1}{table}{\@namedef{#1tocdepth}{1}}{%
+    \Ifstr{#1}{part}{\@namedef{#1tocdepth}{-1}}{%
+      \Ifstr{#1}{chapter}{\@namedef{#1tocdepth}{0}}{%
+        \Ifstr{#1}{section}{\@namedef{#1tocdepth}{1}}{%
+          \Ifstr{#1}{subsection}{\@namedef{#1tocdepth}{2}}{%
+            \Ifstr{#1}{subsubsection}{\@namedef{#1tocdepth}{3}}{%
+              \Ifstr{#1}{paragraph}{\@namedef{#1tocdepth}{4}}{%
+                \Ifstr{#1}{subparagraph}{\@namedef{#1tocdepth}{5}}{%
+                  \Ifstr{#1}{figure}{\@namedef{#1tocdepth}{1}}{%
+                    \Ifstr{#1}{table}{\@namedef{#1tocdepth}{1}}{%
                       \expandafter\let\csname #1tocdepth\expandafter\endcsname
                       \csname #1numdepth\endcsname
                     }%
@@ -21593,7 +21654,7 @@ to\rtside{\box\bslice\hfil}}
   }{}%
   \scr@ifundefinedorrelax{scr@tso@#1@indent}{%
     \@ifundefined{scr@#1@tocindent}{%
-      \ifstrstart{#1}{sub}{%
+      \Ifstrstart{#1}{sub}{%
         \scr@ifundefinedorrelax{scr@tso@\scr@dte@nosub{#1}@indent}{%
           \scr@ifundefinedorrelax{scr@tso@\scr@dte@nosub{#1}@numwidth}{}{%
             \expandafter\edef\csname scr@tso@#1@indent\endcsname{%
@@ -21620,21 +21681,47 @@ to\rtside{\box\bslice\hfil}}
       \@namedef{scr@tso@#1@indent}{\@nameuse{scr@#1@tocindent}}%
     }%
   }{}%
+  \scr@ifundefinedorrelax{scr@tso@#1@pagenumberwidth}{%
+    \Ifstrstart{#1}{sub}{%
+      \scr@ifundefinedorrelax{scr@tso@\scr@dte@nosub{#1}@pagenumberwidth}{%
+        \@namedef{scr@tso@#1@pagenumberwidth}{\@pnumwidth}%
+      }{%
+        \expandafter\let
+        \csname scr@tso@#1@pagenumberwidth\expandafter\endcsname
+        \csname scr@tso@\scr@dte@nosub{#1}@pagenumberwidth\endcsname
+      }%
+    }{%
+      \@namedef{scr@tso@#1@pagenumberwidth}{\@pnumwidth}%
+    }%
+  }{}%
+  \scr@ifundefinedorrelax{scr@tso@#1@rightindent}{%
+    \Ifstrstart{#1}{sub}{%
+      \scr@ifundefinedorrelax{scr@tso@\scr@dte@nosub{#1}@rightindent}{%
+        \@namedef{scr@tso@#1@rightindent}{\@tocrmarg}%
+      }{%
+        \expandafter\let
+        \csname scr@tso@#1@rightindent\expandafter\endcsname
+        \csname scr@tso@\scr@dte@nosub{#1}@rightindent\endcsname
+      }%
+    }{%
+      \@namedef{scr@tso@#1@rightindent}{\@tocrmarg}%
+    }%
+  }{}%
   \@ifundefined{scr@tso@#1@indent}{%
-      \ifstr{#1}{figure}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
-        \ifstr{#1}{table}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
-          \ifstr{#1}{part}{\@namedef{scr@tso@#1@indent}{0em}}{%
-            \ifstr{#1}{chapter}{\@namedef{scr@tso@#1@indent}{0em}}{%
+      \Ifstr{#1}{figure}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
+        \Ifstr{#1}{table}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
+          \Ifstr{#1}{part}{\@namedef{scr@tso@#1@indent}{0em}}{%
+            \Ifstr{#1}{chapter}{\@namedef{scr@tso@#1@indent}{0em}}{%
               \scr@ifundefinedorrelax{l@chapter}{%
-                \ifstr{#1}{section}{\@namedef{scr@tso@#1@indent}{0pt}}{%
-                  \ifstr{#1}{subsection}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
-                    \ifstr{#1}{subsubsection}{%
+                \Ifstr{#1}{section}{\@namedef{scr@tso@#1@indent}{0pt}}{%
+                  \Ifstr{#1}{subsection}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
+                    \Ifstr{#1}{subsubsection}{%
                       \@namedef{scr@tso@#1@indent}{3.8em}%
                     }{%
-                      \ifstr{#1}{paragraph}{%
+                      \Ifstr{#1}{paragraph}{%
                         \@namedef{scr@tso@#1@indent}{7em}%
                       }{%
-                        \ifstr{#1}{subparagraph}{%
+                        \Ifstr{#1}{subparagraph}{%
                           \@namedef{scr@tso@#1@indent}{10em}%
                         }{%
                         }%
@@ -21643,15 +21730,15 @@ to\rtside{\box\bslice\hfil}}
                   }%
                 }%
               }{%
-                \ifstr{#1}{section}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
-                  \ifstr{#1}{subsection}{\@namedef{scr@tso@#1@indent}{3.8em}}{%
-                    \ifstr{#1}{subsubsection}{%
+                \Ifstr{#1}{section}{\@namedef{scr@tso@#1@indent}{1.5em}}{%
+                  \Ifstr{#1}{subsection}{\@namedef{scr@tso@#1@indent}{3.8em}}{%
+                    \Ifstr{#1}{subsubsection}{%
                       \@namedef{scr@tso@#1@indent}{7.0em}%
                     }{%
-                      \ifstr{#1}{paragraph}{%
+                      \Ifstr{#1}{paragraph}{%
                         \@namedef{scr@tso@#1@indent}{10em}%
                       }{%
-                        \ifstr{#1}{subparagraph}{%
+                        \Ifstr{#1}{subparagraph}{%
                           \@namedef{scr@tso@#1@indent}{12em}%
                         }{%
                         }%
@@ -21667,7 +21754,7 @@ to\rtside{\box\bslice\hfil}}
   }{}%
   \scr@ifundefinedorrelax{scr@tso@#1@numwidth}{%
     \scr@ifundefinedorrelax{scr@#1@tocnumwidth}{%
-      \ifstrstart{#1}{sub}{%
+      \Ifstrstart{#1}{sub}{%
         \scr@ifundefinedorrelax{scr@tso@\scr@dte@nosub{#1}@numwidth}{}{%
           \expandafter\edef\csname scr@tso@#1@numwidth\endcsname{%
             \glueexpr \noexpand\@nameuse{scr@tso@\scr@dte@nosub{#1}@numwidth}%
@@ -21681,19 +21768,19 @@ to\rtside{\box\bslice\hfil}}
     }%
   }{}%
   \@ifundefined{scr@tso@#1@numwidth}{%
-      \ifstr{#1}{figure}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
-        \ifstr{#1}{table}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
-          \ifstr{#1}{chapter}{\@namedef{scr@tso@#1@numwidth}{1.5em}}{%
+      \Ifstr{#1}{figure}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
+        \Ifstr{#1}{table}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
+          \Ifstr{#1}{chapter}{\@namedef{scr@tso@#1@numwidth}{1.5em}}{%
             \scr@ifundefinedorrelax{chapter}{%
-              \ifstr{#1}{section}{\@namedef{scr@tso@#1@numwidth}{1.5em}}{%
-                \ifstr{#1}{subsection}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
-                  \ifstr{#1}{subsubsection}{%
+              \Ifstr{#1}{section}{\@namedef{scr@tso@#1@numwidth}{1.5em}}{%
+                \Ifstr{#1}{subsection}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
+                  \Ifstr{#1}{subsubsection}{%
                     \@namedef{scr@tso@#1@numwidth}{3.2em}%
                   }{%
-                    \ifstr{#1}{paragraph}{%
+                    \Ifstr{#1}{paragraph}{%
                       \@namedef{scr@tso@#1@numwidth}{4.1em}%
                     }{%
-                      \ifstr{#1}{subparagraph}{%
+                      \Ifstr{#1}{subparagraph}{%
                         \@namedef{scr@tso@#1@numwidth}{5m}%
                       }{%
                       }%
@@ -21702,15 +21789,15 @@ to\rtside{\box\bslice\hfil}}
                 }%
               }%
             }{%
-              \ifstr{#1}{section}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
-                \ifstr{#1}{subsection}{\@namedef{scr@tso@#1@numwidth}{3.2em}}{%
-                  \ifstr{#1}{subsubsection}{%
+              \Ifstr{#1}{section}{\@namedef{scr@tso@#1@numwidth}{2.3em}}{%
+                \Ifstr{#1}{subsection}{\@namedef{scr@tso@#1@numwidth}{3.2em}}{%
+                  \Ifstr{#1}{subsubsection}{%
                     \@namedef{scr@tso@#1@numwidth}{3.1em}%
                   }{%
-                    \ifstr{#1}{paragraph}{%
+                    \Ifstr{#1}{paragraph}{%
                       \@namedef{scr@tso@#1@numwidth}{5em}%
                     }{%
-                      \ifstr{#1}{subparagraph}{%
+                      \Ifstr{#1}{subparagraph}{%
                         \@namedef{scr@tso@#1@numwidth}{6em}%
                       }{%
                       }%
@@ -21730,13 +21817,13 @@ to\rtside{\box\bslice\hfil}}
   \expandafter\renewcommand%
   \csname scr@tso@#1@LastTOCLevelWasHigher\endcsname{\LastTOCLevelWasHigher}%
   \@ifundefined{scr@tso@#1@beforeskip}{%
-    \ifstr{#1}{part}{%
+    \Ifstr{#1}{part}{%
       \@namedef{scr@tso@#1@beforeskip}{\glueexpr 2.25em \@plus\p@\relax}%
     }{%
-      \ifstr{#1}{chapter}{%
+      \Ifstr{#1}{chapter}{%
         \@namedef{scr@tso@#1@beforeskip}{\glueexpr 1.0em \@plus\p@\relax}%
       }{%
-        \ifstr{#1}{section}{%
+        \Ifstr{#1}{section}{%
           \scr@ifundefinedorrelax{l@chapter}{%
             \@namedef{scr@tso@#1@beforeskip}{\glueexpr 1.0em \@plus\p@\relax}%
           }{}%
@@ -21756,16 +21843,16 @@ to\rtside{\box\bslice\hfil}}
   \csname scr@tso@#1@numsep\endcsname{.4em}%
   \expandafter\renewcommand%
   \csname scr@tso@#1@numberformat\endcsname[1]{##1}%
-  \ifstr{#1}{part}{%
+  \Ifstr{#1}{part}{%
     \expandafter\renewcommand%
     \csname scr@tso@#1@entryformat\endcsname[1]{\large\bfseries ##1}%
   }{%
-    \ifstr{#1}{chapter}{%
+    \Ifstr{#1}{chapter}{%
       \expandafter\renewcommand%
       \csname scr@tso@#1@entryformat\endcsname[1]{\bfseries ##1}%
     }{%
       \scr@ifundefinedorrelax{l@chapter}{%
-        \ifstr{#1}{section}{%
+        \Ifstr{#1}{section}{%
           \expandafter\renewcommand%
           \csname scr@tso@#1@entryformat\endcsname[1]{\bfseries ##1}%
         }{}%
@@ -21777,39 +21864,59 @@ to\rtside{\box\bslice\hfil}}
   \expandafter\renewcommand
   \csname Ifscr@tso@#1@breakafternumber\endcsname[2]{##2}%
   \@ifundefined{scr@tso@#1@linefill}{%
-    \ifstr{#1}{part}{%
+    \Ifstr{#1}{part}{%
       \@namedef{scr@tso@#1@linefill}{\hfill}%
     }{%
-      \ifstr{#1}{chapter}{%
+      \Ifstr{#1}{chapter}{%
         \@namedef{scr@tso@#1@linefill}{\hfill}%
       }{%
         \scr@ifundefinedorrelax{l@chapter}{%
-          \ifstr{#1}{section}{%
+          \Ifstr{#1}{section}{%
             \@namedef{scr@tso@#1@linefill}{\hfill}%
-          }{}
-        }{}
+          }{}%
+        }{}%
         \expandafter\renewcommand%
         \csname scr@tso@#1@linefill\endcsname{\TOCLineLeaderFill\relax}%
       }%
     }%
   }{}%
   \expandafter\renewcommand\csname Ifscr@tso@#1@raggedpage\endcsname[2]{##2}%
-  \ifstr{#1}{part}{%
+  \Ifstr{#1}{part}{%
     \expandafter\renewcommand%
     \csname scr@tso@#1@pagenumberformat\endcsname[1]{\large\bfseries ##1}%
   }{%
-    \expandafter\renewcommand%
-    \csname scr@tso@#1@pagenumberformat\endcsname[1]{%
-      {\normalfont\normalcolor ##1}}%
+    \Ifstr{#1}{chapter}{%
+      \expandafter\renewcommand%
+      \csname scr@tso@#1@pagenumberformat\endcsname[1]{\bfseries ##1}%
+    }{%
+      \scr@ifundefinedorrelax{l@chapter}{%
+        \Ifstr{#1}{section}{%
+          \expandafter\renewcommand%
+          \csname scr@tso@#1@pagenumberformat\endcsname[1]{\bfseries ##1}%
+        }{}%
+      }{}%
+      \expandafter\renewcommand%
+      \csname scr@tso@#1@pagenumberformat\endcsname[1]{%
+        \normalfont\normalcolor ##1}%
+    }%
   }%
   \expandafter\renewcommand%
   \csname scr@tso@#1@pagenumberbox\endcsname[1]{%
-    \hb@xt@\@pnumwidth{\hfil ##1}}%
+    \hb@xt@\@nameuse{scr@dte@pagenumberwidth}{\hfil ##1}}%
   \expandafter\renewcommand\csname Ifscr@tso@#1@dynnumwidth\endcsname[2]{##2}%
+  \expandafter\renewcommand\csname Ifscr@tso@#1@dynindent\endcsname[2]{##2}%
+  \scr@ifundefinedorrelax{scr@tso@#1@indentfollows}{%
+    \Ifstrstart{#1}{sub}{%
+      \expandafter\edef\csname scr@tso@#1@indentfollows\endcsname{%
+        \scr@dte@nosub{#1}%
+      }%
+    }{%
+      \expandafter\let\csname scr@tso@#1@indentfollows\endcsname\@empty
+    }%
+  }{}%
 }]{%
   \scr@dte@tocline{#1}{##1}{##2}%
 }
-
 %    \end{macrocode}
 % \iffalse
 %</tocbasic-xetex-bidi.def>
