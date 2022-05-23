@@ -83,6 +83,7 @@ by Vafa Khalighi.
 \generate{\file{artikel2-xetex-bidi.def}{\from{\jobname.dtx}{table,artikel2-xetex-bidi.def}}}
 \generate{\file{artikel3-xetex-bidi.def}{\from{\jobname.dtx}{table,artikel3-xetex-bidi.def}}}
 \generate{\file{arydshln-xetex-bidi.def}{\from{\jobname.dtx}{table,arydshln-xetex-bidi.def}}}
+\generate{\file{beamer-xetex-bidi.def}{\from{\jobname.dtx}{table,beamer-xetex-bidi.def}}}
 \generate{\file{bidi.sty}{\from{\jobname.dtx}{table,bidi.sty}}}
 \generate{\file{bidi.tex}{\from{\jobname.dtx}{table,bidi.tex}}}
 \generate{\file{bidi2in1.sty}{\from{\jobname.dtx}{table,bidi2in1.sty}}}
@@ -312,7 +313,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{50672}
+%% \CheckSum{50694}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1927,6 +1928,28 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</arydshln-xetex-bidi.def>
+%<*beamer-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamer-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamer-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamer class for XeTeX engine]
+\AtBeginDocument{%
+  \if@RTLmain
+    \raggedleft
+  \else
+    \raggedright
+  \fi  
+}
+\renewcommand*{\bidi@beamer@ragged}{%
+  \if@RTL
+    \raggedleft
+  \else
+    \raggedright
+  \fi
+}
+%    \end{macrocode}
+% \iffalse
+%</beamer-xetex-bidi.def>
 %<*bidi.sty>
 %\fi
 % \section{File \texttt{bidi.sty}}
@@ -2023,6 +2046,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
   This is the bidi package, Version \bidi@version,
   Released June 1, 2022. 
 }
+\newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
 \AtBeginDocument{%
   \if@RTLmain\else
@@ -22559,7 +22583,7 @@ to\rtside{\box\bslice\hfil}}
  }\vbox}
 \newcommand*{\bidi@leftskip}{\if@RTL\rightskip\else\leftskip\fi}
 \newcommand*{\bidi@rightskip}{\if@RTL\leftskip\else\rightskip\fi}
-\def\LTR{\par\@RTLfalse\@RTL@footnotefalse\@RTLtabfalse\hsize\linewidth\parshape\z@}
+\def\LTR{\par\@RTLfalse\@RTL@footnotefalse\@RTLtabfalse\hsize\linewidth\parshape\z@\bidi@beamer@ragged}
 \def\endLTR{\par}
 \newenvironment{LTR*}{\LTR
   \everypar{%
@@ -22569,7 +22593,7 @@ to\rtside{\box\bslice\hfil}}
     \fi}%
   }%
 }{\endLTR\@endpetrue}
-\def\RTL{\par\@RTLtrue\@RTL@footnotetrue\@RTLtabtrue\hsize\linewidth\parshape\z@}
+\def\RTL{\par\@RTLtrue\@RTL@footnotetrue\@RTLtabtrue\hsize\linewidth\parshape\z@\bidi@beamer@ragged}
 \def\endRTL{\par}
 \newenvironment{RTL*}{\RTL
   \everypar{%
@@ -22579,8 +22603,8 @@ to\rtside{\box\bslice\hfil}}
     \fi}%
   }%
 }{\endRTL\@endpetrue}
-\def\setRTL{\@RTLtrue\@RTL@footnotetrue\@RTLtabtrue}
-\def\setLTR{\@RTLfalse\@RTL@footnotefalse\@RTLtabfalse}
+\def\setRTL{\@RTLtrue\@RTL@footnotetrue\@RTLtabtrue\bidi@beamer@ragged}
+\def\setLTR{\@RTLfalse\@RTL@footnotefalse\@RTLtabfalse\bidi@beamer@ragged}
 \let\unsetRTL=\setLTR
 \let\unsetLTR=\setRTL
 \let\LR=\LRE
@@ -23321,6 +23345,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifclassloaded{artikel2}{\input{artikel2-xetex-bidi.def}}{}
 \@ifclassloaded{artikel3}{\input{artikel3-xetex-bidi.def}}{}
 \@ifclassloaded{amsart}{\input{amsart-xetex-bidi.def}}{}
+\@ifclassloaded{beamer}{\input{beamer-xetex-bidi.def}}{}
 \@ifclassloaded{letter}{\input{letter-xetex-bidi.def}}{}
 \@ifclassloaded{extletter}{\input{extletter-xetex-bidi.def}}{}
 \@ifclassloaded{memoir}{\input{memoir-xetex-bidi.def}}{}
