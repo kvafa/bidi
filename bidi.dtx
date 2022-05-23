@@ -84,6 +84,8 @@ by Vafa Khalighi.
 \generate{\file{artikel3-xetex-bidi.def}{\from{\jobname.dtx}{table,artikel3-xetex-bidi.def}}}
 \generate{\file{arydshln-xetex-bidi.def}{\from{\jobname.dtx}{table,arydshln-xetex-bidi.def}}}
 \generate{\file{beamer-xetex-bidi.def}{\from{\jobname.dtx}{table,beamer-xetex-bidi.def}}}
+\generate{\file{beamerbaselocalstructure-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaselocalstructure-xetex-bidi.def}}}
+\generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
 \generate{\file{bidi.sty}{\from{\jobname.dtx}{table,bidi.sty}}}
 \generate{\file{bidi.tex}{\from{\jobname.dtx}{table,bidi.tex}}}
 \generate{\file{bidi2in1.sty}{\from{\jobname.dtx}{table,bidi2in1.sty}}}
@@ -313,7 +315,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{50694}
+%% \CheckSum{50888}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1950,6 +1952,126 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamer-xetex-bidi.def>
+%<*beamerbaselocalstructure-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerbaselocalstructure-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerbaselocalstructure-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerbaselocalstructure package for XeTeX engine]
+\def\beamer@enum@{%
+  \beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+  \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+  \bgroup
+  \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+  \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+  \egroup
+  \expandafter
+    \list
+      {\usebeamertemplate{\beamer@enumtempl}}
+      {\usecounter\@enumctr%
+        \def\makelabel##1{{\hss\llap{{%
+                \usebeamerfont*{enumerate \beameritemnestingprefix item}%
+                \usebeamercolor[fg]{enumerate \beameritemnestingprefix item}##1}}}}}%
+  \beamer@cramped%
+  \bidi@beamer@ragged%
+  \beamer@firstlineitemizeunskip%
+}
+
+\renewcommand{\itemize}[1][]{%
+  \ifblank{#1}{}{\def\beamer@defaultospec{#1}}%
+  \ifnum \@itemdepth >2\relax\@toodeep\else
+    \advance\@itemdepth\@ne
+    \beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+    \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+    \bgroup
+    \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+    \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+    \egroup
+    \list
+      {\usebeamertemplate{itemize \beameritemnestingprefix item}}
+      {\def\makelabel##1{%
+          {%
+            \hss\llap{{%
+                \usebeamerfont*{itemize \beameritemnestingprefix item}%
+                \usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
+          }%
+        }%
+      }
+  \fi%
+  \beamer@cramped%
+  \bidi@beamer@ragged%
+  \beamer@firstlineitemizeunskip%
+}
+
+\def\@@description{%
+  \advance\beamer@descdefault by \labelsep%
+  \usebeamerfont{description body}%
+  \bgroup
+  \usebeamercolor[fg]{description body}%
+  \usebeamertemplate{description body begin}%
+  \egroup
+  \list
+  {}
+  {\labelwidth\beamer@descdefault\leftmargin\beamer@descdefault\let\makelabel\beamer@descriptionitem}%
+  \beamer@cramped%
+  \bidi@beamer@ragged
+  \beamer@firstlineitemizeunskip%
+}
+
+\renewenvironment{thebibliography}[1]
+{%\leavevmode\unskip%
+\if@RTL\if@LTRbibitems\@RTLfalse\else\fi\else\if@RTLbibitems\@RTLtrue\else\fi\fi
+\bidi@@thebibliography@font@hook%
+  \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\beamer@biblabeltemplate{\@biblabel{#1}}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \itemsep=0pt%
+            \partopsep=0pt%
+            \topsep=0pt%
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}
+            \let\makelabel\beamer@biblabeltemplate}%
+      \sloppy\bidi@beamer@ragged
+      \clubpenalty10000
+      \@clubpenalty \clubpenalty
+      \widowpenalty10000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \ifhmode\unskip\fi\endlist}
+      
+
+%    \end{macrocode}
+% \iffalse
+%</beamerbaselocalstructure-xetex-bidi.def>
+%<*beamerinnerthemedefault-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerinnerthemedefault-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerinnerthemedefault-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerinnerthemedefault package for XeTeX engine]
+\newcommand*{\bidi@beamer@blacktriangle}{%
+  \if@RTL
+    $\blacktriangleleft$%
+  \else
+    $\blacktriangleright$%
+  \fi
+} 
+
+\expandafter\let\csname beamer@@tmpop@itemize item@default\endcsname\relax
+
+\expandafter\let\csname beamer@@tmpop@itemize subitem@default\endcsname\relax
+
+\expandafter\let\csname beamer@@tmpop@itemize subsubitem@default\endcsname\relax
+
+\defbeamertemplate*{itemize item}{default}{\usebeamerfont*{itemize item}\raise1.25pt\hbox{\donotcoloroutermaths\bidi@beamer@blacktriangle}}
+\defbeamertemplate*{itemize subitem}{default}{\usebeamerfont*{itemize subitem}\raise1.5pt\hbox{\donotcoloroutermaths\bidi@beamer@blacktriangle}}
+\defbeamertemplate*{itemize subsubitem}{default}{\usebeamerfont*{itemize subsubitem}\raise1.5pt\hbox{\donotcoloroutermaths\bidi@beamer@blacktriangle}}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerinnerthemedefault-xetex-bidi.def>
 %<*bidi.sty>
 %\fi
 % \section{File \texttt{bidi.sty}}
@@ -23483,6 +23605,8 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{tocloft}{\@ifclassloaded{memoir}{}{\input{tocloft-xetex-bidi.def}}}{}
 \@ifdefinitionfileloaded{tc-xetex}{\input{tc-xetex-bidi.def}}{}
 \@ifpackageloaded{todonotes}{\input{todonotes-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerbaselocalstructure}{\input{beamerbaselocalstructure-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
 %    \end{macrocode}
 % \iffalse
 %</latex-xetex-bidi.def>
