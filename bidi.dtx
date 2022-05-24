@@ -84,6 +84,7 @@ by Vafa Khalighi.
 \generate{\file{artikel3-xetex-bidi.def}{\from{\jobname.dtx}{table,artikel3-xetex-bidi.def}}}
 \generate{\file{arydshln-xetex-bidi.def}{\from{\jobname.dtx}{table,arydshln-xetex-bidi.def}}}
 \generate{\file{beamer-xetex-bidi.def}{\from{\jobname.dtx}{table,beamer-xetex-bidi.def}}}
+\generate{\file{beamerbaseframecomponents-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseframecomponents-xetex-bidi.def}}}
 \generate{\file{beamerbaselocalstructure-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaselocalstructure-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
 \generate{\file{bidi.sty}{\from{\jobname.dtx}{table,bidi.sty}}}
@@ -315,7 +316,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{50888}
+%% \CheckSum{51374}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1952,6 +1953,207 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamer-xetex-bidi.def>
+%<*beamerbaseframecomponents-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerbaseframecomponents-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
+\def\@makeRTLfntext#1{%
+  \def\insertfootnotetext{#1}%
+  \def\insertfootnotemark{\@makefnmark}%
+  \usebeamertemplate***{RTLfootnote}}
+  
+\def\@makeLTRfntext#1{%
+  \def\insertfootnotetext{#1}%
+  \def\insertfootnotemark{\@makefnmark}%
+  \usebeamertemplate***{LTRfootnote}}
+  
+\renewcommand<>\beamer@framefootnotetext[1]{%
+  \global\setbox\beamer@footins\vbox{%
+    \if@RTL@footnote\@RTLtrue\else\@RTLfalse\fi%
+    \hsize\framewidth
+    \textwidth\hsize
+    \columnwidth\hsize
+    \unvbox\beamer@footins
+    \reset@font
+    \bidi@@footnotetext@font
+    \@parboxrestore
+    \protected@edef\@currentlabel
+         {\csname p@footnote\endcsname\@thefnmark}%
+    \color@begingroup
+      \uncover#2{\@makefntext{%
+        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}}%
+    \color@endgroup}}
+    
+\renewcommand<>\beamer@frameRTLfootnotetext[1]{%
+  \global\setbox\beamer@footins\vbox{%
+    \@RTLtrue
+    \hsize\framewidth
+    \textwidth\hsize
+    \columnwidth\hsize
+    \unvbox\beamer@footins
+    \reset@font
+    \bidi@@RTLfootnotetext@font
+    \@parboxrestore
+    \protected@edef\@currentlabel
+         {\csname p@footnote\endcsname\@thefnmark}%
+    \color@begingroup
+      \uncover#2{\@makeRTLfntext{%
+        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}}%
+    \color@endgroup}}
+    
+\renewcommand<>\beamer@frameLTRfootnotetext[1]{%
+  \global\setbox\beamer@footins\vbox{%
+    \@RTLfalse
+    \hsize\framewidth
+    \textwidth\hsize
+    \columnwidth\hsize
+    \unvbox\beamer@footins
+    \reset@font
+    \bidi@@LTRfootnotetext@font
+    \@parboxrestore
+    \protected@edef\@currentlabel
+         {\csname p@footnote\endcsname\@thefnmark}%
+    \color@begingroup
+      \uncover#2{\@makeLTRfntext{%
+        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}}%
+    \color@endgroup}}
+    
+\renewcommand<>\@mpfootnotetext[1]{%
+  \global\setbox\@mpfootins\vbox{%
+    \ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\if@RTL@footnote\global\let\bidi@mpfootnoterule\right@footnoterule\else\global\let\bidi@mpfootnoterule\left@footnoterule\fi\fi\fi
+    \unvbox\@mpfootins
+    \reset@font
+    \bidi@@footnotetext@font
+    \hsize\columnwidth
+    \@parboxrestore
+    \protected@edef\@currentlabel
+         {\csname p@mpfootnote\endcsname\@thefnmark}%
+    \color@begingroup
+      \uncover#2{\@makefntext{%
+        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}}%
+    \color@endgroup}}
+    
+\renewcommand<>\@mpRTLfootnotetext[1]{%
+  \global\setbox\@mpfootins\vbox{%
+  \ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\global\let\bidi@mpfootnoterule\right@footnoterule\fi\fi
+    \unvbox\@mpfootins
+    \reset@font
+    \bidi@@RTLfootnotetext@font
+    \hsize\columnwidth
+    \@parboxrestore
+    \protected@edef\@currentlabel
+         {\csname p@mpfootnote\endcsname\@thefnmark}%
+    \color@begingroup
+      \uncover#2{\@makeRTLfntext{%
+        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}}%
+    \color@endgroup}}
+    
+\renewcommand<>\@mpLTRfootnotetext[1]{%
+  \global\setbox\@mpfootins\vbox{%
+  \ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\global\let\bidi@mpfootnoterule\left@footnoterule\fi\fi
+    \unvbox\@mpfootins
+    \reset@font
+    \bidi@@LTRfootnotetext@font
+    \hsize\columnwidth
+    \@parboxrestore
+    \protected@edef\@currentlabel
+         {\csname p@mpfootnote\endcsname\@thefnmark}%
+    \color@begingroup
+      \uncover#2{\@makeLTRfntext{%
+        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}}%
+    \color@endgroup}}
+    
+\let\@footnotetext=\beamer@framefootnotetext
+\let\@RTLfootnotetext=\beamer@frameRTLfootnotetext
+\let\@LTRfootnotetext=\beamer@frameLTRfootnotetext
+
+\footdir@temp\footdir@ORG@bidi@beamer@footnotetext\@footnotetext{\bidi@footdir@footnote}%  
+\footdir@temp\footdir@ORG@bidi@beamer@RTLfootnotetext\@RTLfootnotetext{R}%
+\footdir@temp\footdir@ORG@bidi@beamer@LTRfootnotetext\@LTRfootnotetext{L}%
+
+\renewcommand<>{\footnote}[1][]{%
+  \let\beamer@footnotetext=\@footnotetext%
+  \let\beamer@mpfn=\@mpfn%
+  \let\beamer@thempfn=\thempfn%
+  \let\beamer@kvorig=\KV@errx%
+  \let\beamer@xkvorig=\XKV@err
+  \def\beamer@footarg{}%
+  \def\KV@errx##1{\edef\beamer@footarg{\@tempa}}%
+  \def\XKV@err##1{\edef\beamer@footarg{\XKV@tkey}}%
+  \setkeys{beamerfootnote}{#1}%
+  \let\KV@errx=\beamer@kvorig%
+  \let\XKV@errx=\beamer@xkvorig
+  \ifx\beamer@footarg\@empty%
+    \def\beamer@next{\stepcounter\beamer@mpfn
+      \protected@xdef\@thefnmark{\beamer@thempfn}%
+      \@footnotemark\beamer@footnotetext#2}%
+  \else%
+    \def\beamer@next{%
+      \begingroup
+        \csname c@\beamer@mpfn\endcsname\beamer@footarg\relax
+        \unrestored@protected@xdef\@thefnmark{\beamer@thempfn}%
+      \endgroup
+      \@footnotemark\beamer@footnotetext#2}%
+  \fi%
+  \beamer@next}
+  
+\renewcommand<>{\RTLfootnote}[1][]{%
+  \let\beamer@RTLfootnotetext=\@RTLfootnotetext%
+  \let\beamer@mpfn=\@mpfn%
+  \let\beamer@thempfn=\thempfn%
+  \let\beamer@kvorig=\KV@errx%
+  \let\beamer@xkvorig=\XKV@err
+  \def\beamer@footarg{}%
+  \def\KV@errx##1{\edef\beamer@footarg{\@tempa}}%
+  \def\XKV@err##1{\edef\beamer@footarg{\XKV@tkey}}%
+  \setkeys{beamerfootnote}{#1}%
+  \let\KV@errx=\beamer@kvorig%
+  \let\XKV@errx=\beamer@xkvorig
+  \ifx\beamer@footarg\@empty%
+    \def\beamer@next{\stepcounter\beamer@mpfn
+      \protected@xdef\@thefnmark{\beamer@thempfn}%
+      \@footnotemark\beamer@RTLfootnotetext#2}%
+  \else%
+    \def\beamer@next{%
+      \begingroup
+        \csname c@\beamer@mpfn\endcsname\beamer@footarg\relax
+        \unrestored@protected@xdef\@thefnmark{\beamer@thempfn}%
+      \endgroup
+      \@footnotemark\beamer@footnotetext#2}%
+  \fi%
+  \beamer@next}
+  
+\renewcommand<>{\LTRfootnote}[1][]{%
+  \let\beamer@LTRfootnotetext=\@LTRfootnotetext%
+  \let\beamer@mpfn=\@mpfn%
+  \let\beamer@thempfn=\thempfn%
+  \let\beamer@kvorig=\KV@errx%
+  \let\beamer@xkvorig=\XKV@err
+  \def\beamer@footarg{}%
+  \def\KV@errx##1{\edef\beamer@footarg{\@tempa}}%
+  \def\XKV@err##1{\edef\beamer@footarg{\XKV@tkey}}%
+  \setkeys{beamerfootnote}{#1}%
+  \let\KV@errx=\beamer@kvorig%
+  \let\XKV@errx=\beamer@xkvorig
+  \ifx\beamer@footarg\@empty%
+    \def\beamer@next{\stepcounter\beamer@mpfn
+      \protected@xdef\@thefnmark{\beamer@thempfn}%
+      \@footnotemark\beamer@LTRfootnotetext#2}%
+  \else%
+    \def\beamer@next{%
+      \begingroup
+        \csname c@\beamer@mpfn\endcsname\beamer@footarg\relax
+        \unrestored@protected@xdef\@thefnmark{\beamer@thempfn}%
+      \endgroup
+      \@footnotemark\beamer@footnotetext#2}%
+  \fi%
+  \beamer@next}
+  
+  
+%    \end{macrocode}
+% \iffalse
+%</beamerbaseframecomponents-xetex-bidi.def>
 %<*beamerbaselocalstructure-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerbaselocalstructure-xetex-bidi.def}}
@@ -2067,6 +2269,29 @@ by Vafa Khalighi.
 \defbeamertemplate*{itemize item}{default}{\usebeamerfont*{itemize item}\raise1.25pt\hbox{\donotcoloroutermaths\bidi@beamer@blacktriangle}}
 \defbeamertemplate*{itemize subitem}{default}{\usebeamerfont*{itemize subitem}\raise1.5pt\hbox{\donotcoloroutermaths\bidi@beamer@blacktriangle}}
 \defbeamertemplate*{itemize subsubitem}{default}{\usebeamerfont*{itemize subsubitem}\raise1.5pt\hbox{\donotcoloroutermaths\bidi@beamer@blacktriangle}}
+
+\bidi@undef\beamer@@tmpop@footnote@default
+
+\defbeamertemplate*{footnote}{default}
+{
+  \parindent 1em\noindent%
+  \bidi@beamer@ragged
+  \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+
+\defbeamertemplate*{RTLfootnote}{default}
+{
+  \parindent 1em\noindent%
+  \raggedleft
+  \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+
+\defbeamertemplate*{LTRfootnote}{default}
+{
+  \parindent 1em\noindent%
+  \raggedright
+  \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
 
 
 %    \end{macrocode}
@@ -23605,6 +23830,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{tocloft}{\@ifclassloaded{memoir}{}{\input{tocloft-xetex-bidi.def}}}{}
 \@ifdefinitionfileloaded{tc-xetex}{\input{tc-xetex-bidi.def}}{}
 \@ifpackageloaded{todonotes}{\input{todonotes-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerbaseframecomponents}{\input{beamerbaseframecomponents-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaselocalstructure}{\input{beamerbaselocalstructure-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
 %    \end{macrocode}
