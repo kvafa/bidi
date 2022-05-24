@@ -84,6 +84,7 @@ by Vafa Khalighi.
 \generate{\file{artikel3-xetex-bidi.def}{\from{\jobname.dtx}{table,artikel3-xetex-bidi.def}}}
 \generate{\file{arydshln-xetex-bidi.def}{\from{\jobname.dtx}{table,arydshln-xetex-bidi.def}}}
 \generate{\file{beamer-xetex-bidi.def}{\from{\jobname.dtx}{table,beamer-xetex-bidi.def}}}
+\generate{\file{beamerbasecolor-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbasecolor-xetex-bidi.def}}}
 \generate{\file{beamerbaseframecomponents-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseframecomponents-xetex-bidi.def}}}
 \generate{\file{beamerbaselocalstructure-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaselocalstructure-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
@@ -316,7 +317,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{51404}
+%% \CheckSum{51690}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1953,11 +1954,138 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamer-xetex-bidi.def>
+%<*beamerbasecolor-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerbasecolor-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerbasecolor-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerbasecolor package for XeTeX engine]
+\renewenvironment{beamercolorbox}[2][]{%
+  \def\beamer@vmode{\leavevmode}%
+  \setkeys{beamercolbox}{wd=\textwidth,ht={},dp={},%
+    leftskip=0pt,rightskip=0pt plus1fil,%
+    sep=0pt,colsep=0pt,colsep*=0pt,%
+    shadow=false,rounded=false,ignorebg=false}%
+  \setkeys{beamercolbox}{#1}%
+  \ifbeamercolorempty[bg]{#2}{\@tempswafalse}{\@tempswatrue}%
+  \ifbeamer@colbox@ignorebg\@tempswafalse\fi%
+  \def\beamer@colbox@color{#2}%
+  \setbox\beamer@tempbox=\hbox\bgroup\color@begingroup
+  \if@RTL
+    \@hboxRconstructtrue
+  \else
+    \@hboxRconstructfalse
+  \fi
+    \ifbeamer@colbox@ignorebg%
+      \colorlet{beamer@temp@color}{bg}%
+      \usebeamercolor[fg]{#2}%
+      \colorlet{bg}{beamer@temp@color}%
+    \else%
+      \usebeamercolor[fg]{#2}%
+    \fi%
+    \vbox\bgroup%
+    \hsize=\beamer@colbox@wd%
+    \@arrayparboxrestore%
+    \leftskip=\beamer@colbox@ls%
+    \ifdim\beamer@colbox@sep>\z@\advance\leftskip\beamer@colbox@sep\fi%
+    \rightskip=\beamer@colbox@rs%
+    \ifdim\beamer@colbox@sep>\z@\advance\rightskip\beamer@colbox@sep\fi%
+    \if@tempswa\ifdim\beamer@colbox@colsep>\z@%
+      \advance\leftskip by\beamer@colbox@colsep%
+      \advance\rightskip by\beamer@colbox@colsep%
+      \vskip\beamer@colbox@colsep%
+    \fi%
+      \ifdim\beamer@colbox@colseps>\z@\vskip\beamer@colbox@colseps\fi%
+    \fi%
+    \ifdim\beamer@colbox@sep>\z@\vskip\beamer@colbox@sep\fi%
+    \beamer@vmode\ignorespaces}{%
+    \ifdim\beamer@colbox@sep>\z@\vskip\beamer@colbox@sep\fi%
+    \if@tempswa
+      \ifdim\beamer@colbox@colsep>\z@\vskip\beamer@colbox@colsep\fi%
+      \ifdim\beamer@colbox@colseps>\z@\vskip\beamer@colbox@colseps\fi%
+    \fi%
+  \egroup\color@endgroup\egroup%
+  \wd\beamer@tempbox=\beamer@colbox@wd%
+  \ifx\beamer@colbox@ht\@empty\else\ht\beamer@tempbox=\beamer@colbox@ht\fi%
+  \ifx\beamer@colbox@dp\@empty\else\dp\beamer@tempbox=\beamer@colbox@dp\fi%
+  \ifbeamer@colbox@rounded%
+    \if@tempswa%
+      \begin{beamerboxesrounded}[%
+        shadow=\beamer@colbox@shadow,%
+        lower=\beamer@colbox@color,%
+        upper=normal text,%
+        width=\beamer@colbox@wd]{}%
+        \box\beamer@tempbox%
+      \end{beamerboxesrounded}%
+    \else%
+      \ifdim\wd\beamer@tempbox>\textwidth%
+        \setbox\beamer@tempbox=\hbox to\textwidth{\hss\box\beamer@tempbox\hss}%
+      \fi%
+      \box\beamer@tempbox%
+    \fi%
+  \else%
+    \if@tempswa\setbox\beamer@tempbox=\hbox{%
+      \usebeamercolor{\beamer@colbox@color}%
+      \hskip-\beamer@colbox@colseps%
+      \fboxsep=\z@\colorbox{bg}{%
+        \hskip\beamer@colbox@colseps%
+        \box\beamer@tempbox%
+        \hskip\beamer@colbox@colseps%
+      }%
+      \hskip-\beamer@colbox@colseps%
+      }\fi%
+    \ifdim\wd\beamer@tempbox>\textwidth%
+      \setbox\beamer@tempbox=\hbox to\textwidth{\hskip0pt minus\beamer@leftmargin\relax\box\beamer@tempbox\hskip0pt minus\beamer@rightmargin\relax}%
+    \fi%
+    \box\beamer@tempbox%
+  \fi%
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerbasecolor-xetex-bidi.def>
 %<*beamerbaseframecomponents-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerbaseframecomponents-xetex-bidi.def}}
 %    \begin{macrocode}
 \ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
+\renewcommand<>\beamer@columncom[2][\beamer@colmode]{%
+  \beamer@colclose%
+  \def\beamer@colclose{\end{minipage}\hfill\end{actionenv}\ignorespaces}%
+\begin{actionenv}#3%
+  \setkeys{beamer@col}{#1}%
+  \begin{minipage}[\beamer@colalign]{#2}%
+    \leavevmode\bidi@beamer@ragged\beamer@colheadskip\ignorespaces}
+
+\renewenvironment<>{columns}[1][]{%
+  \begin{actionenv}#2%
+  \ifbeamer@onlytextwidth
+    \def\beamer@colentrycode{\hbox to\textwidth\bgroup\ignorespaces}%
+    \def\beamer@colexitcode{\unskip\egroup}
+  \else%
+    \def\beamer@colentrycode{%
+      \hbox to\textwidth\bgroup%
+      \leavevmode%
+      \hskip-\beamer@leftmargin%
+      \nobreak%
+      \beamer@tempdim=\textwidth%
+      \advance\beamer@tempdim by\beamer@leftmargin%
+      \advance\beamer@tempdim by\beamer@rightmargin%
+      \hbox to\beamer@tempdim\bgroup%
+      \hbox{}\hfill\ignorespaces}%
+    \def\beamer@colexitcode{\egroup%
+      \nobreak%
+      \hskip-\beamer@rightmargin\egroup}%
+  \fi%
+  \ifbeamer@centered\setkeys{beamer@col}{c}\else\setkeys{beamer@col}{t}\fi%
+  \setkeys{beamer@col}{#1}%
+  \par%
+  \leavevmode
+  \beamer@colentrycode%
+  \def\beamer@colclose{}\ignorespaces}%
+  {\beamer@colclose\def\beamer@colclose{}\beamer@colexitcode\end{actionenv}}%
+
+
 \def\@makeRTLfntext#1{%
   \def\insertfootnotetext{#1}%
   \def\insertfootnotemark{\@makefnmark}%
@@ -2310,6 +2438,21 @@ by Vafa Khalighi.
   \parindent 1em\noindent%
   \raggedright
   \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+
+\bidi@undef\beamer@@tmpop@caption@default
+
+\defbeamertemplate*{caption}{default}
+{%
+  \bidi@beamer@ragged
+  {%
+    \leavevmode
+    \usebeamercolor[fg]{caption name}%
+    \usebeamerfont*{caption name}%
+    \insertcaptionname
+    \usebeamertemplate{caption label separator}%
+  }%
+  \insertcaption\par
 }
 
 
@@ -23849,6 +23992,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{tocloft}{\@ifclassloaded{memoir}{}{\input{tocloft-xetex-bidi.def}}}{}
 \@ifdefinitionfileloaded{tc-xetex}{\input{tc-xetex-bidi.def}}{}
 \@ifpackageloaded{todonotes}{\input{todonotes-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerbasecolor}{\input{beamerbasecolor-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaseframecomponents}{\input{beamerbaseframecomponents-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaselocalstructure}{\input{beamerbaselocalstructure-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
