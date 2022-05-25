@@ -317,7 +317,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{51690}
+%% \CheckSum{51697}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4438,6 +4438,9 @@ ill-advised in the old versions of bidi package.%
 
 
 \bidi@newrobustcmd{\bidi@undef}[1]{\let#1\bidi@undefined}
+\bidi@newrobustcmd{\bidi@csundef}[1]{%
+  \expandafter\let\csname #1\endcsname\bidi@undefined
+}
 
 \let\bidi@dbg@trce\@gobble
 \let\bidi@dbg@init\@gobble
