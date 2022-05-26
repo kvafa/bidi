@@ -317,7 +317,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{51697}
+%% \CheckSum{52032}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -18821,7 +18821,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{scrartcl-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{scrartcl-xetex-bidi.def}[2022/05/22 v1.2 bidi adaptations for scrartcl class for XeTeX engine]
+\ProvidesFile{scrartcl-xetex-bidi.def}[2022/06/01 v1.3 bidi adaptations for scrartcl class for XeTeX engine]
 \newcommand{\scr@saved@LTRfootnotetext}{}
 \newcommand{\scr@saved@RTLfootnotetext}{}
 \let\scr@saved@footnotetext\@footnotetext
@@ -19330,6 +19330,89 @@ to\rtside{\box\bslice\hfil}}
   \fi
 }
 
+\renewcommand{\scr@@makesinglelinecaption}[3]{%
+    {\usekomafont{caption}{\strut\ignorespaces
+      #1{{\usekomafont{captionlabel}{#2\captionformat}}}%
+      \ignorespaces #3\unskip}}%
+}
+
+\renewcommand{\scr@makemultilinecaption}[3]{%
+  {%
+    \usefontofkomafont{caption}{%
+      \hb@xt@\hsize{%
+        \cap@left
+        \vbox{\hsize\cap@width\linewidth\hsize
+          \scr@ifundefinedorrelax{@captype}{%
+            \ClassWarning{\KOMAClassName}{%
+              `\string\caption' outside float.\MessageBreak
+              Seems you are using `\string\caption' outside a
+              float.\MessageBreak
+              Maybe you are using a package that uses
+              `\string\@makecaption'\MessageBreak
+              without setting `\string\@captype' before.\MessageBreak
+              Because I cannot detect the caption type, I'm using\MessageBreak
+              the empty one.%
+            }%
+            \let\@captype\@empty
+          }{}%
+          \scr@ifundefinedorrelax{ragged\@captype caption}{\raggedcaption}{%
+            \@nameuse{ragged\@captype caption}%
+          }%
+          \ifdofullc@p
+            \@hangfrom{%
+              \strut
+              \scr@smashdp{%
+                #1{%
+                  \usekomafont{caption}{%
+                    \usekomafont{captionlabel}{#2\captionformat}%
+                  }%
+                }%
+              }%
+            }%
+            {{\usekomafont{caption}{#3\scr@endstrut}}\par}%
+          \else
+            \ifdim\cap@indent<\z@
+              \strut
+              #1{%
+                {\usekomafont{caption}{%
+                  \usekomafont{captionlabel}{#2\captionformat}%
+                }%
+              }\par}%
+              \noindent{{\usekomafont{caption}{%
+                  \hspace*{-\cap@indent}#3\scr@endstrut
+              }}\par}%
+            \else
+              \if@capbreak
+                \strut
+                #1{%
+                  {\usekomafont{caption}{%
+                    \usekomafont{captionlabel}{#2\captionformat}%
+                  }%
+                }\par}%
+                \noindent\@hangfrom{\hspace*{\cap@indent}}%
+                {{\usekomafont{caption}{#3\scr@endstrut}}\par}%
+              \else
+                \@hangfrom{\scr@smashdp\strut\hspace*{\cap@indent}}%
+                {%
+                  \hspace{-\cap@indent}%
+                  \scr@smashdp{%
+                    #1{\usekomafont{caption}{%
+                        \usekomafont{captionlabel}{#2\captionformat}%
+                      }%
+                    }%
+                  }%
+                  {{\usekomafont{caption}{#3\scr@endstrut}}\par}%
+                }%
+              \fi
+            \fi
+          \fi
+        }%
+        \cap@right
+      }\par\kern\dp\strutbox
+    }%
+  }\kern-\dp\strutbox
+}
+
 \bidi@AfterFile{longtable-xetex-bidi.def}{%
   \if@komalongtable
     \renewcommand{\LT@makecaption}[3]{%
@@ -19481,7 +19564,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{scrbook-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{scrbook-xetex-bidi.def}[2022/05/22 v1.2 bidi adaptations for scrbook class for XeTeX engine]
+\ProvidesFile{scrbook-xetex-bidi.def}[2022/06/01 v1.3 bidi adaptations for scrbook class for XeTeX engine]
 \newcommand{\scr@saved@LTRfootnotetext}{}
 \newcommand{\scr@saved@RTLfootnotetext}{}
 \let\scr@saved@footnotetext\@footnotetext
@@ -20011,6 +20094,91 @@ to\rtside{\box\bslice\hfil}}
     \vskip\belowcaptionskip
   \fi
 }
+
+\renewcommand{\scr@@makesinglelinecaption}[3]{%
+    {\usekomafont{caption}{\strut\ignorespaces
+      #1{{\usekomafont{captionlabel}{#2\captionformat}}}%
+      \ignorespaces #3\unskip}}%
+}
+
+\renewcommand{\scr@makemultilinecaption}[3]{%
+  {%
+    \usefontofkomafont{caption}{%
+      \hb@xt@\hsize{%
+        \cap@left
+        \vbox{\hsize\cap@width\linewidth\hsize
+          \scr@ifundefinedorrelax{@captype}{%
+            \ClassWarning{\KOMAClassName}{%
+              `\string\caption' outside float.\MessageBreak
+              Seems you are using `\string\caption' outside a
+              float.\MessageBreak
+              Maybe you are using a package that uses
+              `\string\@makecaption'\MessageBreak
+              without setting `\string\@captype' before.\MessageBreak
+              Because I cannot detect the caption type, I'm using\MessageBreak
+              the empty one.%
+            }%
+            \let\@captype\@empty
+          }{}%
+          \scr@ifundefinedorrelax{ragged\@captype caption}{\raggedcaption}{%
+            \@nameuse{ragged\@captype caption}%
+          }%
+          \ifdofullc@p
+            \@hangfrom{%
+              \strut
+              \scr@smashdp{%
+                #1{%
+                  \usekomafont{caption}{%
+                    \usekomafont{captionlabel}{#2\captionformat}%
+                  }%
+                }%
+              }%
+            }%
+            {{\usekomafont{caption}{#3\scr@endstrut}}\par}%
+          \else
+            \ifdim\cap@indent<\z@
+              \strut
+              #1{%
+                {\usekomafont{caption}{%
+                  \usekomafont{captionlabel}{#2\captionformat}%
+                }%
+              }\par}%
+              \noindent{{\usekomafont{caption}{%
+                  \hspace*{-\cap@indent}#3\scr@endstrut
+              }}\par}%
+            \else
+              \if@capbreak
+                \strut
+                #1{%
+                  {\usekomafont{caption}{%
+                    \usekomafont{captionlabel}{#2\captionformat}%
+                  }
+                }\par}%
+                \noindent\@hangfrom{\hspace*{\cap@indent}}%
+                {{\usekomafont{caption}{#3\scr@endstrut}}\par}%
+              \else
+                \@hangfrom{\scr@smashdp\strut\hspace*{\cap@indent}}%
+                {%
+                  \hspace{-\cap@indent}%
+                  \scr@smashdp{%
+                    #1{\usekomafont{caption}{%
+                        \usekomafont{captionlabel}{#2\captionformat}%
+                      }%
+                    }%
+                  }%
+                  {{\usekomafont{caption}{#3\scr@endstrut}}\par}%
+                }%
+              \fi
+            \fi
+          \fi
+        }%
+        \cap@right
+      }\par\kern\dp\strutbox
+    }%
+  }\kern-\dp\strutbox
+}
+
+
 \bidi@AfterFile{longtable-xetex-bidi.def}{%
   \if@komalongtable
     \renewcommand{\LT@makecaption}[3]{%
@@ -20173,7 +20341,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{scrreprt-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{scrreprt-xetex-bidi.def}[2022/05/22 v1.2 bidi adaptations for scrreprt class for XeTeX engine]
+\ProvidesFile{scrreprt-xetex-bidi.def}[2022/06/01 v1.3 bidi adaptations for scrreprt class for XeTeX engine]
 \newcommand{\scr@saved@LTRfootnotetext}{}
 \newcommand{\scr@saved@RTLfootnotetext}{}
 \let\scr@saved@footnotetext\@footnotetext
@@ -20695,6 +20863,91 @@ to\rtside{\box\bslice\hfil}}
     \vskip\belowcaptionskip
   \fi
 }
+
+\renewcommand{\scr@@makesinglelinecaption}[3]{%
+    {\usekomafont{caption}{\strut\ignorespaces
+      #1{{\usekomafont{captionlabel}{#2\captionformat}}}%
+      \ignorespaces #3\unskip}}%
+}
+
+\renewcommand{\scr@makemultilinecaption}[3]{%
+  {%
+    \usefontofkomafont{caption}{%
+      \hb@xt@\hsize{%
+        \cap@left
+        \vbox{\hsize\cap@width\linewidth\hsize
+          \scr@ifundefinedorrelax{@captype}{%
+            \ClassWarning{\KOMAClassName}{%
+              `\string\caption' outside float.\MessageBreak
+              Seems you are using `\string\caption' outside a
+              float.\MessageBreak
+              Maybe you are using a package that uses
+              `\string\@makecaption'\MessageBreak
+              without setting `\string\@captype' before.\MessageBreak
+              Because I cannot detect the caption type, I'm using\MessageBreak
+              the empty one.%
+            }%
+            \let\@captype\@empty
+          }{}%
+          \scr@ifundefinedorrelax{ragged\@captype caption}{\raggedcaption}{%
+            \@nameuse{ragged\@captype caption}%
+          }%
+          \ifdofullc@p
+            \@hangfrom{%
+              \strut
+              \scr@smashdp{%
+                #1{%
+                  \usekomafont{caption}{%
+                    \usekomafont{captionlabel}{#2\captionformat}%
+                  }%
+                }%
+              }%
+            }%
+            {{\usekomafont{caption}{#3\scr@endstrut}}\par}%
+          \else
+            \ifdim\cap@indent<\z@
+              \strut
+              #1{%
+                {\usekomafont{caption}{%
+                  \usekomafont{captionlabel}{#2\captionformat}%
+                }%
+              }\par}%
+              \noindent{{\usekomafont{caption}{%
+                  \hspace*{-\cap@indent}#3\scr@endstrut
+              }}\par}%
+            \else
+              \if@capbreak
+                \strut
+                #1{%
+                  {\usekomafont{caption}{%
+                    \usekomafont{captionlabel}{#2\captionformat}%
+                  }%
+                }\par}%
+                \noindent\@hangfrom{\hspace*{\cap@indent}}%
+                {{\usekomafont{caption}{#3\scr@endstrut}}\par}%
+              \else
+                \@hangfrom{\scr@smashdp\strut\hspace*{\cap@indent}}%
+                {%
+                  \hspace{-\cap@indent}%
+                  \scr@smashdp{%
+                    #1{\usekomafont{caption}{%
+                        \usekomafont{captionlabel}{#2\captionformat}%
+                      }%
+                    }%
+                  }%
+                  {{\usekomafont{caption}{#3\scr@endstrut}}\par}%
+                }%
+              \fi
+            \fi
+          \fi
+        }%
+        \cap@right
+      }\par\kern\dp\strutbox
+    }%
+  }\kern-\dp\strutbox
+}
+
+
 \bidi@AfterFile{longtable-xetex-bidi.def}{%
   \if@komalongtable
     \renewcommand{\LT@makecaption}[3]{%
@@ -21691,7 +21944,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{tocbasic-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{tocbasic-xetex-bidi.def}[2022/05/22 v0.3 bidi adaptations for tocbasic package for XeTeX engine]
+\ProvidesFile{tocbasic-xetex-bidi.def}[2022/06/01 v0.4 bidi adaptations for tocbasic package for XeTeX engine]
 \bidi@undef\scr@dte@def@l@undottedtocline
 \bidi@undef\scr@dte@undottedtocline@init
 \DeclareTOCEntryStyle{undottedtocline}[{%
@@ -22453,6 +22706,15 @@ to\rtside{\box\bslice\hfil}}
 }]{%
   \scr@dte@tocline{#1}{##1}{##2}%
 }
+
+\renewcommand*{\scr@tso@figure@pagenumberformat}[1]{%
+   {\normalfont\normalcolor #1}%
+ }
+ 
+\renewcommand*{\scr@tso@table@pagenumberformat}[1]{%
+   {\normalfont\normalcolor #1}%
+ }
+ 
 %    \end{macrocode}
 % \iffalse
 %</tocbasic-xetex-bidi.def>
