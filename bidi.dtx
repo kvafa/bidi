@@ -317,7 +317,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{52012}
+%% \CheckSum{52030}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -19467,7 +19467,7 @@ to\rtside{\box\bslice\hfil}}
   \csname scr@tso@#1@entryformat\endcsname[1]{\usekomafont{partentry}{##1}}%
   \expandafter\renewcommand%
   \csname scr@tso@#1@pagenumberformat\endcsname[1]{%
-    \usekomafont{partentry}{\usekomafont{partentrypagenumber}{##1}}}%
+    {\usekomafont{partentry}{\usekomafont{partentrypagenumber}{##1}}}}%
   \expandafter\renewcommand\expandafter*%
   \csname scr@tso@#1@beforeskip\endcsname{2.25em \@plus\p@}%
 }
@@ -19485,7 +19485,7 @@ to\rtside{\box\bslice\hfil}}
   \expandafter\renewcommand%
   \csname scr@tso@#1@entryformat\endcsname{\usekomafont{sectionentry}}%
   \expandafter\renewcommand%
-  \csname scr@tso@#1@pagenumberformat\endcsname[1]{\usekomafont{sectionentry}{\usekomafont{sectionentrypagenumber}{##1}}}%
+  \csname scr@tso@#1@pagenumberformat\endcsname[1]{{\usekomafont{sectionentry}{\usekomafont{sectionentrypagenumber}{##1}}}}%
   \expandafter\renewcommand\expandafter*%
   \csname scr@tso@#1@beforeskip\endcsname{1.0em \@plus\p@}%
 }
@@ -19494,6 +19494,9 @@ to\rtside{\box\bslice\hfil}}
 \TOCEntryStyleStartInitCode{subsection}{%
   \expandafter\renewcommand%
   \csname scr@tso@#1@linefill\endcsname{\TOCLineLeaderFill\relax}%
+      \expandafter\renewcommand%
+      \csname scr@tso@#1@pagenumberformat\endcsname[1]{%
+        {\normalfont\normalcolor ##1}}%
 }
 
 \CloneTOCEntryStyle{subsection}{default}
@@ -20233,7 +20236,7 @@ to\rtside{\box\bslice\hfil}}
   \csname scr@tso@#1@entryformat\endcsname[1]{\usekomafont{partentry}{##1}}%
   \expandafter\renewcommand%
   \csname scr@tso@#1@pagenumberformat\endcsname[1]{%
-    \usekomafont{partentry}{\usekomafont{partentrypagenumber}{##1}}}%
+    {\usekomafont{partentry}{\usekomafont{partentrypagenumber}{##1}}}}%
   \expandafter\renewcommand\expandafter*%
   \csname scr@tso@#1@beforeskip\endcsname{2.25em \@plus\p@}%
 }
@@ -20252,7 +20255,7 @@ to\rtside{\box\bslice\hfil}}
   \csname scr@tso@#1@entryformat\endcsname{\usekomafont{chapterentry}}%
   \expandafter\renewcommand%
   \csname scr@tso@#1@pagenumberformat\endcsname[1]{%
-    \usekomafont{chapterentry}{\usekomafont{chapterentrypagenumber}{##1}}}%
+    {\usekomafont{chapterentry}{\usekomafont{chapterentrypagenumber}{##1}}}}%
   \expandafter\renewcommand\expandafter*%
   \csname scr@tso@#1@beforeskip\endcsname{1.0em \@plus\p@}%
 }
@@ -20261,6 +20264,9 @@ to\rtside{\box\bslice\hfil}}
 \TOCEntryStyleStartInitCode{section}{%
   \expandafter\renewcommand%
   \csname scr@tso@#1@linefill\endcsname{\TOCLineLeaderFill\relax}%
+      \expandafter\renewcommand%
+      \csname scr@tso@#1@pagenumberformat\endcsname[1]{%
+        {\normalfont\normalcolor ##1}}%
 }
 
 \CloneTOCEntryStyle{section}{default}
@@ -21002,7 +21008,7 @@ to\rtside{\box\bslice\hfil}}
   \csname scr@tso@#1@entryformat\endcsname[1]{\usekomafont{partentry}{##1}}%
   \expandafter\renewcommand%
   \csname scr@tso@#1@pagenumberformat\endcsname[1]{%
-    \usekomafont{partentry}{\usekomafont{partentrypagenumber}{##1}}}%
+    {\usekomafont{partentry}{\usekomafont{partentrypagenumber}{##1}}}}%
   \expandafter\renewcommand\expandafter*%
   \csname scr@tso@#1@beforeskip\endcsname{2.25em \@plus\p@}%
 }
@@ -21021,7 +21027,7 @@ to\rtside{\box\bslice\hfil}}
   \csname scr@tso@#1@entryformat\endcsname{\usekomafont{chapterentry}}%
   \expandafter\renewcommand%
   \csname scr@tso@#1@pagenumberformat\endcsname[1]{%
-    \usekomafont{chapterentry}{\usekomafont{chapterentrypagenumber}{##1}}}%
+    {\usekomafont{chapterentry}{\usekomafont{chapterentrypagenumber}{##1}}}}%
   \expandafter\renewcommand\expandafter*%
   \csname scr@tso@#1@beforeskip\endcsname{1.0em \@plus\p@}%
 }
@@ -21030,6 +21036,9 @@ to\rtside{\box\bslice\hfil}}
 \TOCEntryStyleStartInitCode{section}{%
   \expandafter\renewcommand%
   \csname scr@tso@#1@linefill\endcsname{\TOCLineLeaderFill\relax}%
+      \expandafter\renewcommand%
+      \csname scr@tso@#1@pagenumberformat\endcsname[1]{%
+        {\normalfont\normalcolor ##1}}%
 }
 
 \CloneTOCEntryStyle{section}{default}
@@ -22336,7 +22345,7 @@ to\rtside{\box\bslice\hfil}}
             {\parfillskip\@flushglue\par}\nobreak\hskip-\bidi@leftskip
           }{}%
         }%
-        \@nameuse{scr@tso@#1@entryformat}{%
+        {\@nameuse{scr@tso@#1@entryformat}{%
           #2%
           \nobreak
           {%
@@ -22348,8 +22357,7 @@ to\rtside{\box\bslice\hfil}}
               \@nameuse{scr@tso@#1@pagenumberformat}{#3}%
             }%
           }%
-          \@par
-        }%
+        }}\@par
       }%
     }%
     \tocbasic@SetPenaltyByTOCLevel{#1}%
@@ -22633,20 +22641,20 @@ to\rtside{\box\bslice\hfil}}
   \expandafter\renewcommand%
   \csname scr@tso@#1@numberformat\endcsname[1]{##1}%
   \Ifstr{#1}{part}{%
-    \expandafter\renewcommand%
+    \expandafter\providecommand%
     \csname scr@tso@#1@entryformat\endcsname[1]{\large\bfseries ##1}%
   }{%
     \Ifstr{#1}{chapter}{%
-      \expandafter\renewcommand%
+      \expandafter\providecommand%
       \csname scr@tso@#1@entryformat\endcsname[1]{\bfseries ##1}%
     }{%
       \scr@ifundefinedorrelax{l@chapter}{%
         \Ifstr{#1}{section}{%
-          \expandafter\renewcommand%
+          \expandafter\providecommand%
           \csname scr@tso@#1@entryformat\endcsname[1]{\bfseries ##1}%
         }{}%
       }{}%
-      \expandafter\renewcommand%
+      \expandafter\providecommand%
       \csname scr@tso@#1@entryformat\endcsname[1]{##1}%
     }%
   }%
@@ -22671,20 +22679,20 @@ to\rtside{\box\bslice\hfil}}
   }{}%
   \expandafter\renewcommand\csname Ifscr@tso@#1@raggedpage\endcsname[2]{##2}%
   \Ifstr{#1}{part}{%
-    \expandafter\renewcommand%
+    \expandafter\providecommand%
     \csname scr@tso@#1@pagenumberformat\endcsname[1]{\large\bfseries ##1}%
   }{%
     \Ifstr{#1}{chapter}{%
-      \expandafter\renewcommand%
+      \expandafter\providecommand%
       \csname scr@tso@#1@pagenumberformat\endcsname[1]{\bfseries ##1}%
     }{%
       \scr@ifundefinedorrelax{l@chapter}{%
         \Ifstr{#1}{section}{%
-          \expandafter\renewcommand%
+          \expandafter\providecommand%
           \csname scr@tso@#1@pagenumberformat\endcsname[1]{\bfseries ##1}%
         }{}%
       }{}%
-      \expandafter\renewcommand%
+      \expandafter\providecommand%
       \csname scr@tso@#1@pagenumberformat\endcsname[1]{%
         {\normalfont\normalcolor ##1}}%
     }%
