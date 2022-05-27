@@ -317,7 +317,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{52032}
+%% \CheckSum{52012}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2388,9 +2388,9 @@ by Vafa Khalighi.
   \fi
 }
 
-\expandafter\let\csname beamer@@tmpop@subsection in toc@default\endcsname\relax
+\bidi@csundef{beamer@@tmpop@subsection in toc@default}
 
-\expandafter\let\csname beamer@@tmpop@subsubsection in toc@default\endcsname\relax
+\bidi@csundef{beamer@@tmpop@subsubsection in toc@default}
 
 \defbeamertemplate*{subsection in toc}{default}
 {\leavevmode\bidi@beamer@leftskip=1.5em\inserttocsubsection\par}
@@ -2407,11 +2407,11 @@ by Vafa Khalighi.
   \fi
 } 
 
-\expandafter\let\csname beamer@@tmpop@itemize item@default\endcsname\relax
+\bidi@csundef{beamer@@tmpop@itemize item@default}
 
-\expandafter\let\csname beamer@@tmpop@itemize subitem@default\endcsname\relax
+\bidi@csundef{beamer@@tmpop@itemize subitem@default}
 
-\expandafter\let\csname beamer@@tmpop@itemize subsubitem@default\endcsname\relax
+\bidi@csundef{beamer@@tmpop@itemize subsubitem@default}
 
 \defbeamertemplate*{itemize item}{default}{\usebeamerfont*{itemize item}\raise1.25pt\hbox{\donotcoloroutermaths\bidi@beamer@blacktriangle}}
 \defbeamertemplate*{itemize subitem}{default}{\usebeamerfont*{itemize subitem}\raise1.5pt\hbox{\donotcoloroutermaths\bidi@beamer@blacktriangle}}
