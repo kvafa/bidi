@@ -84,10 +84,13 @@ by Vafa Khalighi.
 \generate{\file{artikel3-xetex-bidi.def}{\from{\jobname.dtx}{table,artikel3-xetex-bidi.def}}}
 \generate{\file{arydshln-xetex-bidi.def}{\from{\jobname.dtx}{table,arydshln-xetex-bidi.def}}}
 \generate{\file{beamer-xetex-bidi.def}{\from{\jobname.dtx}{table,beamer-xetex-bidi.def}}}
+\generate{\file{beamerbaseboxes-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseboxes-xetex-bidi.def}}}
 \generate{\file{beamerbasecolor-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbasecolor-xetex-bidi.def}}}
 \generate{\file{beamerbaseframecomponents-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseframecomponents-xetex-bidi.def}}}
 \generate{\file{beamerbaselocalstructure-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaselocalstructure-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
+\generate{\file{beamerouterthemesplit-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesplit-xetex-bidi.def}}}
+\generate{\file{beamerouterthemeshadow-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeshadow-xetex-bidi.def}}}
 \generate{\file{bidi.sty}{\from{\jobname.dtx}{table,bidi.sty}}}
 \generate{\file{bidi.tex}{\from{\jobname.dtx}{table,bidi.tex}}}
 \generate{\file{bidi2in1.sty}{\from{\jobname.dtx}{table,bidi2in1.sty}}}
@@ -317,7 +320,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{52030}
+%% \CheckSum{0}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1954,6 +1957,17 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamer-xetex-bidi.def>
+%<*beamerbaseboxes-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerbaseboxes-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerbaseboxes-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerbaseboxes package for XeTeX engine]
+
+  
+
+%    \end{macrocode}
+% \iffalse
+%</beamerbaseboxes-xetex-bidi.def>
 %<*beamerbasecolor-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerbasecolor-xetex-bidi.def}}
@@ -2379,12 +2393,20 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerinnerthemedefault-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerinnerthemedefault-xetex-bidi.def}[2022/05/24 v0.1 bidi adaptations for beamerinnerthemedefault package for XeTeX engine]
+\ProvidesFile{beamerinnerthemedefault-xetex-bidi.def}[2022/06/01 v0.2 bidi adaptations for beamerinnerthemedefault package for XeTeX engine]
 \newcommand*{\bidi@beamer@leftskip}{%
   \if@RTL
     \rightskip
   \else
     \leftskip
+  \fi
+}
+
+\newcommand*{\bidi@beamer@rightskip}{%
+  \if@RTL
+    \leftskip
+  \else
+    \rightskip
   \fi
 }
 
@@ -2459,6 +2481,86 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerinnerthemedefault-xetex-bidi.def>
+%<*beamerouterthemesplit-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerouterthemesplit-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerouterthemesplit-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerouterthemesplit package for XeTeX engine]
+\bidi@csundef{beamer@@tmpop@footline@split theme}
+
+\defbeamertemplate*{footline}{split theme}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle\nobreak\hfill\bgroup\usebeamercolor[fg]{page number in head/foot}\usebeamerfont{page number in head/foot}\usebeamertemplate{page number in head/foot}\egroup
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerouterthemesplit-xetex-bidi.def>
+%<*beamerouterthemeshadow-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerouterthemeshadow-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerouterthemeshadow-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerouterthemeshadow package for XeTeX engine]
+\bidi@csundef{beamer@@tmpop@frametitle@shadow theme}
+
+\defbeamertemplate*{frametitle}{shadow theme}
+{%
+  \nointerlineskip%
+  \vskip-2pt%
+  \hbox{\leavevmode
+    \advance\beamer@leftmargin by -12bp%
+    \advance\beamer@rightmargin by -12bp%
+    \beamer@tempdim=\textwidth%
+    \advance\beamer@tempdim by \beamer@leftmargin%
+    \advance\beamer@tempdim by \beamer@rightmargin%
+    \hskip-\Gm@lmargin\hbox{%
+      \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+          \vbox{}\vskip-.75ex%
+          \bidi@beamer@leftskip0.3cm%
+          \bidi@beamer@rightskip0.3cm plus1fil\leavevmode
+          \bgroup\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\strut\insertframetitle\strut\egroup\par%
+          \ifx\insertframesubtitle\@empty\else%
+            {\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
+          \fi%
+          \nointerlineskip
+          \vbox{}%
+          \end{minipage}}%
+      \beamer@tempdim=\ht\beamer@tempbox%
+      \advance\beamer@tempdim by 2pt%
+      \begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\beamer@tempdim}
+        \begin{pgfscope}
+          \pgfsetfillcolor{black}%
+          \pgfpathrectangle{\pgfpoint{0pt}{-4pt}}{\pgfpoint{\paperwidth}{8pt}}%
+          \pgfsetfading{beamer@topshadowmask}{}%
+          \pgfusepath{fill}%
+        \end{pgfscope}
+        \begin{pgfscope}
+          \usebeamercolor{frametitle right}%
+          \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}%
+          \pgfusepath{clip}%
+          \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}%
+        \end{pgfscope}
+      \end{pgfpicture}
+      \hskip-\paperwidth%
+      \box\beamer@tempbox%
+    }%
+    \hskip-\Gm@rmargin%
+  }%
+  \vskip-2pt
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerouterthemeshadow-xetex-bidi.def>
 %<*bidi.sty>
 %\fi
 % \section{File \texttt{bidi.sty}}
@@ -23313,7 +23415,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2022/05/27 v1.4.1 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2022/06/01 v1.4.2 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
@@ -24265,10 +24367,13 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{tocloft}{\@ifclassloaded{memoir}{}{\input{tocloft-xetex-bidi.def}}}{}
 \@ifdefinitionfileloaded{tc-xetex}{\input{tc-xetex-bidi.def}}{}
 \@ifpackageloaded{todonotes}{\input{todonotes-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerbaseboxes}{\input{beamerbaseboxes-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbasecolor}{\input{beamerbasecolor-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaseframecomponents}{\input{beamerbaseframecomponents-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaselocalstructure}{\input{beamerbaselocalstructure-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerouterthemesplit}{\input{beamerouterthemesplit-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerouterthemeshadow}{\input{beamerouterthemeshadow-xetex-bidi.def}}{}
 %    \end{macrocode}
 % \iffalse
 %</latex-xetex-bidi.def>
