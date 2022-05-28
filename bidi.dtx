@@ -320,7 +320,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{0}
+%% \CheckSum{52161}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1962,7 +1962,10 @@ by Vafa Khalighi.
 % \section{File \texttt{beamerbaseboxes-xetex-bidi.def}}
 %    \begin{macrocode}
 \ProvidesFile{beamerbaseboxes-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerbaseboxes package for XeTeX engine]
-
+\bidi@patchcmd{\endbeamerboxesrounded}{\begingroup}{%
+  \begingroup
+  \@RTLfalse
+}{}{}
   
 
 %    \end{macrocode}
