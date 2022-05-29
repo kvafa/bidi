@@ -84,11 +84,13 @@ by Vafa Khalighi.
 \generate{\file{artikel3-xetex-bidi.def}{\from{\jobname.dtx}{table,artikel3-xetex-bidi.def}}}
 \generate{\file{arydshln-xetex-bidi.def}{\from{\jobname.dtx}{table,arydshln-xetex-bidi.def}}}
 \generate{\file{beamer-xetex-bidi.def}{\from{\jobname.dtx}{table,beamer-xetex-bidi.def}}}
+\generate{\file{beamerbaseauxtemplates-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseauxtemplates-xetex-bidi.def}}}
 \generate{\file{beamerbaseboxes-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseboxes-xetex-bidi.def}}}
 \generate{\file{beamerbasecolor-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbasecolor-xetex-bidi.def}}}
 \generate{\file{beamerbaseframecomponents-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseframecomponents-xetex-bidi.def}}}
 \generate{\file{beamerbaselocalstructure-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaselocalstructure-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
+\generate{\file{beamerinnerthemerounded-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerounded-xetex-bidi.def}}}
 \generate{\file{beamerouterthemesplit-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesplit-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeshadow-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeshadow-xetex-bidi.def}}}
 \generate{\file{bidi.sty}{\from{\jobname.dtx}{table,bidi.sty}}}
@@ -320,7 +322,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{52161}
+%% \CheckSum{52211}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1957,6 +1959,52 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamer-xetex-bidi.def>
+%<*beamerbaseauxtemplates-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerbaseauxtemplates-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerbaseauxtemplates-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerbaseauxtemplates package for XeTeX engine]
+\bidi@csundef{beamer@@tmpop@section in toc@ball}
+
+\bidi@csundef{beamer@@tmpop@subsection in toc@ball}
+
+\bidi@csundef{beamer@@tmpop@subsubsection in toc@ball}
+
+\defbeamertemplate{section in toc}{ball}
+{\leavevmode\bidi@beamer@leftskip=2.75ex%
+  \llap{%
+    \normalsize%
+    \begin{pgfpicture}{-1ex}{-0.7ex}{1ex}{1ex}
+      \pgftext{\beamer@usesphere{section number projected}{tocsphere}}
+      \pgftext{%
+        \usebeamerfont*{section number projected}%
+        \usebeamercolor{section number projected}%
+        \color{fg!90!bg}%
+        \inserttocsectionnumber}
+    \end{pgfpicture}%
+    \kern1.25ex}%
+  \inserttocsection\par
+}
+[action]
+{\setbeamerfont{section number projected}{size=\scriptsize}}
+
+\defbeamertemplate{subsection in toc}{ball}
+{\leavevmode\bidi@beamer@leftskip=5ex%
+  \llap{\raise0.1ex\beamer@usesphere{subsection number projected}{bigsphere}\kern1ex}%
+  \inserttocsubsection\par%
+}
+
+\defbeamertemplate{subsubsection in toc}{ball}
+{\leavevmode\normalsize\usebeamerfont{subsection in
+    toc}\bidi@beamer@leftskip=7ex\usebeamerfont{subsubsection in toc}%
+  \llap{\beamer@usesphere{subsubsection number projected}{bigsphere}\kern0.75ex}%
+  \inserttocsubsubsection\par%
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerbaseauxtemplates-xetex-bidi.def>
 %<*beamerbaseboxes-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerbaseboxes-xetex-bidi.def}}
@@ -2484,6 +2532,17 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerinnerthemedefault-xetex-bidi.def>
+%<*beamerinnerthemerounded-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerinnerthemerounded-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerinnerthemerounded-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerinnerthemerounded package for XeTeX engine]
+\setbeamertemplate{items}[ball]
+\setbeamertemplate{sections/subsections in toc}[ball]
+
+%    \end{macrocode}
+% \iffalse
+%</beamerinnerthemerounded-xetex-bidi.def>
 %<*beamerouterthemesplit-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerouterthemesplit-xetex-bidi.def}}
@@ -24370,11 +24429,13 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{tocloft}{\@ifclassloaded{memoir}{}{\input{tocloft-xetex-bidi.def}}}{}
 \@ifdefinitionfileloaded{tc-xetex}{\input{tc-xetex-bidi.def}}{}
 \@ifpackageloaded{todonotes}{\input{todonotes-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerbaseauxtemplates}{\input{beamerbaseauxtemplates-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaseboxes}{\input{beamerbaseboxes-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbasecolor}{\input{beamerbasecolor-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaseframecomponents}{\input{beamerbaseframecomponents-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaselocalstructure}{\input{beamerbaselocalstructure-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerinnerthemerounded}{\input{beamerinnerthemerounded-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemesplit}{\input{beamerouterthemesplit-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeshadow}{\input{beamerouterthemeshadow-xetex-bidi.def}}{}
 %    \end{macrocode}
