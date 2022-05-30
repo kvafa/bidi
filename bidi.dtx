@@ -324,7 +324,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{52445}
+%% \CheckSum{52449}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -23870,7 +23870,7 @@ to\rtside{\box\bslice\hfil}}
     \if@pboxsw \m@th$\fi
   \@end@tempboxa}
 \newenvironment{LTRitems}
-                 {\par\@RTLfalse\@RTLtabfalse
+                 {\par\@RTLfalse\@RTLtabfalse\bidi@beamer@ragged
                   \if@bidi@list@minipage@parbox
                   \parshape \@ne \dimexpr(\@totalleftmargin-\leftmargin) \linewidth
                   \else \if@hboxRconstruct\if@bidi@list@minipage@parbox@not@nob
@@ -23879,7 +23879,7 @@ to\rtside{\box\bslice\hfil}}
                   \else \parshape \@ne \dimexpr(\@totalleftmargin+\leftmargin) \linewidth\fi\fi
                   \ignorespaces}{\vskip\z@}
 \newenvironment{RTLitems}
-                 {\par\@RTLtrue\@RTLtabtrue
+                 {\par\@RTLtrue\@RTLtabtrue\bidi@beamer@ragged
                   \if@bidi@list@minipage@parbox
                   \parshape \@ne \dimexpr(\@totalleftmargin+\leftmargin) \linewidth
                   \else \if@hboxRconstruct\if@bidi@list@minipage@parbox@not@nob
@@ -23888,7 +23888,7 @@ to\rtside{\box\bslice\hfil}}
                   \else \parshape \@ne \dimexpr(\@totalleftmargin-\leftmargin) \linewidth\fi\fi
                   \ignorespaces}{\vskip\z@}
 \newenvironment{LTRbibitems}
-                 {\par\@RTLfalse\@RTLtabfalse
+                 {\par\@RTLfalse\@RTLtabfalse\bidi@beamer@ragged
                   \if@bidi@list@minipage@parbox
                   \parshape \@ne \dimexpr(\@totalleftmargin-\leftmargin) \linewidth
                   \else \if@hboxRconstruct\if@bidi@list@minipage@parbox@not@nob
@@ -23897,7 +23897,7 @@ to\rtside{\box\bslice\hfil}}
                   \else \parshape \@ne \dimexpr(\@totalleftmargin+\leftmargin) \linewidth\fi\fi
                   \ignorespaces}{\vskip\z@}
 \newenvironment{RTLbibitems}
-                 {\par\@RTLtrue\@RTLtabtrue
+                 {\par\@RTLtrue\@RTLtabtrue\bidi@beamer@ragged
                   \if@bidi@list@minipage@parbox
                   \parshape \@ne \dimexpr(\@totalleftmargin+\leftmargin) \linewidth
                   \else \if@hboxRconstruct\if@bidi@list@minipage@parbox@not@nob
