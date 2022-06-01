@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v37.2
+v37.3
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/06/01
+Current version release date: 2022/07/01
 
 ___________________________________________
 Vafa Khalighi
@@ -246,7 +246,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 37.2 of the bidi
+  pdftitle={Source documentation for version 37.3 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -265,7 +265,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 37.2}}
+%\large Source documentation for \textcolor{blue!65!black}{version 37.3}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -275,7 +275,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 37.2}}
+%Source documentation for \textcolor{blue!65!black}{version 37.3}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -324,7 +324,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{52449}
+%% \CheckSum{52455}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1943,7 +1943,12 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamer-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamer-xetex-bidi.def}[2022/05/24 v0.1 bidi adaptations for beamer class for XeTeX engine]
+\ProvidesFile{beamer-xetex-bidi.def}[2022/07/01 v0.2 bidi adaptations for beamer class for XeTeX engine]
+\bidi@patchcmd{\mathdisplay}{\else}{%
+  \else
+  \rightskip\z@
+}{}{}
+
 \AtBeginDocument{%
   \if@RTLmain
     \raggedleft
@@ -1951,6 +1956,7 @@ by Vafa Khalighi.
     \raggedright
   \fi  
 }
+
 \renewcommand*{\bidi@beamer@ragged}{%
   \if@RTL
     \raggedleft
@@ -1958,6 +1964,8 @@ by Vafa Khalighi.
     \raggedright
   \fi
 }
+
+
 %    \end{macrocode}
 % \iffalse
 %</beamer-xetex-bidi.def>
@@ -2787,8 +2795,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/06/01}
-\def\bidi@version{37.2}
+\def\bididate{2022/07/01}
+\def\bidi@version{37.3}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -2876,7 +2884,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released June 1, 2022. 
+  Released July 1, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -3120,9 +3128,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/06/01}
+\def\bididate{2022/07/01}
 \catcode`@=11
-\def\bidi@version{37.2}
+\def\bidi@version{37.3}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -3224,7 +3232,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released June 1, 2022. 
+  Released July 1, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -23649,7 +23657,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2022/06/01 v1.4.2 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2022/07/01 v1.4.3 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
