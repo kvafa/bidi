@@ -90,8 +90,10 @@ by Vafa Khalighi.
 \generate{\file{beamerbaseframecomponents-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseframecomponents-xetex-bidi.def}}}
 \generate{\file{beamerbaselocalstructure-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaselocalstructure-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
+\generate{\file{beamerinnerthemerectangles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerectangles-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerounded-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerounded-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeinfolines-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeinfolines-xetex-bidi.def}}}
+\generate{\file{beamerouterthemesidebar-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesidebar-xetex-bidi.def}}}
 \generate{\file{beamerouterthemesplit-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesplit-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeshadow-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeshadow-xetex-bidi.def}}}
 \generate{\file{bidi.sty}{\from{\jobname.dtx}{table,bidi.sty}}}
@@ -324,7 +326,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{52455}
+%% \CheckSum{0}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1973,7 +1975,137 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerbaseauxtemplates-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerbaseauxtemplates-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerbaseauxtemplates package for XeTeX engine]
+\ProvidesFile{beamerbaseauxtemplates-xetex-bidi.def}[2022/07/01 v0.2 bidi adaptations for beamerbaseauxtemplates package for XeTeX engine]
+\bidi@csundef{beamer@@tmpop@section in toc@square}
+
+\bidi@csundef{beamer@@tmpop@subsection in toc@square}
+
+\bidi@csundef{beamer@@tmpop@subsubsection in toc@square}
+
+\bidi@csundef{beamer@@tmpop@enumerate item@square}
+
+\bidi@csundef{beamer@@tmpop@enumerate subitem@square}
+
+\bidi@csundef{beamer@@tmpop@enumerate subsubitem@square}
+
+\bidi@csundef{beamer@@tmpop@enumerate mini template@square}
+
+\defbeamertemplate{section in toc}{square}
+{\leavevmode\bidi@beamer@leftskip=1.75ex%
+  \llap{{%
+    \usebeamerfont*{section number projected}%
+    \usebeamercolor[bg]{section number projected}%
+    \if@RTL
+    \else
+      \vrule width2.25ex height1.85ex depth.4ex%
+      \hskip-2.25ex%
+    \fi
+    \hbox to2.25ex{{\hfil\color{fg}\inserttocsectionnumber\hfil}}%
+    \if@RTL
+      \hskip-2.25ex%
+      \vrule width2.25ex height1.85ex depth.4ex%
+    \fi
+    }}%
+  \kern1.25ex\inserttocsection\par}
+  
+\defbeamertemplate{subsection in toc}{square}
+{\leavevmode\bidi@beamer@leftskip=5ex\llap{{%
+    \usebeamercolor[bg]{subsection number projected}%
+    \vrule width1ex height1ex\kern1ex}}\inserttocsubsection\par}
+    
+\defbeamertemplate{subsubsection in toc}{square}
+{\leavevmode\normalsize\usebeamerfont{subsection in
+    toc}\bidi@beamer@leftskip=7ex\usebeamerfont{subsubsection in toc}%
+  \llap{{%
+    \usebeamercolor[bg]{subsubsection number projected}%
+    \vrule width0.75ex height0.75ex\kern1ex}}\inserttocsubsubsection\par}
+    
+\defbeamertemplate{enumerate item}{square}
+{
+  \hbox{{%
+    \usebeamerfont*{item projected}%
+    \usebeamercolor[bg]{item projected}%
+    \if@RTL
+    \else
+      \vrule width2.25ex height1.85ex depth.4ex%
+      \hskip-2.25ex%
+    \fi
+    \hbox to2.25ex{{%
+      \hfil%
+      \color{fg}\insertenumlabel%
+      \hfil}}%
+      \if@RTL
+        \hskip-2.25ex%
+        \vrule width2.25ex height1.85ex depth.4ex%
+      \fi
+  }}%
+}
+[action]
+{\setbeamerfont{item projected}{size=\scriptsize}}
+
+\defbeamertemplate{enumerate subitem}{square}
+{
+  \hbox{{%
+    \usebeamerfont*{subitem projected}%
+    \usebeamercolor[bg]{subitem projected}%
+    \if@RTL
+    \else
+      \vrule width2.25ex height1.85ex depth.4ex%
+      \hskip-2.25ex%
+    \fi
+    \hbox to2.25ex{{%
+      \hfil%
+      \color{fg}\insertsubenumlabel%
+      \hfil}}%
+      \if@RTL
+        \hskip-2.25ex%
+        \vrule width2.25ex height1.85ex depth.4ex%
+      \fi
+  }}%
+}
+
+\defbeamertemplate{enumerate subsubitem}{square}
+{
+  \hbox{{%
+    \usebeamerfont*{subitem projected}%
+    \usebeamercolor[bg]{subsubitem projected}%
+    \if@RTL
+    \else
+      \vrule width2.25ex height1.85ex depth.4ex%
+      \hskip-2.25ex%
+    \fi
+    \hbox to2.25ex{{%
+      \hfil%
+      \color{fg}\insertsubsubenumlabel%
+      \hfil}}%
+      \if@RTL
+        \hskip-2.25ex%
+        \vrule width2.25ex height1.85ex depth.4ex%
+      \fi
+  }}%
+}
+
+\defbeamertemplate{enumerate mini template}{square}
+{
+  \hbox{{%
+    \usebeamerfont*{\beameritemnestingprefix item projected}%
+    \usebeamercolor[bg]{\beameritemnestingprefix item projected}%
+    \if@RTL
+    \else
+      \vrule width2.25ex height1.85ex depth.4ex%
+      \hskip-2.25ex%
+    \fi
+    \hbox to2.25ex{{%
+      \hfil%
+      \color{fg}\insertenumlabel%
+      \hfil}}%
+      \if@RTL
+        \hskip-2.25ex%
+        \vrule width2.25ex height1.85ex depth.4ex%
+      \fi
+  }}%
+}
+
 \bidi@csundef{beamer@@tmpop@section in toc@ball}
 
 \bidi@csundef{beamer@@tmpop@subsection in toc@ball}
@@ -2663,6 +2795,17 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerinnerthemedefault-xetex-bidi.def>
+%<*beamerinnerthemerectangles-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerinnerthemerectangles-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerinnerthemerectangles-xetex-bidi.def}[2022/07/01 v0.1 bidi adaptations for beamerinnerthemerectangles package for XeTeX engine]
+\setbeamertemplate{sections/subsections in toc}[square]
+\setbeamertemplate{items}[square]
+
+%    \end{macrocode}
+% \iffalse
+%</beamerinnerthemerectangles-xetex-bidi.def>
 %<*beamerinnerthemerounded-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerinnerthemerounded-xetex-bidi.def}}
@@ -2710,6 +2853,105 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerouterthemeinfolines-xetex-bidi.def>
+%<*beamerouterthemesidebar-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerouterthemesidebar-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerouterthemesidebar-xetex-bidi.def}[2022/07/01 v0.1 bidi adaptations for beamerouterthemesidebar package for XeTeX engine]
+\bidi@csundef{beamer@@tmpop@frametitle@sidebar theme}
+
+\bidi@csundef{beamer@@tmpop@headline@sidebar theme}
+
+\bidi@csundef{beamer@@tmpop@sidebar left@sidebar theme}
+
+\bidi@csundef{beamer@@tmpop@sidebar right@sidebar theme}
+
+\ifdim\beamer@headheight>0pt
+
+  \defbeamertemplate*{frametitle}{sidebar theme}
+  {%
+    \nointerlineskip%
+    \ifbeamer@plainframe%
+      \hbox{\usebeamercolor[bg]{frametitle}%
+        \@tempdima\paperwidth\advance\@tempdima-\beamer@sidebarwidth
+        \hskip-\beamer@leftmargin\vrule height\beamer@headheight width\@tempdima\hskip-\beamer@rightmargin}%
+      \nointerlineskip%
+    \fi%
+    \vskip-\beamer@headheight%
+    \vbox to \beamer@headheight{%
+      \vfil
+      \bidi@beamer@leftskip=-\beamer@leftmargin%
+      \advance\bidi@beamer@leftskip by0.3cm%
+      \bidi@beamer@rightskip=-\beamer@rightmargin%
+      \advance\bidi@beamer@rightskip by0.3cm plus1fil%
+      {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\strut\insertframetitle\par}%
+      \ifx\insertframesubtitle\@empty\else%
+        {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\strut\insertframesubtitle\par}%
+      \fi%
+      \vbox{}%
+      \vskip-1em%
+      \vfil
+    }%
+  }
+
+  \defbeamertemplate*{headline}{sidebar theme}
+  {%
+    \begin{beamercolorbox}[wd=\paperwidth]{frametitle}
+      \ifx\beamer@sidebarside\beamer@lefttext%
+      \else%
+        \hfill%
+      \fi%
+      \ifdim\beamer@sidebarwidth>0pt%  
+        \bgroup
+        \usebeamercolor[bg]{logo}%
+        \vrule width\beamer@sidebarwidth height \beamer@headheight%
+        \hskip-\beamer@sidebarwidth%
+        \hbox to \beamer@sidebarwidth{\hss\vbox to
+          \beamer@headheight{\vss\hbox{{\color{fg}\insertlogo}}\vss}\hss}%
+      \else%
+        \vrule width0pt height \beamer@headheight%  
+      \fi%
+      \egroup
+    \end{beamercolorbox}
+  }
+\fi
+
+\ifdim\beamer@sidebarwidth>0pt
+
+  \defbeamertemplate*{sidebar \beamer@sidebarside}{sidebar theme}
+  {
+    \beamer@tempdim=\beamer@sidebarwidth%
+    \advance\beamer@tempdim by -6pt%
+    {\usebeamerfont{title in sidebar}%
+      \vskip1.5em%
+      \hskip3pt%
+      \bgroup
+      \usebeamercolor[fg]{title in sidebar}%
+      \insertshorttitle[width=\beamer@tempdim,center,respectlinebreaks]\egroup\par%
+      \vskip1.25em%
+    }%
+    {%
+      \hskip3pt%
+      \bgroup
+      \usebeamercolor[fg]{author in sidebar}%
+      \usebeamerfont{author in sidebar}%
+      \insertshortauthor[width=\beamer@tempdim,center,respectlinebreaks]\egroup\par%
+      \vskip1.25em%
+    }%
+    \insertverticalnavigation{\beamer@sidebarwidth}%
+    \vfill
+    \ifx\beamer@sidebarside\beamer@lefttext%
+    \else%
+      \usebeamercolor{normal text}%
+      \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+      \vskip2pt%
+    \fi%
+  }%
+\fi
+
+%    \end{macrocode}
+% \iffalse
+%</beamerouterthemesidebar-xetex-bidi.def>
 %<*beamerouterthemesplit-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerouterthemesplit-xetex-bidi.def}}
@@ -24616,8 +24858,10 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{beamerbaseframecomponents}{\input{beamerbaseframecomponents-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaselocalstructure}{\input{beamerbaselocalstructure-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerinnerthemerectangles}{\input{beamerinnerthemerectangles-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerounded}{\input{beamerinnerthemerounded-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeinfolines}{\input{beamerouterthemeinfolines-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerouterthemesidebar}{\input{beamerouterthemesidebar-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemesplit}{\input{beamerouterthemesplit-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeshadow}{\input{beamerouterthemeshadow-xetex-bidi.def}}{}
 %    \end{macrocode}
