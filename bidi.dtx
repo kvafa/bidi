@@ -2408,6 +2408,14 @@ by Vafa Khalighi.
   \fi
 }
 
+\newcommand*{\bidi@beamer@Gm@rmargin}{%
+  \if@RTLmain
+    \Gm@lmargin
+  \else
+    \Gm@rmargin
+  \fi
+}
+
 \def\ps@navigation{
   \def\@oddhead{%
     \begingroup%
@@ -2472,6 +2480,22 @@ by Vafa Khalighi.
 
 \AtBeginDocument{%
   \pagestyle{navigation}%
+}
+
+\def\beamer@typesetheadorfoot#1{% typeset the head or footline
+  {\parskip0pt\offinterlineskip%
+    \hbox{%
+      \hskip-\bidi@beamer@Gm@lmargin%
+      \hbox{%
+        \vbox{%
+          \@tempdima=\textwidth%
+          \textwidth=\paperwidth%
+          \hsize=\textwidth%
+          \def\\{,}%
+          \usebeamertemplate***{#1}%
+        }}%
+      \hskip-\bidi@beamer@Gm@rmargin%
+    }}\hfil%
 }
 
 \renewcommand<>\beamer@columncom[2][\beamer@colmode]{%
@@ -3001,10 +3025,17 @@ by Vafa Khalighi.
       \ifdim\beamer@sidebarwidth>0pt%  
         \bgroup
         \usebeamercolor[bg]{logo}%
-        \vrule width\beamer@sidebarwidth height \beamer@headheight%
-        \hskip-\beamer@sidebarwidth%
+        \if@RTLmain
+        \else
+          \vrule width\beamer@sidebarwidth height \beamer@headheight%
+          \hskip-\beamer@sidebarwidth%
+        \fi
         \hbox to \beamer@sidebarwidth{\hss\vbox to
           \beamer@headheight{\vss\hbox{{\color{fg}\insertlogo}}\vss}\hss}%
+          \if@RTLmain
+            \hskip-\beamer@sidebarwidth%
+            \vrule width\beamer@sidebarwidth height \beamer@headheight%
+          \fi
           \egroup
       \else%
         \vrule width0pt height \beamer@headheight%  
