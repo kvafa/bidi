@@ -2376,7 +2376,104 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerbaseframecomponents-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2022/05/24 v0.1 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
+\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2022/07/01 v0.2 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
+\renewcommand{\setbeamersize}[1]{%
+  \beamer@dogeometryfalse%
+  \setkeys{beamer@margin}{#1}%
+  \ifbeamer@dogeometry%
+    % Reset left margin now
+    \beamer@tempdim=\beamer@leftmargin%
+    \advance\beamer@tempdim by\beamer@leftsidebar%
+    \if@RTLmain
+      \geometry{right=\the\beamer@tempdim}%
+    \else
+      \geometry{left=\the\beamer@tempdim}%
+    \fi
+    % Reset right margin now
+    \beamer@tempdim=\beamer@rightmargin%
+    \advance\beamer@tempdim by\beamer@rightsidebar%
+    \if@RTLmain
+      \geometry{left=\the\beamer@tempdim}%
+    \else
+      \geometry{right=\the\beamer@tempdim}%
+    \fi
+  \fi%
+}
+
+\newcommand*{\bidi@beamer@Gm@lmargin}{%
+  \if@RTLmain
+    \Gm@rmargin
+  \else
+    \Gm@lmargin
+  \fi
+}
+
+\def\ps@navigation{
+  \def\@oddhead{%
+    \begingroup%
+    \setbox\beamer@tempbox=\hbox{\usebeamertemplate***{background canvas}\hyper@pagetransition\hyper@pageduration}%
+    \beamer@tempdim=\ht\beamer@tempbox%
+    \setbox\beamer@tempbox=\hbox{\lower\beamer@tempdim\hbox{\box\beamer@tempbox}}%
+    \wd\beamer@tempbox=0pt\ht\beamer@tempbox=0pt\dp\beamer@tempbox=0pt%
+    \setbox\@tempboxa=\hbox{\usebeamertemplate***{background}}%
+    \beamer@tempdim=\ht\@tempboxa%
+    \setbox\@tempboxa=\hbox{\lower\beamer@tempdim\hbox{\box\@tempboxa}}%
+    \wd\@tempboxa=0pt\ht\@tempboxa=0pt\dp\@tempboxa=0pt%
+    \vbox{\hbox{\hskip-\bidi@beamer@Gm@lmargin\box\beamer@tempbox\box\@tempboxa}%
+      \hbox{%
+        {%
+          \setbox\beamer@tempbox=\hbox{\hskip-\bidi@beamer@Gm@lmargin%
+            {\setbox\beamer@tempbox=\hbox{\vbox to \sidebarheight{%
+                  \usebeamercolor*{sidebar left}%
+                  \usebeamertemplate{sidebar canvas left}%
+                  \vss%
+                }}%
+              \wd\beamer@tempbox=0pt\ht\beamer@tempbox=0pt\dp\beamer@tempbox=0pt%
+              \box\beamer@tempbox}%
+            {%
+              \vbox to \sidebarheight{%
+                \usebeamertemplate***{sidebar left}%
+                \vfil%
+            }}}%
+          \beamer@tempdim=\ht\beamer@tempbox%
+          \setbox\beamer@tempbox=\hbox{{\lower\beamer@tempdim\hbox{\box\beamer@tempbox}}}%
+          \wd\beamer@tempbox=0pt\ht\beamer@tempbox=0pt\dp\beamer@tempbox=0pt%
+          \box\beamer@tempbox%
+        }%
+        {% print right sidebar first, since it should be overwritten by headline
+          \setbox\beamer@tempbox=\hbox{\hskip\textwidth\hskip\beamer@rightmargin%
+            {\setbox\beamer@tempbox=\hbox{\vbox to \sidebarheight{%
+                  \usebeamercolor*{sidebar right}%
+                  \usebeamertemplate{sidebar canvas right}%
+                  \vss%
+                }}%
+              \wd\beamer@tempbox=0pt\ht\beamer@tempbox=0pt\dp\beamer@tempbox=0pt%
+              \box\beamer@tempbox}%
+            {%
+              \vbox to \sidebarheight{%
+                \usebeamertemplate***{sidebar right}%
+                \vfil%
+            }}}%
+          \beamer@tempdim=\ht\beamer@tempbox%
+          \setbox\beamer@tempbox=\hbox{{\lower\beamer@tempdim\hbox{\box\beamer@tempbox}}}%
+          \wd\beamer@tempbox=0pt\ht\beamer@tempbox=0pt\dp\beamer@tempbox=0pt%
+          \box\beamer@tempbox%
+        }%
+        \beamer@typesetheadorfoot{headline}%
+      }%
+      \hfil}%
+    \endgroup}
+  \def\@oddfoot{%
+    \vbox{\offinterlineskip\hbox{\beamer@typesetheadorfoot{footline}%
+    \hfil}\hbox{}}\hfil
+  }%
+  \let\@evenhead\@oddhead
+  \let\@evenfoot\@oddfoot}
+
+\AtBeginDocument{%
+  \pagestyle{navigation}%
+}
+
 \renewcommand<>\beamer@columncom[2][\beamer@colmode]{%
   \beamer@colclose%
   \def\beamer@colclose{\end{minipage}\hfill\end{actionenv}\ignorespaces}%
@@ -2908,15 +3005,19 @@ by Vafa Khalighi.
         \hskip-\beamer@sidebarwidth%
         \hbox to \beamer@sidebarwidth{\hss\vbox to
           \beamer@headheight{\vss\hbox{{\color{fg}\insertlogo}}\vss}\hss}%
+          \egroup
       \else%
         \vrule width0pt height \beamer@headheight%  
       \fi%
-      \egroup
     \end{beamercolorbox}
   }
 \fi
 
 \ifdim\beamer@sidebarwidth>0pt
+
+\AtBeginDocument{%
+  \setbeamersize{sidebar width \beamer@sidebarside=\beamer@sidebarwidth}%
+}
 
   \defbeamertemplate*{sidebar \beamer@sidebarside}{sidebar theme}
   {
