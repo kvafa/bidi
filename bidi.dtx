@@ -90,6 +90,7 @@ by Vafa Khalighi.
 \generate{\file{beamerbaseframecomponents-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseframecomponents-xetex-bidi.def}}}
 \generate{\file{beamerbaselocalstructure-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaselocalstructure-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
+\generate{\file{beamerinnerthemecircles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemecircles-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerectangles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerectangles-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerounded-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerounded-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeinfolines-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeinfolines-xetex-bidi.def}}}
@@ -326,7 +327,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{0}
+%% \CheckSum{53035}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1976,6 +1977,34 @@ by Vafa Khalighi.
 % \section{File \texttt{beamerbaseauxtemplates-xetex-bidi.def}}
 %    \begin{macrocode}
 \ProvidesFile{beamerbaseauxtemplates-xetex-bidi.def}[2022/07/01 v0.2 bidi adaptations for beamerbaseauxtemplates package for XeTeX engine]
+\bidi@csundef{beamer@@tmpop@section in toc@circle}
+
+\bidi@csundef{beamer@@tmpop@subsection in toc@circle}
+
+\bidi@csundef{beamer@@tmpop@subsubsection in toc@circle}
+
+\defbeamertemplate{section in toc}{circle}
+{\leavevmode\bidi@beamer@leftskip=2ex%
+  \llap{%
+    \usebeamerfont*{section number projected}%
+    \usebeamercolor{section number projected}%
+    \begin{pgfpicture}{-1ex}{0ex}{1ex}{2ex}
+      \color{bg}
+      \pgfpathcircle{\pgfpoint{0pt}{.75ex}}{1.2ex}
+      \pgfusepath{fill}
+      \pgftext[base]{\color{fg}\inserttocsectionnumber}
+    \end{pgfpicture}\kern1.25ex%
+  }%
+  \inserttocsection\par}
+
+\defbeamertemplate{subsection in toc}{circle}
+{\leavevmode\bidi@beamer@leftskip=2em\inserttocsubsection\par}
+
+\defbeamertemplate{subsubsection in toc}{circle}
+{\leavevmode\normalsize\usebeamerfont{subsection in
+    toc}\bidi@beamer@leftskip=3em\usebeamerfont{subsubsection in toc}%
+  \inserttocsubsubsection\par}
+
 \bidi@csundef{beamer@@tmpop@section in toc@square}
 
 \bidi@csundef{beamer@@tmpop@subsection in toc@square}
@@ -2431,6 +2460,14 @@ by Vafa Khalighi.
       \hbox{%
         {%
           \setbox\beamer@tempbox=\hbox{\hskip-\bidi@beamer@Gm@lmargin%
+          \if@RTLmain
+                      {%
+              \vbox to \sidebarheight{%
+                \usebeamertemplate***{sidebar left}%
+                \vfil%
+            }}%
+            \hskip-\textwidth
+            \fi
             {\setbox\beamer@tempbox=\hbox{\vbox to \sidebarheight{%
                   \usebeamercolor*{sidebar left}%
                   \usebeamertemplate{sidebar canvas left}%
@@ -2438,11 +2475,13 @@ by Vafa Khalighi.
                 }}%
               \wd\beamer@tempbox=0pt\ht\beamer@tempbox=0pt\dp\beamer@tempbox=0pt%
               \box\beamer@tempbox}%
+              \if@RTLmain
+              \else
             {%
               \vbox to \sidebarheight{%
                 \usebeamertemplate***{sidebar left}%
                 \vfil%
-            }}}%
+            }}\fi}%
           \beamer@tempdim=\ht\beamer@tempbox%
           \setbox\beamer@tempbox=\hbox{{\lower\beamer@tempdim\hbox{\box\beamer@tempbox}}}%
           \wd\beamer@tempbox=0pt\ht\beamer@tempbox=0pt\dp\beamer@tempbox=0pt%
@@ -2450,6 +2489,14 @@ by Vafa Khalighi.
         }%
         {% print right sidebar first, since it should be overwritten by headline
           \setbox\beamer@tempbox=\hbox{\hskip\textwidth\hskip\beamer@rightmargin%
+          \if@RTLmain
+                      {%
+              \vbox to \sidebarheight{%
+                \usebeamertemplate***{sidebar right}%
+                \vfil%
+            }}%
+            \hskip-\textwidth
+            \fi
             {\setbox\beamer@tempbox=\hbox{\vbox to \sidebarheight{%
                   \usebeamercolor*{sidebar right}%
                   \usebeamertemplate{sidebar canvas right}%
@@ -2457,11 +2504,13 @@ by Vafa Khalighi.
                 }}%
               \wd\beamer@tempbox=0pt\ht\beamer@tempbox=0pt\dp\beamer@tempbox=0pt%
               \box\beamer@tempbox}%
+              \if@RTLmain
+              \else
             {%
               \vbox to \sidebarheight{%
                 \usebeamertemplate***{sidebar right}%
                 \vfil%
-            }}}%
+            }}\fi}%
           \beamer@tempdim=\ht\beamer@tempbox%
           \setbox\beamer@tempbox=\hbox{{\lower\beamer@tempdim\hbox{\box\beamer@tempbox}}}%
           \wd\beamer@tempbox=0pt\ht\beamer@tempbox=0pt\dp\beamer@tempbox=0pt%
@@ -2916,6 +2965,16 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerinnerthemedefault-xetex-bidi.def>
+%<*beamerinnerthemecircles-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerinnerthemecircles-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerinnerthemecircles-xetex-bidi.def}[2022/07/01 v0.1 bidi adaptations for beamerinnerthemecircles package for XeTeX engine]
+\setbeamertemplate{sections/subsections in toc}[circle]
+
+%    \end{macrocode}
+% \iffalse
+%</beamerinnerthemecircles-xetex-bidi.def>
 %<*beamerinnerthemerectangles-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerinnerthemerectangles-xetex-bidi.def}}
@@ -24990,6 +25049,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{beamerbaseframecomponents}{\input{beamerbaseframecomponents-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaselocalstructure}{\input{beamerbaselocalstructure-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerinnerthemecircles}{\input{beamerinnerthemecircles-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerectangles}{\input{beamerinnerthemerectangles-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerounded}{\input{beamerinnerthemerounded-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeinfolines}{\input{beamerouterthemeinfolines-xetex-bidi.def}}{}
