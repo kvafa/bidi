@@ -161,6 +161,7 @@ by Vafa Khalighi.
 \generate{\file{lettrine-xetex-bidi.def}{\from{\jobname.dtx}{table,lettrine-xetex-bidi.def}}}
 \generate{\file{lineno-xetex-bidi.def}{\from{\jobname.dtx}{table,lineno-xetex-bidi.def}}}
 \generate{\file{listings-xetex-bidi.def}{\from{\jobname.dtx}{table,listings-xetex-bidi.def}}}
+\generate{\file{lstmisc-xetex-bidi.def}{\from{\jobname.dtx}{table,lstmisc-xetex-bidi.def}}}
 \generate{\file{loadingorder-xetex-bidi.def}{\from{\jobname.dtx}{table,loadingorder-xetex-bidi.def}}}
 \generate{\file{longtable-xetex-bidi.def}{\from{\jobname.dtx}{table,longtable-xetex-bidi.def}}}
 \generate{\file{lscape-xetex-bidi.def}{\from{\jobname.dtx}{table,lscape-xetex-bidi.def}}}
@@ -327,7 +328,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{53056}
+%% \CheckSum{53076}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -15818,6 +15819,28 @@ bidi implementation of tufte title]
 %    \end{macrocode}
 % \iffalse
 %</listings-xetex-bidi.def>
+%<*lstmisc-xetex-bidi.def>
+%\fi
+% \section{File \texttt{lstmisc-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{lstmisc-xetex-bidi.def}[2022/07/07 v0.1 bidi adaptations for lstmisc package for XeTeX engine]
+\bidi@patchcmd{\lsthk@Init}{%
+  \rightskip\@rightskip 
+  \leftskip\z@skip 
+}{%
+  \if@hboxRconstruct
+    \leftskip\@flushglue
+    \rightskip\z@skip 
+  \else
+    \rightskip\@rightskip 
+    \leftskip\z@skip 
+  \fi
+}{}{}
+
+
+%    \end{macrocode}
+% \iffalse
+%</lstmisc-xetex-bidi.def>
 %<*loadingorder-xetex-bidi.def>
 %\fi
 % \section{File \texttt{loadingorder-xetex-bidi.def}}
@@ -24996,6 +25019,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{lettrine}{\input{lettrine-xetex-bidi.def}}{}
 \@ifpackageloaded{lineno}{\input{lineno-xetex-bidi.def}}{}
 \@ifpackageloaded{listings}{\input{listings-xetex-bidi.def}}{}
+\@ifpackageloaded{lstmisc}{\input{lstmisc-xetex-bidi.def}}{}
 \@ifpackageloaded{media9}{\RequirePackage{bidi-media9}}{}
 \@iftexfileloaded{pstricks}{\input{pstricks-xetex-bidi.def}}{}
 \@iftexfileloaded{pgfcorescopes.code}{\input{pgfcorescopes.code-xetex-bidi.def}}{}
