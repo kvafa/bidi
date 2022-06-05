@@ -328,7 +328,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{53076}
+%% \CheckSum{53104}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2647,8 +2647,9 @@ by Vafa Khalighi.
     \color@endgroup}}
     
 \renewcommand<>\@mpfootnotetext[1]{%
+\ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\if@RTL@footnote\global\let\bidi@mpfootnoterule\right@footnoterule\else\global\let\bidi@mpfootnoterule\left@footnoterule\fi\fi\fi
   \global\setbox\@mpfootins\vbox{%
-    \ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\if@RTL@footnote\global\let\bidi@mpfootnoterule\right@footnoterule\else\global\let\bidi@mpfootnoterule\left@footnoterule\fi\fi\fi
+    \if@RTL@footnote\@RTLtrue\else\@RTLfalse\fi
     \unvbox\@mpfootins
     \reset@font
     \bidi@@footnotetext@font
@@ -2662,8 +2663,9 @@ by Vafa Khalighi.
     \color@endgroup}}
     
 \renewcommand<>\@mpRTLfootnotetext[1]{%
+\ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\global\let\bidi@mpfootnoterule\right@footnoterule\fi\fi
   \global\setbox\@mpfootins\vbox{%
-  \ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\global\let\bidi@mpfootnoterule\right@footnoterule\fi\fi
+     \@RTLtrue
     \unvbox\@mpfootins
     \reset@font
     \bidi@@RTLfootnotetext@font
@@ -2677,8 +2679,9 @@ by Vafa Khalighi.
     \color@endgroup}}
     
 \renewcommand<>\@mpLTRfootnotetext[1]{%
+\ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\global\let\bidi@mpfootnoterule\left@footnoterule\fi\fi
   \global\setbox\@mpfootins\vbox{%
-  \ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\global\let\bidi@mpfootnoterule\left@footnoterule\fi\fi
+  \@RTLfalse
     \unvbox\@mpfootins
     \reset@font
     \bidi@@LTRfootnotetext@font
@@ -2747,7 +2750,7 @@ by Vafa Khalighi.
         \csname c@\beamer@mpfn\endcsname\beamer@footarg\relax
         \unrestored@protected@xdef\@thefnmark{\beamer@thempfn}%
       \endgroup
-      \@footnotemark\beamer@footnotetext#2}%
+      \@footnotemark\beamer@RTLfootnotetext#2}%
   \fi%
   \beamer@next}
   
@@ -2773,7 +2776,7 @@ by Vafa Khalighi.
         \csname c@\beamer@mpfn\endcsname\beamer@footarg\relax
         \unrestored@protected@xdef\@thefnmark{\beamer@thempfn}%
       \endgroup
-      \@footnotemark\beamer@footnotetext#2}%
+      \@footnotemark\beamer@LTRfootnotetext#2}%
   \fi%
   \beamer@next}
   
@@ -2878,7 +2881,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerinnerthemedefault-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerinnerthemedefault-xetex-bidi.def}[2022/06/01 v0.2 bidi adaptations for beamerinnerthemedefault package for XeTeX engine]
+\ProvidesFile{beamerinnerthemedefault-xetex-bidi.def}[2022/07/07 v0.2 bidi adaptations for beamerinnerthemedefault package for XeTeX engine]
 \newcommand*{\bidi@beamer@leftskip}{%
   \if@RTL
     \rightskip
@@ -2926,24 +2929,48 @@ by Vafa Khalighi.
 
 \bidi@undef\beamer@@tmpop@footnote@default
 
+\newcommand*{\bidi@beamer@@footnote@ragged}{%
+  \if@RTL
+    \bidi@beamer@@footnote@raggedleft
+  \else
+    \bidi@beamer@@footnote@raggedright
+  \fi
+}
+
+\newcommand*{\bidi@beamer@@footnote@raggedright}{%
+  \if@hboxRconstruct
+    \raggedleft
+  \else
+    \raggedright
+  \fi
+}
+
+\newcommand*{\bidi@beamer@@footnote@raggedleft}{%
+  \if@hboxRconstruct
+    \raggedright
+  \else
+    \raggedleft
+  \fi
+}
+
 \defbeamertemplate*{footnote}{default}
 {
   \parindent 1em\noindent%
-  \bidi@beamer@ragged
+  \bidi@beamer@@footnote@ragged
   \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
 }
 
 \defbeamertemplate*{RTLfootnote}{default}
 {
   \parindent 1em\noindent%
-  \raggedleft
+  \bidi@beamer@@footnote@raggedleft
   \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
 }
 
 \defbeamertemplate*{LTRfootnote}{default}
 {
   \parindent 1em\noindent%
-  \raggedright
+  \bidi@beamer@@footnote@raggedright
   \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
 }
 
