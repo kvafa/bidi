@@ -99,6 +99,7 @@ by Vafa Khalighi.
 \generate{\file{beamerouterthemesidebar-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesidebar-xetex-bidi.def}}}
 \generate{\file{beamerouterthemesplit-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesplit-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeshadow-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeshadow-xetex-bidi.def}}}
+\generate{\file{beamerthemeHannover-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerthemeHannover-xetex-bidi.def}}}
 \generate{\file{bidi.sty}{\from{\jobname.dtx}{table,bidi.sty}}}
 \generate{\file{bidi.tex}{\from{\jobname.dtx}{table,bidi.tex}}}
 \generate{\file{bidi2in1.sty}{\from{\jobname.dtx}{table,bidi2in1.sty}}}
@@ -329,7 +330,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{53107}
+%% \CheckSum{53116}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3273,6 +3274,23 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerouterthemeshadow-xetex-bidi.def>
+%<*beamerthemeHannover-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerthemeHannover-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerthemeHannover-xetex-bidi.def}[2022/06/07 v0.1 bidi adaptations for beamerthemeHannover package for XeTeX engine]
+\AtBeginDocument{%
+  \if@RTLmain
+    \setbeamertemplate{frametitle}[default][left]%
+  \else
+    \setbeamertemplate{frametitle}[default][right]%
+  \fi
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerthemeHannover-xetex-bidi.def>
 %<*bidi.sty>
 %\fi
 % \section{File \texttt{bidi.sty}}
@@ -25114,6 +25132,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{beamerouterthemesidebar}{\input{beamerouterthemesidebar-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemesplit}{\input{beamerouterthemesplit-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeshadow}{\input{beamerouterthemeshadow-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerthemeHannover}{\input{beamerthemeHannover-xetex-bidi.def}}{}
 %    \end{macrocode}
 % \iffalse
 %</latex-xetex-bidi.def>
