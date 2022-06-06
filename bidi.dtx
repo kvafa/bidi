@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v37.3
+v37.4
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/06/06
+Current version release date: 2022/06/07
 
 ___________________________________________
 Vafa Khalighi
@@ -93,7 +93,9 @@ by Vafa Khalighi.
 \generate{\file{beamerinnerthemecircles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemecircles-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerectangles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerectangles-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerounded-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerounded-xetex-bidi.def}}}
+\generate{\file{beamerouterthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemedefault-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeinfolines-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeinfolines-xetex-bidi.def}}}
+\generate{\file{beamerouterthemeshadow-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeshadow-xetex-bidi.def}}}
 \generate{\file{beamerouterthemesidebar-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesidebar-xetex-bidi.def}}}
 \generate{\file{beamerouterthemesplit-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesplit-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeshadow-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeshadow-xetex-bidi.def}}}
@@ -161,7 +163,6 @@ by Vafa Khalighi.
 \generate{\file{lettrine-xetex-bidi.def}{\from{\jobname.dtx}{table,lettrine-xetex-bidi.def}}}
 \generate{\file{lineno-xetex-bidi.def}{\from{\jobname.dtx}{table,lineno-xetex-bidi.def}}}
 \generate{\file{listings-xetex-bidi.def}{\from{\jobname.dtx}{table,listings-xetex-bidi.def}}}
-\generate{\file{lstmisc-xetex-bidi.def}{\from{\jobname.dtx}{table,lstmisc-xetex-bidi.def}}}
 \generate{\file{loadingorder-xetex-bidi.def}{\from{\jobname.dtx}{table,loadingorder-xetex-bidi.def}}}
 \generate{\file{longtable-xetex-bidi.def}{\from{\jobname.dtx}{table,longtable-xetex-bidi.def}}}
 \generate{\file{lscape-xetex-bidi.def}{\from{\jobname.dtx}{table,lscape-xetex-bidi.def}}}
@@ -250,7 +251,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 37.3 of the bidi
+  pdftitle={Source documentation for version 37.4 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -269,7 +270,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 37.3}}
+%\large Source documentation for \textcolor{blue!65!black}{version 37.4}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -279,7 +280,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 37.3}}
+%Source documentation for \textcolor{blue!65!black}{version 37.4}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -328,7 +329,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{53104}
+%% \CheckSum{53107}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1947,12 +1948,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamer-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamer-xetex-bidi.def}[2022/06/06 v0.2 bidi adaptations for beamer class for XeTeX engine]
-\bidi@patchcmd{\mathdisplay}{\else}{%
-  \else
-  \rightskip\z@
-}{}{}
-
+\ProvidesFile{beamer-xetex-bidi.def}[2022/06/07 v0.3 bidi adaptations for beamer class for XeTeX engine]
 \AtBeginDocument{%
   \if@RTLmain
     \raggedleft
@@ -2316,23 +2312,23 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerbasecolor-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerbasecolor-xetex-bidi.def}[2022/05/24 v0.1 bidi adaptations for beamerbasecolor package for XeTeX engine]
+\ProvidesFile{beamerbasecolor-xetex-bidi.def}[2022/06/07 v0.2 bidi adaptations for beamerbasecolor package for XeTeX engine]
 \renewenvironment{beamercolorbox}[2][]{%
   \def\beamer@vmode{\leavevmode}%
   \setkeys{beamercolbox}{wd=\textwidth,ht={},dp={},%
     leftskip=0pt,rightskip=0pt plus1fil,%
     sep=0pt,colsep=0pt,colsep*=0pt,%
     shadow=false,rounded=false,ignorebg=false}%
+  \if@RTL
+    \setkeys{beamercolbox}{rightskip=0pt,leftskip=0pt plus1fil}%
+  \else
+    \setkeys{beamercolbox}{leftskip=0pt,rightskip=0pt plus1fil}%
+  \fi
   \setkeys{beamercolbox}{#1}%
   \ifbeamercolorempty[bg]{#2}{\@tempswafalse}{\@tempswatrue}%
   \ifbeamer@colbox@ignorebg\@tempswafalse\fi%
   \def\beamer@colbox@color{#2}%
   \setbox\beamer@tempbox=\hbox\bgroup\color@begingroup
-  \if@RTL
-    \@hboxRconstructtrue
-  \else
-    \@hboxRconstructfalse
-  \fi
     \ifbeamer@colbox@ignorebg%
       \colorlet{beamer@temp@color}{bg}%
       \usebeamercolor[fg]{#2}%
@@ -2340,6 +2336,7 @@ by Vafa Khalighi.
     \else%
       \usebeamercolor[fg]{#2}%
     \fi%
+    \beginL
     \vbox\bgroup%
     \hsize=\beamer@colbox@wd%
     \@arrayparboxrestore%
@@ -2361,7 +2358,7 @@ by Vafa Khalighi.
       \ifdim\beamer@colbox@colsep>\z@\vskip\beamer@colbox@colsep\fi%
       \ifdim\beamer@colbox@colseps>\z@\vskip\beamer@colbox@colseps\fi%
     \fi%
-  \egroup\color@endgroup\egroup%
+  \egroup\endL\color@endgroup\egroup%
   \wd\beamer@tempbox=\beamer@colbox@wd%
   \ifx\beamer@colbox@ht\@empty\else\ht\beamer@tempbox=\beamer@colbox@ht\fi%
   \ifx\beamer@colbox@dp\@empty\else\dp\beamer@tempbox=\beamer@colbox@dp\fi%
@@ -2881,7 +2878,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerinnerthemedefault-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerinnerthemedefault-xetex-bidi.def}[2022/06/06 v0.2 bidi adaptations for beamerinnerthemedefault package for XeTeX engine]
+\ProvidesFile{beamerinnerthemedefault-xetex-bidi.def}[2022/06/07 v0.3 bidi adaptations for beamerinnerthemedefault package for XeTeX engine]
 \newcommand*{\bidi@beamer@leftskip}{%
   \if@RTL
     \rightskip
@@ -2929,48 +2926,24 @@ by Vafa Khalighi.
 
 \bidi@undef\beamer@@tmpop@footnote@default
 
-\newcommand*{\bidi@beamer@@footnote@ragged}{%
-  \if@RTL
-    \bidi@beamer@@footnote@raggedleft
-  \else
-    \bidi@beamer@@footnote@raggedright
-  \fi
-}
-
-\newcommand*{\bidi@beamer@@footnote@raggedright}{%
-  \if@hboxRconstruct
-    \raggedleft
-  \else
-    \raggedright
-  \fi
-}
-
-\newcommand*{\bidi@beamer@@footnote@raggedleft}{%
-  \if@hboxRconstruct
-    \raggedright
-  \else
-    \raggedleft
-  \fi
-}
-
 \defbeamertemplate*{footnote}{default}
 {
   \parindent 1em\noindent%
-  \bidi@beamer@@footnote@ragged
+  \bidi@beamer@ragged
   \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
 }
 
 \defbeamertemplate*{RTLfootnote}{default}
 {
   \parindent 1em\noindent%
-  \bidi@beamer@@footnote@raggedleft
+  \raggedleft
   \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
 }
 
 \defbeamertemplate*{LTRfootnote}{default}
 {
   \parindent 1em\noindent%
-  \bidi@beamer@@footnote@raggedright
+  \raggedright
   \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
 }
 
@@ -3026,6 +2999,25 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerinnerthemerounded-xetex-bidi.def>
+%<*beamerouterthemedefault-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerouterthemedefault-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerouterthemedefault-xetex-bidi.def}[2022/06/07 v0.1 bidi adaptations for beamerouterthemedefault package for XeTeX engine]
+\def\beamer@fteleft{\if@RTLmain\vskip0.35cm\advance\leftskip by 1.7cm\advance\rightskip by1.7cm\else\fi}
+
+\def\beamer@fteright{\if@RTLmain\else\vskip0.35cm\advance\leftskip by 1.7cm\advance\rightskip by1.7cm\fi}
+
+\AtBeginDocument{%
+  \if@RTLmain
+    \setbeamertemplate{frametitle}[default][right]
+  \fi
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerouterthemedefault-xetex-bidi.def>
 %<*beamerouterthemeinfolines-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerouterthemeinfolines-xetex-bidi.def}}
@@ -3061,11 +3053,24 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerouterthemeinfolines-xetex-bidi.def>
+%<*beamerouterthemeshadow-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerouterthemeshadow-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerouterthemeshadow-xetex-bidi.def}[2022/06/07 v0.1 bidi adaptations for beamerouterthemeshadow package for XeTeX engine]
+\AtBeginDocument{%
+  \setbeamertemplate{frametitle}[shadow theme]%
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerouterthemeshadow-xetex-bidi.def>
 %<*beamerouterthemesidebar-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerouterthemesidebar-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerouterthemesidebar-xetex-bidi.def}[2022/06/06 v0.1 bidi adaptations for beamerouterthemesidebar package for XeTeX engine]
+\ProvidesFile{beamerouterthemesidebar-xetex-bidi.def}[2022/06/07 v0.2 bidi adaptations for beamerouterthemesidebar package for XeTeX engine]
 \bidi@csundef{beamer@@tmpop@frametitle@sidebar theme}
 
 \bidi@csundef{beamer@@tmpop@headline@sidebar theme}
@@ -3101,6 +3106,10 @@ by Vafa Khalighi.
       \vfil
     }%
   }
+  
+\AtBeginDocument{%
+  \setbeamertemplate{frametitle}[sidebar theme]%
+}
 
   \defbeamertemplate*{headline}{sidebar theme}
   {%
@@ -3130,6 +3139,19 @@ by Vafa Khalighi.
     \end{beamercolorbox}
   }
 \fi
+
+\def\beamer@sidebarformat#1#2#3{%
+\if@RTL
+  \begin{beamercolorbox}[wd=\beamer@sidebarwidth,rightskip=#1,leftskip=1ex plus1fil,vmode]{#2}
+\else
+  \begin{beamercolorbox}[wd=\beamer@sidebarwidth,leftskip=#1,rightskip=1ex plus1fil,vmode]{#2}
+ \fi
+    \vbox{}%
+    #3\par%
+    \vbox{}%
+    \vskip-1.5ex%
+  \end{beamercolorbox}
+}
 
 \ifdim\beamer@sidebarwidth>0pt
 
@@ -3256,8 +3278,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/06/06}
-\def\bidi@version{37.3}
+\def\bididate{2022/06/07}
+\def\bidi@version{37.4}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -3345,7 +3367,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released June 6, 2022. 
+  Released June 7, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -3589,9 +3611,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/06/06}
+\def\bididate{2022/06/07}
 \catcode`@=11
-\def\bidi@version{37.3}
+\def\bidi@version{37.4}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -3693,7 +3715,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released June 6, 2022. 
+  Released June 7, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -15846,28 +15868,6 @@ bidi implementation of tufte title]
 %    \end{macrocode}
 % \iffalse
 %</listings-xetex-bidi.def>
-%<*lstmisc-xetex-bidi.def>
-%\fi
-% \section{File \texttt{lstmisc-xetex-bidi.def}}
-%    \begin{macrocode}
-\ProvidesFile{lstmisc-xetex-bidi.def}[2022/06/06 v0.1 bidi adaptations for lstmisc package for XeTeX engine]
-\bidi@patchcmd{\lsthk@Init}{%
-  \rightskip\@rightskip 
-  \leftskip\z@skip 
-}{%
-  \if@hboxRconstruct
-    \leftskip\@flushglue
-    \rightskip\z@skip 
-  \else
-    \rightskip\@rightskip 
-    \leftskip\z@skip 
-  \fi
-}{}{}
-
-
-%    \end{macrocode}
-% \iffalse
-%</lstmisc-xetex-bidi.def>
 %<*loadingorder-xetex-bidi.def>
 %\fi
 % \section{File \texttt{loadingorder-xetex-bidi.def}}
@@ -24146,7 +24146,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2022/06/06 v1.4.3 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2022/06/07 v1.4.4 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
@@ -25046,7 +25046,6 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{lettrine}{\input{lettrine-xetex-bidi.def}}{}
 \@ifpackageloaded{lineno}{\input{lineno-xetex-bidi.def}}{}
 \@ifpackageloaded{listings}{\input{listings-xetex-bidi.def}}{}
-\@ifpackageloaded{lstmisc}{\input{lstmisc-xetex-bidi.def}}{}
 \@ifpackageloaded{media9}{\RequirePackage{bidi-media9}}{}
 \@iftexfileloaded{pstricks}{\input{pstricks-xetex-bidi.def}}{}
 \@iftexfileloaded{pgfcorescopes.code}{\input{pgfcorescopes.code-xetex-bidi.def}}{}
@@ -25109,7 +25108,9 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{beamerinnerthemecircles}{\input{beamerinnerthemecircles-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerectangles}{\input{beamerinnerthemerectangles-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerounded}{\input{beamerinnerthemerounded-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerouterthemedefault}{\input{beamerouterthemedefault-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeinfolines}{\input{beamerouterthemeinfolines-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerouterthemeshadow}{\input{beamerouterthemeshadow-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemesidebar}{\input{beamerouterthemesidebar-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemesplit}{\input{beamerouterthemesplit-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeshadow}{\input{beamerouterthemeshadow-xetex-bidi.def}}{}
