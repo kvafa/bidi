@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v37.6
+v37.7
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/06/07
+Current version release date: 2022/06/08
 
 ___________________________________________
 Vafa Khalighi
@@ -95,10 +95,11 @@ by Vafa Khalighi.
 \generate{\file{beamerinnerthemerounded-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerounded-xetex-bidi.def}}}
 \generate{\file{beamerouterthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemedefault-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeinfolines-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeinfolines-xetex-bidi.def}}}
-\generate{\file{beamerouterthemeshadow-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeshadow-xetex-bidi.def}}}
 \generate{\file{beamerouterthemesidebar-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesidebar-xetex-bidi.def}}}
 \generate{\file{beamerouterthemesplit-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesplit-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeshadow-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeshadow-xetex-bidi.def}}}
+\generate{\file{beamerouterthemesmoothtree-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesmoothtree-xetex-bidi.def}}}
+\generate{\file{beamerouterthemetree-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemetree-xetex-bidi.def}}}
 \generate{\file{beamerthemeHannover-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerthemeHannover-xetex-bidi.def}}}
 \generate{\file{bidi.sty}{\from{\jobname.dtx}{table,bidi.sty}}}
 \generate{\file{bidi.tex}{\from{\jobname.dtx}{table,bidi.tex}}}
@@ -252,7 +253,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 37.6 of the bidi
+  pdftitle={Source documentation for version 37.7 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -271,7 +272,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 37.6}}
+%\large Source documentation for \textcolor{blue!65!black}{version 37.7}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -281,7 +282,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 37.6}}
+%Source documentation for \textcolor{blue!65!black}{version 37.7}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -330,7 +331,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{53191}
+%% \CheckSum{53377}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3105,19 +3106,6 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerouterthemeinfolines-xetex-bidi.def>
-%<*beamerouterthemeshadow-xetex-bidi.def>
-%\fi
-% \section{File \texttt{beamerouterthemeshadow-xetex-bidi.def}}
-%    \begin{macrocode}
-\ProvidesFile{beamerouterthemeshadow-xetex-bidi.def}[2022/06/07 v0.1 bidi adaptations for beamerouterthemeshadow package for XeTeX engine]
-\AtBeginDocument{%
-  \setbeamertemplate{frametitle}[shadow theme]%
-}
-
-
-%    \end{macrocode}
-% \iffalse
-%</beamerouterthemeshadow-xetex-bidi.def>
 %<*beamerouterthemesidebar-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerouterthemesidebar-xetex-bidi.def}}
@@ -3272,7 +3260,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerouterthemeshadow-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerouterthemeshadow-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerouterthemeshadow package for XeTeX engine]
+\ProvidesFile{beamerouterthemeshadow-xetex-bidi.def}[2022/06/07 v0.2 bidi adaptations for beamerouterthemeshadow package for XeTeX engine]
 \bidi@csundef{beamer@@tmpop@frametitle@shadow theme}
 
 \defbeamertemplate*{frametitle}{shadow theme}
@@ -3321,10 +3309,182 @@ by Vafa Khalighi.
   \vskip-2pt
 }
 
+\AtBeginDocument{%
+  \setbeamertemplate{frametitle}[shadow theme]%
+}
+
 
 %    \end{macrocode}
 % \iffalse
 %</beamerouterthemeshadow-xetex-bidi.def>
+%<*beamerouterthemesmoothtree-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerouterthemesmoothtree-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerouterthemesmoothtree-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerouterthemesmoothtree package for XeTeX engine]
+\bidi@csundef{beamer@@tmpop@headline@smoothtree theme}
+
+\bidi@csundef{beamer@@tmpop@frametitle@smoothtree theme}
+
+\defbeamertemplate*{headline}{smoothtree theme}
+{%
+  \pgfuseshading{beamer@treeshade}%
+  \vskip-0.05ex%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1ex,dp=0ex]{empty}
+  \begin{pgfpicture}
+    \begin{pgfscope}%
+      \pgfsetfillcolor{subsection in head/foot.bg}%
+      \pgfpathrectangle{\pgfpoint{-.5\paperwidth}{-0.5ex}}{\pgfpoint{\paperwidth}{1ex}}%
+      \pgfsetfading{beamer@belowframetitlemask}{}%
+      \pgfusepath{fill}%
+    \end{pgfscope}%
+  \end{pgfpicture}%
+  \end{beamercolorbox}%  
+  \vskip-9.15ex%
+  \if@RTL
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1.125ex,dp=1.125ex,ignorebg,%
+    rightskip=.3cm,leftskip=.3cm plus1fil]{title in head/foot}
+  \else
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1.125ex,dp=1.125ex,ignorebg,%
+    leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}
+    \fi
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}
+  \if@RTL
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.125ex,dp=1.125ex,ignorebg,%
+    rightskip=.3cm,leftskip=.3cm plus1fil]{section in head/foot}
+  \else
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.125ex,dp=1.125ex,ignorebg,%
+    leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}
+    \fi
+    \usebeamerfont{section in head/foot}%
+    \hskip6pt\insertsectionhead
+  \end{beamercolorbox}
+  \if@RTL
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.125ex,dp=1.125ex,ignorebg,%
+      rightskip=.3cm,leftskip=.3cm plus1fil]{subsection in head/foot}
+  \else
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.125ex,dp=1.125ex,ignorebg,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+    \fi
+    \usebeamerfont{subsection in head/foot}%
+    \hskip12pt\insertsubsectionhead
+  \end{beamercolorbox}
+  \vskip-0.4ex%
+}
+
+\defbeamertemplate*{frametitle}{smoothtree theme}
+{%
+  \nointerlineskip%
+  \vskip-0.05ex%
+  \usebeamerfont{headline}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.85ex,dp=0ex]{empty}
+    \pgfuseshading{beamer@aboveframetitle}%
+  \end{beamercolorbox}
+  \nointerlineskip%
+  \if@RTL
+  \begin{beamercolorbox}[wd=\paperwidth,rightskip=.935cm,leftskip=.3cm plus1fil]{frametitle}
+ \else
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=.935cm,rightskip=.3cm plus1fil]{frametitle}
+  \fi
+    \vskip-1.2ex%
+    \usebeamerfont*{frametitle}\strut\insertframetitle%
+      \ifx\insertframesubtitle\@empty%
+        \strut\par%
+      \else
+        \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle}\strut\par}%
+      \fi%%
+    \usebeamerfont{headline}%
+  \end{beamercolorbox}%
+  \nointerlineskip
+  \vskip-0.2ex%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1ex,dp=0ex]{empty}
+  \begin{pgfpicture}
+    \begin{pgfscope}%
+      \pgfsetfillcolor{frametitle.bg}%
+      \pgfpathrectangle{\pgfpoint{-.5\paperwidth}{-0.5ex}}{\pgfpoint{\paperwidth}{1ex}}%
+      \pgfsetfading{beamer@belowframetitlemask}{}%
+      \pgfusepath{fill}%
+    \end{pgfscope}%
+  \end{pgfpicture}%
+  \end{beamercolorbox}%  
+}
+
+
+\AtBeginDocument{%
+  \setbeamertemplate{frametitle}[smoothtree theme]%
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerouterthemesmoothtree-xetex-bidi.def>
+%<*beamerouterthemetree-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerouterthemetree-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerouterthemetree-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerouterthemetree package for XeTeX engine]
+\bidi@csundef{beamer@@tmpop@headline@tree theme}
+
+\defbeamertemplate*{headline}{tree theme}
+{%
+    \begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{upper separation line head}
+    \end{beamercolorbox}
+    \if@RTL
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+      rightskip=.3cm,leftskip=.3cm plus1fil]{title in head/foot}
+    \else
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}
+    \fi
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}
+    \if@RTL
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+      rightskip=.3cm,leftskip=.3cm plus1fil]{section in head/foot}
+    \else
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}
+    \fi
+      \usebeamerfont{section in head/foot}%
+      \ifbeamer@tree@showhooks
+        \setbox\beamer@tempbox=\hbox{\insertsectionhead}%
+        \ifdim\wd\beamer@tempbox>1pt%
+          \hskip2pt\raise1.9pt\hbox{\vrule width0.4pt height1.875ex\vrule width 5pt height0.4pt}%
+          \hskip1pt%
+        \fi%
+      \else%  
+        \hskip6pt%
+      \fi%
+      \insertsectionhead
+    \end{beamercolorbox}
+    \if@RTL
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+      rightskip=.3cm,leftskip=.3cm plus1fil]{subsection in head/foot}
+    \else
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+    \fi
+      \usebeamerfont{subsection in head/foot}%
+      \ifbeamer@tree@showhooks
+        \setbox\beamer@tempbox=\hbox{\insertsubsectionhead}%
+        \ifdim\wd\beamer@tempbox>1pt%
+          \hskip9.4pt\raise1.9pt\hbox{\vrule width0.4pt height1.875ex\vrule width 5pt height0.4pt}%
+          \hskip1pt%
+        \fi%
+      \else%  
+        \hskip12pt%
+      \fi%
+      \insertsubsectionhead
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{lower separation line head}
+    \end{beamercolorbox}
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerouterthemetree-xetex-bidi.def>
 %<*beamerthemeHannover-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerthemeHannover-xetex-bidi.def}}
@@ -3347,8 +3507,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/06/07}
-\def\bidi@version{37.6}
+\def\bididate{2022/06/08}
+\def\bidi@version{37.7}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -3436,7 +3596,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released June 7, 2022. 
+  Released June 8, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -3680,9 +3840,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/06/07}
+\def\bididate{2022/06/08}
 \catcode`@=11
-\def\bidi@version{37.6}
+\def\bidi@version{37.7}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -3784,7 +3944,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released June 7, 2022. 
+  Released June 8, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -24215,7 +24375,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2022/06/07 v1.4.4 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2022/06/08 v1.4.5 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
@@ -25179,10 +25339,11 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{beamerinnerthemerounded}{\input{beamerinnerthemerounded-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemedefault}{\input{beamerouterthemedefault-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeinfolines}{\input{beamerouterthemeinfolines-xetex-bidi.def}}{}
-\@ifpackageloaded{beamerouterthemeshadow}{\input{beamerouterthemeshadow-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemesidebar}{\input{beamerouterthemesidebar-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemesplit}{\input{beamerouterthemesplit-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeshadow}{\input{beamerouterthemeshadow-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerouterthemesmoothtree}{\input{beamerouterthemesmoothtree-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerouterthemetree}{\input{beamerouterthemetree-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerthemeHannover}{\input{beamerthemeHannover-xetex-bidi.def}}{}
 %    \end{macrocode}
 % \iffalse
