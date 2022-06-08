@@ -89,18 +89,22 @@ by Vafa Khalighi.
 \generate{\file{beamerbasecolor-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbasecolor-xetex-bidi.def}}}
 \generate{\file{beamerbaseframecomponents-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseframecomponents-xetex-bidi.def}}}
 \generate{\file{beamerbaselocalstructure-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaselocalstructure-xetex-bidi.def}}}
+\generate{\file{beamerbasenavigation-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbasenavigation-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemecircles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemecircles-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerectangles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerectangles-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerounded-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerounded-xetex-bidi.def}}}
 \generate{\file{beamerouterthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemedefault-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeinfolines-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeinfolines-xetex-bidi.def}}}
+\generate{\file{beamerouterthememiniframes-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthememiniframes-xetex-bidi.def}}}
 \generate{\file{beamerouterthemesidebar-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesidebar-xetex-bidi.def}}}
 \generate{\file{beamerouterthemesplit-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesplit-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeshadow-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeshadow-xetex-bidi.def}}}
+\generate{\file{beamerouterthemesmoothbars-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesmoothbars-xetex-bidi.def}}}
 \generate{\file{beamerouterthemesmoothtree-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesmoothtree-xetex-bidi.def}}}
 \generate{\file{beamerouterthemetree-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemetree-xetex-bidi.def}}}
 \generate{\file{beamerthemeHannover-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerthemeHannover-xetex-bidi.def}}}
+\generate{\file{beamerthemeSingapore-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerthemeSingapore-xetex-bidi.def}}}
 \generate{\file{bidi.sty}{\from{\jobname.dtx}{table,bidi.sty}}}
 \generate{\file{bidi.tex}{\from{\jobname.dtx}{table,bidi.tex}}}
 \generate{\file{bidi2in1.sty}{\from{\jobname.dtx}{table,bidi2in1.sty}}}
@@ -331,7 +335,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{53377}
+%% \CheckSum{53613}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2876,6 +2880,66 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerbaselocalstructure-xetex-bidi.def>
+%<*beamerbasenavigation-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerbasenavigation-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerbasenavigation-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerbasenavigation package for XeTeX engine]
+\def\slideentry#1#2#3#4#5#6{%
+  %section number, subsection number, slide number, first/last frame, page number, part number
+  \ifnum#6=\c@part\ifnum#1>0\ifnum#3>0%
+    \ifbeamer@compress%
+      \advance\beamer@xpos by1\relax%
+    \else%
+      \ifnum#2=0%
+        \beamer@ypos@offset=1\relax%
+      \fi
+      \beamer@xpos=#3\relax%
+      \beamer@ypos=#2\relax%
+      \advance\beamer@ypos by \beamer@ypos@offset\relax
+    \fi%
+  \hbox to 0pt{%
+    \beamer@tempdim=-\beamer@vboxoffset%
+    \advance\beamer@tempdim by-\beamer@boxsize%
+    \multiply\beamer@tempdim by\beamer@ypos%
+    \advance\beamer@tempdim by -.05cm%
+    \raise\beamer@tempdim\hbox{%
+      \beamer@tempdim=\beamer@boxsize%
+      \multiply\beamer@tempdim by\beamer@xpos%
+      \advance\beamer@tempdim by -\beamer@boxsize%
+      \advance\beamer@tempdim by 1pt%
+      \kern\beamer@tempdim
+      \global\beamer@section@min@dim\beamer@tempdim
+      \hbox{\beamer@link(#4){{%
+          \usebeamerfont{mini frame}%
+          \ifnum\c@section=#1%
+            \ifnum\c@subsection=#2%
+              \usebeamercolor[fg]{mini frame}%
+              \ifnum\c@subsectionslide=#3%
+                \usebeamertemplate{mini frame}%\beamer@minislidehilight%
+              \else%
+                \usebeamertemplate{mini frame in current subsection}%\beamer@minisliderowhilight%
+              \fi%
+            \else%
+              \usebeamercolor{mini frame}%
+              %\color{fg!50!bg}%
+              \usebeamertemplate{mini frame in other subsection}%\beamer@minislide%
+            \fi%
+          \else%
+            \usebeamercolor{mini frame}%
+            %\color{fg!50!bg}%
+            \usebeamertemplate{mini frame in other subsection}%\beamer@minislide%
+          \fi%
+        }}}}\hskip-10cm plus 1fil%
+  }\fi\fi%
+  \else%
+  \fakeslideentry{#1}{#2}{#3}{#4}{#5}{#6}%
+  \fi\ignorespaces
+  }
+
+%    \end{macrocode}
+% \iffalse
+%</beamerbasenavigation-xetex-bidi.def>
 %<*beamerinnerthemedefault-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerinnerthemedefault-xetex-bidi.def}}
@@ -3106,6 +3170,41 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerouterthemeinfolines-xetex-bidi.def>
+%<*beamerouterthememiniframes-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerouterthememiniframes-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerouterthememiniframes-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerouterthememiniframes package for XeTeX engine]
+\bidi@csundef{beamer@@tmpop@headline@miniframes theme}
+
+\defbeamertemplate*{headline}{miniframes theme}
+{%
+  \begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}{section in head/foot}
+    \vskip2pt\if@RTL\beginR\fi\insertnavigation{\paperwidth}\if@RTL\endR\fi\vskip2pt
+  \end{beamercolorbox}%
+  \ifbeamer@theme@subsection%
+    \begin{beamercolorbox}[colsep=1.5pt]{middle separation line head}
+    \end{beamercolorbox}
+    \if@RTL
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      rightskip=.3cm,leftskip=.3cm plus1fil]{subsection in head/foot}
+    \else
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+    \fi
+      \usebeamerfont{subsection in head/foot}\insertsubsectionhead
+    \end{beamercolorbox}%
+  \fi%
+  \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+  \end{beamercolorbox}
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerouterthememiniframes-xetex-bidi.def>
 %<*beamerouterthemesidebar-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerouterthemesidebar-xetex-bidi.def}}
@@ -3317,6 +3416,101 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerouterthemeshadow-xetex-bidi.def>
+%<*beamerouterthemesmoothbars-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerouterthemesmoothbars-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerouterthemesmoothbars-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerouterthemesmoothbars package for XeTeX engine]
+\bidi@csundef{beamer@@tmpop@headline@smoothbars theme}
+
+\bidi@csundef{beamer@@tmpop@frametitle@smoothbars theme}
+
+\defbeamertemplate*{headline}{smoothbars theme}
+{%
+  \pgfuseshading{beamer@barshade}%
+  \vskip-0.05ex%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1ex,dp=0ex]{empty}
+  \begin{pgfpicture}
+    \begin{pgfscope}%
+      \ifbeamer@sb@subsection%
+        \pgfsetfillcolor{subsection in head/foot.bg}%
+      \else%
+        \pgfsetfillcolor{section in head/foot.bg}%
+      \fi%
+      \pgfpathrectangle{\pgfpoint{-.5\paperwidth}{-0.5ex}}{\pgfpoint{\paperwidth}{1ex}}%
+      \pgfsetfading{beamer@belowframetitlemask}{}%
+      \pgfusepath{fill}%
+    \end{pgfscope}%
+  \end{pgfpicture}%
+  \end{beamercolorbox}%
+  \ifbeamer@sb@subsection%
+    \vskip-9.75ex%
+  \else%
+    \vskip-6.85ex%
+  \fi%
+  \begin{beamercolorbox}[ignorebg,ht=2.25ex,dp=3.75ex]{section in head/foot}
+    \insertnavigation{\paperwidth}
+  \end{beamercolorbox}%
+  \ifbeamer@sb@subsection%
+  \if@RTL
+      \begin{beamercolorbox}[ignorebg,ht=2.125ex,dp=1.125ex,%
+      rightskip=.3cm,leftskip=.3cm plus1fil]{subsection in head/foot}
+    \else
+    \begin{beamercolorbox}[ignorebg,ht=2.125ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+    \fi
+      \usebeamerfont{subsection in head/foot}\insertsubsectionhead
+    \end{beamercolorbox}%
+  \fi%
+}%
+
+\defbeamertemplate*{frametitle}{smoothbars theme}
+{%
+  \nointerlineskip%
+  \vskip-0.19ex%
+  \usebeamerfont{headline}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1ex,dp=1ex,vmode]{empty}
+    \pgfuseshading{beamer@aboveframetitle}%
+  \end{beamercolorbox}%
+  \vskip-1ex%
+  \nointerlineskip%
+  \if@RTL
+  \begin{beamercolorbox}[wd=\paperwidth,rightskip=.3cm,leftskip=.3cm plus1fil,vmode]{frametitle}
+  \else
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=.3cm,rightskip=.3cm plus1fil,vmode]{frametitle}
+  \fi
+    \vskip0.5ex%
+    \usebeamerfont*{frametitle}\strut\insertframetitle%
+      \ifx\insertframesubtitle\@empty%
+        \strut\par%
+      \else
+        \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle}\strut\par}%
+      \fi%%
+    \usebeamerfont{headline}%
+    \vskip0.05ex%
+  \end{beamercolorbox}%
+  \nointerlineskip%
+  \vskip-0.05ex%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1ex,dp=0ex]{empty}
+  \begin{pgfpicture}
+    \begin{pgfscope}%
+      \pgfsetfillcolor{frametitle.bg}%
+      \pgfpathrectangle{\pgfpoint{-.5\paperwidth}{-.5ex}}{\pgfpoint{\paperwidth}{1ex}}%
+      \pgfsetfading{beamer@belowframetitlemask}{}%
+      \pgfusepath{fill}%
+    \end{pgfscope}%
+  \end{pgfpicture}%
+  \end{beamercolorbox}%
+}
+
+\AtBeginDocument{%
+  \setbeamertemplate{frametitle}[smoothbars theme]%
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerouterthemesmoothbars-xetex-bidi.def>
 %<*beamerouterthemesmoothtree-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerouterthemesmoothtree-xetex-bidi.def}}
@@ -3502,6 +3696,23 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerthemeHannover-xetex-bidi.def>
+%<*beamerthemeSingapore-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerthemeSingapore-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerthemeSingapore-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerthemeSingapore package for XeTeX engine]
+\addtoheadtemplate{\pgfuseshading{beamer@headfade}\vskip-1.25cm}{}
+
+\beamertemplatedotitem
+
+\AtBeginDocument{%
+  \setbeamertemplate{frametitle}[default][center]%
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerthemeSingapore-xetex-bidi.def>
 %<*bidi.sty>
 %\fi
 % \section{File \texttt{bidi.sty}}
@@ -25333,18 +25544,22 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{beamerbasecolor}{\input{beamerbasecolor-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaseframecomponents}{\input{beamerbaseframecomponents-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaselocalstructure}{\input{beamerbaselocalstructure-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerbasenavigation}{\input{beamerbasenavigation-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemecircles}{\input{beamerinnerthemecircles-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerectangles}{\input{beamerinnerthemerectangles-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerounded}{\input{beamerinnerthemerounded-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemedefault}{\input{beamerouterthemedefault-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeinfolines}{\input{beamerouterthemeinfolines-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerouterthememiniframes}{\input{beamerouterthememiniframes-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemesidebar}{\input{beamerouterthemesidebar-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemesplit}{\input{beamerouterthemesplit-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeshadow}{\input{beamerouterthemeshadow-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerouterthemesmoothbars}{\input{beamerouterthemesmoothbars-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemesmoothtree}{\input{beamerouterthemesmoothtree-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemetree}{\input{beamerouterthemetree-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerthemeHannover}{\input{beamerthemeHannover-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerthemeSingapore}{\input{beamerthemeSingapore-xetex-bidi.def}}{}
 %    \end{macrocode}
 % \iffalse
 %</latex-xetex-bidi.def>
