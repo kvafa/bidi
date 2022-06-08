@@ -92,6 +92,7 @@ by Vafa Khalighi.
 \generate{\file{beamerbasenavigation-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbasenavigation-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemecircles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemecircles-xetex-bidi.def}}}
+\generate{\file{beamerinnerthemeinmargin-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemeinmargin-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerectangles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerectangles-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerounded-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerounded-xetex-bidi.def}}}
 \generate{\file{beamerouterthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemedefault-xetex-bidi.def}}}
@@ -335,7 +336,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{53652}
+%% \CheckSum{0}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2409,7 +2410,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerbaseframecomponents-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2022/06/06 v0.2 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
+\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2022/06/08 v0.3 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
 \renewcommand{\setbeamersize}[1]{%
   \beamer@dogeometryfalse%
   \setkeys{beamer@margin}{#1}%
@@ -2470,7 +2471,9 @@ by Vafa Khalighi.
                 \usebeamertemplate***{sidebar left}%
                 \vfil%
             }}%
-            \hskip-\textwidth
+            \@ifpackageloaded{beamerinnerthemeinmargin}{}{%
+              \hskip-\textwidth
+            }%
             \fi
             {\setbox\beamer@tempbox=\hbox{\vbox to \sidebarheight{%
                   \usebeamercolor*{sidebar left}%
@@ -3093,6 +3096,105 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerinnerthemecircles-xetex-bidi.def>
+%<*beamerinnerthemeinmargin-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerinnerthemeinmargin-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerinnerthemeinmargin-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerinnerthemeinmargin package for XeTeX engine]
+\AtBeginDocument{%
+  \setbeamersize{sidebar width left=.25\paperwidth}%
+}
+
+\bidi@csundef{beamer@@tmpop@section in toc@inmargin}
+
+\bidi@csundef{beamer@@tmpop@title page@inmargin}
+
+\bidi@csundef{beamer@@tmpop@block begin@inmargin}
+
+\bidi@csundef{beamer@@tmpop@block end@inmargin}
+
+\bidi@csundef{beamer@@tmpop@block alerted begin@inmargin}
+
+\bidi@csundef{beamer@@tmpop@block alerted end@inmargin}
+
+\bidi@csundef{beamer@@tmpop@block example begin@inmargin}
+
+\bidi@csundef{beamer@@tmpop@block example end@inmargin}
+
+\defbeamertemplate*{section in toc}{inmargin}
+{\leavevmode
+  \beamer@putleft{\inserttocsection\strut}{2.5ex}}
+  
+\defbeamertemplate*{title page}{inmargin}
+{
+  \begin{block}{\inserttitleindicator}
+    \bgroup\usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle\egroup\par
+    \usebeamercolor[fg]{subtitle}\usebeamerfont{subtitle}\insertsubtitle
+  \end{block}
+  \vfill
+  \ifx\insertauthor\@empty
+  \else
+  \begin{block}{\insertauthorindicator}
+    \bgroup\usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor\egroup\par
+  \end{block}
+  \fi
+  \ifx\insertinstitute\@empty
+  \else
+  \begin{block}{\insertinstituteindicator}
+    \bgroup\usebeamercolor[fg]{institute}\usebeamerfont{institute}\insertinstitute\egroup\par
+  \end{block}
+  \fi
+  \ifx\insertdate\@empty
+  \else
+  \begin{block}{\insertdateindicator}
+    \bgroup\usebeamercolor[fg]{date}\usebeamerfont{date}\insertdate\egroup\par
+  \end{block}
+  \fi
+}
+
+\defbeamertemplate*{block begin}{inmargin}
+{
+  \par\vskip\medskipamount%
+  \leavevmode%
+  \beamer@putleft{\normalfont{\usebeamercolor[fg]{block title}\usebeamerfont*{block title}\insertblocktitle}}{2.5ex}%
+  \beginL\beamer@putright\usebeamercolor[fg]{block body}%
+}
+
+\defbeamertemplate*{block end}{inmargin}
+{\endbeamer@putright\endL\vskip\smallskipamount}
+
+\defbeamertemplate*{block alerted begin}{inmargin}
+{
+  \par\vskip\medskipamount%
+  \leavevmode%
+  \beamer@putleft{\normalfont{\usebeamercolor[fg]{block title alerted}\usebeamerfont*{block title alerted}\insertblocktitle}}{2.5ex}%
+  \beginL\beamer@putright\usebeamercolor[fg]{block body alerted}%
+}
+
+\defbeamertemplate*{block alerted end}{inmargin}
+{\endbeamer@putright\endL\vskip\smallskipamount}
+
+\defbeamertemplate*{block example begin}{inmargin}
+{
+  \par\vskip\medskipamount%
+  \leavevmode%
+  \beamer@putleft{\normalfont{\usebeamercolor[fg]{block title example}\usebeamerfont*{block title example}\insertblocktitle}}{2.5ex}%
+  \beginL\beamer@putright\usebeamercolor[fg]{block body example}%
+}
+
+\defbeamertemplate*{block example end}{inmargin}
+{\endbeamer@putright\endL\vskip\smallskipamount}
+
+\bidi@AfterFile{beamerinnerthemerectangles-xetex-bidi.def}{%
+  \setbeamertemplate{section in toc}[inmargin]%
+  \setbeamertemplate{subsection in toc}[inmargin]%
+  \setbeamertemplate{subsubsection in toc}[inmargin]%
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerinnerthemeinmargin-xetex-bidi.def>
 %<*beamerinnerthemerectangles-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerinnerthemerectangles-xetex-bidi.def}}
@@ -25580,6 +25682,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{beamerbasenavigation}{\input{beamerbasenavigation-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemecircles}{\input{beamerinnerthemecircles-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerinnerthemeinmargin}{\input{beamerinnerthemeinmargin-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerectangles}{\input{beamerinnerthemerectangles-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerounded}{\input{beamerinnerthemerounded-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemedefault}{\input{beamerouterthemedefault-xetex-bidi.def}}{}
