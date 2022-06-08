@@ -335,7 +335,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{53613}
+%% \CheckSum{53652}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3139,7 +3139,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerouterthemeinfolines-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerouterthemeinfolines-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerouterthemeinfolines package for XeTeX engine]
+\ProvidesFile{beamerouterthemeinfolines-xetex-bidi.def}[2022/06/08 v0.2 bidi adaptations for beamerouterthemeinfolines package for XeTeX engine]
 \bidi@csundef{beamer@@tmpop@footline@infolines theme}
 
 \defbeamertemplate*{footline}{infolines theme}
@@ -3166,6 +3166,32 @@ by Vafa Khalighi.
   \vskip0pt%
 }
 
+\bidi@csundef{beamer@@tmpop@headline@infolines theme}
+
+\defbeamertemplate*{headline}{infolines theme}
+{%
+  \leavevmode%
+  \hbox{%
+  \if@RTL
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,left]{section in head/foot}%
+\else
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,right]{section in head/foot}%
+\fi
+    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+  \end{beamercolorbox}%
+\if@RTL
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,right]{subsection in head/foot}%
+\else
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,left]{subsection in head/foot}%
+\fi
+    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\bidi@AfterFile{beamerouterthemesplit-xetex-bidi.def}{%
+  \setbeamertemplate{footline}[infolines theme]%
+}
 
 %    \end{macrocode}
 % \iffalse
@@ -3336,16 +3362,23 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerouterthemesplit-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerouterthemesplit-xetex-bidi.def}[2022/06/01 v0.1 bidi adaptations for beamerouterthemesplit package for XeTeX engine]
+\ProvidesFile{beamerouterthemesplit-xetex-bidi.def}[2022/06/08 v0.2 bidi adaptations for beamerouterthemesplit package for XeTeX engine]
 \bidi@csundef{beamer@@tmpop@footline@split theme}
 
 \defbeamertemplate*{footline}{split theme}
 {%
   \leavevmode%
-  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+  \hbox{\if@RTL\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,rightskip=.3cm plus1fill,leftskip=.3cm]{author in head/foot}%
+\else
+\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+\fi
     \usebeamerfont{author in head/foot}\insertshortauthor
   \end{beamercolorbox}%
+ \if@RTL
+   \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,rightskip=.3cm,leftskip=.3cm plus1fil]{title in head/foot}%
+\else
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+\fi
     \usebeamerfont{title in head/foot}\insertshorttitle\nobreak\hfill\bgroup\usebeamercolor[fg]{page number in head/foot}\usebeamerfont{page number in head/foot}\usebeamertemplate{page number in head/foot}\egroup
   \end{beamercolorbox}}%
   \vskip0pt%
