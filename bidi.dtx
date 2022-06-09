@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/06/08
+Current version release date: 2022/06/09
 
 ___________________________________________
 Vafa Khalighi
@@ -336,7 +336,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{0}
+%% \CheckSum{53787}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2410,7 +2410,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerbaseframecomponents-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2022/06/08 v0.3 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
+\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2022/06/09 v0.3 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
 \renewcommand{\setbeamersize}[1]{%
   \beamer@dogeometryfalse%
   \setkeys{beamer@margin}{#1}%
@@ -2887,7 +2887,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerbasenavigation-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerbasenavigation-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerbasenavigation package for XeTeX engine]
+\ProvidesFile{beamerbasenavigation-xetex-bidi.def}[2022/06/09 v0.1 bidi adaptations for beamerbasenavigation package for XeTeX engine]
 \def\slideentry#1#2#3#4#5#6{%
   %section number, subsection number, slide number, first/last frame, page number, part number
   \ifnum#6=\c@part\ifnum#1>0\ifnum#3>0%
@@ -3100,7 +3100,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerinnerthemeinmargin-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerinnerthemeinmargin-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerinnerthemeinmargin package for XeTeX engine]
+\ProvidesFile{beamerinnerthemeinmargin-xetex-bidi.def}[2022/06/09 v0.1 bidi adaptations for beamerinnerthemeinmargin package for XeTeX engine]
 \AtBeginDocument{%
   \setbeamersize{sidebar width left=.25\paperwidth}%
 }
@@ -3123,7 +3123,7 @@ by Vafa Khalighi.
 
 \defbeamertemplate*{section in toc}{inmargin}
 {\leavevmode
-  \beamer@putleft{\inserttocsection\strut}{2.5ex}}
+  \beamer@putleft{{\usebeamercolor[fg]{section in toc}\inserttocsection}\strut}{2.5ex}}
   
 \defbeamertemplate*{title page}{inmargin}
 {
@@ -3157,7 +3157,8 @@ by Vafa Khalighi.
   \par\vskip\medskipamount%
   \leavevmode%
   \beamer@putleft{\normalfont{\usebeamercolor[fg]{block title}\usebeamerfont*{block title}\insertblocktitle}}{2.5ex}%
-  \beginL\beamer@putright\usebeamercolor[fg]{block body}%
+  \beginL\beamer@putright
+  %\usebeamercolor[fg]{block body}% to be done!
 }
 
 \defbeamertemplate*{block end}{inmargin}
@@ -3168,7 +3169,8 @@ by Vafa Khalighi.
   \par\vskip\medskipamount%
   \leavevmode%
   \beamer@putleft{\normalfont{\usebeamercolor[fg]{block title alerted}\usebeamerfont*{block title alerted}\insertblocktitle}}{2.5ex}%
-  \beginL\beamer@putright\usebeamercolor[fg]{block body alerted}%
+  \beginL\beamer@putright
+  %\usebeamercolor[fg]{block body alerted}% to be done!
 }
 
 \defbeamertemplate*{block alerted end}{inmargin}
@@ -3179,7 +3181,8 @@ by Vafa Khalighi.
   \par\vskip\medskipamount%
   \leavevmode%
   \beamer@putleft{\normalfont{\usebeamercolor[fg]{block title example}\usebeamerfont*{block title example}\insertblocktitle}}{2.5ex}%
-  \beginL\beamer@putright\usebeamercolor[fg]{block body example}%
+  \beginL\beamer@putright
+  %\usebeamercolor[fg]{block body example}% to be done
 }
 
 \defbeamertemplate*{block example end}{inmargin}
@@ -3241,7 +3244,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerouterthemeinfolines-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerouterthemeinfolines-xetex-bidi.def}[2022/06/08 v0.2 bidi adaptations for beamerouterthemeinfolines package for XeTeX engine]
+\ProvidesFile{beamerouterthemeinfolines-xetex-bidi.def}[2022/06/09 v0.2 bidi adaptations for beamerouterthemeinfolines package for XeTeX engine]
 \bidi@csundef{beamer@@tmpop@footline@infolines theme}
 
 \defbeamertemplate*{footline}{infolines theme}
@@ -3302,7 +3305,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerouterthememiniframes-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerouterthememiniframes-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerouterthememiniframes package for XeTeX engine]
+\ProvidesFile{beamerouterthememiniframes-xetex-bidi.def}[2022/06/09 v0.1 bidi adaptations for beamerouterthememiniframes package for XeTeX engine]
 \bidi@csundef{beamer@@tmpop@headline@miniframes theme}
 
 \defbeamertemplate*{headline}{miniframes theme}
@@ -3464,7 +3467,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerouterthemesplit-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerouterthemesplit-xetex-bidi.def}[2022/06/08 v0.2 bidi adaptations for beamerouterthemesplit package for XeTeX engine]
+\ProvidesFile{beamerouterthemesplit-xetex-bidi.def}[2022/06/09 v0.2 bidi adaptations for beamerouterthemesplit package for XeTeX engine]
 \bidi@csundef{beamer@@tmpop@footline@split theme}
 
 \defbeamertemplate*{footline}{split theme}
@@ -3555,7 +3558,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerouterthemesmoothbars-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerouterthemesmoothbars-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerouterthemesmoothbars package for XeTeX engine]
+\ProvidesFile{beamerouterthemesmoothbars-xetex-bidi.def}[2022/06/09 v0.1 bidi adaptations for beamerouterthemesmoothbars package for XeTeX engine]
 \bidi@csundef{beamer@@tmpop@headline@smoothbars theme}
 
 \bidi@csundef{beamer@@tmpop@frametitle@smoothbars theme}
@@ -3650,7 +3653,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerouterthemesmoothtree-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerouterthemesmoothtree-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerouterthemesmoothtree package for XeTeX engine]
+\ProvidesFile{beamerouterthemesmoothtree-xetex-bidi.def}[2022/06/09 v0.1 bidi adaptations for beamerouterthemesmoothtree package for XeTeX engine]
 \bidi@csundef{beamer@@tmpop@headline@smoothtree theme}
 
 \bidi@csundef{beamer@@tmpop@frametitle@smoothtree theme}
@@ -3752,7 +3755,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerouterthemetree-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerouterthemetree-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerouterthemetree package for XeTeX engine]
+\ProvidesFile{beamerouterthemetree-xetex-bidi.def}[2022/06/09 v0.1 bidi adaptations for beamerouterthemetree package for XeTeX engine]
 \bidi@csundef{beamer@@tmpop@headline@tree theme}
 
 \defbeamertemplate*{headline}{tree theme}
@@ -3835,7 +3838,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerthemeSingapore-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerthemeSingapore-xetex-bidi.def}[2022/06/08 v0.1 bidi adaptations for beamerthemeSingapore package for XeTeX engine]
+\ProvidesFile{beamerthemeSingapore-xetex-bidi.def}[2022/06/09 v0.1 bidi adaptations for beamerthemeSingapore package for XeTeX engine]
 \addtoheadtemplate{\pgfuseshading{beamer@headfade}\vskip-1.25cm}{}
 
 \beamertemplatedotitem
@@ -3853,7 +3856,7 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/06/08}
+\def\bididate{2022/06/09}
 \def\bidi@version{37.7}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
@@ -3942,7 +3945,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released June 8, 2022. 
+  Released June 9, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4186,7 +4189,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/06/08}
+\def\bididate{2022/06/09}
 \catcode`@=11
 \def\bidi@version{37.7}
 \let \protect \relax
@@ -4290,7 +4293,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released June 8, 2022. 
+  Released June 9, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -24721,7 +24724,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2022/06/08 v1.4.5 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2022/06/09 v1.4.5 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
