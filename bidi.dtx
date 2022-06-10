@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v37.8
+v37.9
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -259,7 +259,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 37.8 of the bidi
+  pdftitle={Source documentation for version 37.9 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -278,7 +278,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 37.8}}
+%\large Source documentation for \textcolor{blue!65!black}{version 37.9}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -288,7 +288,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 37.8}}
+%Source documentation for \textcolor{blue!65!black}{version 37.9}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -337,7 +337,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{53796}
+%% \CheckSum{53802}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2959,7 +2959,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerinnerthemedefault-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerinnerthemedefault-xetex-bidi.def}[2022/06/07 v0.4 bidi adaptations for beamerinnerthemedefault package for XeTeX engine]
+\ProvidesFile{beamerinnerthemedefault-xetex-bidi.def}[2022/06/10 v0.5 bidi adaptations for beamerinnerthemedefault package for XeTeX engine]
 \newcommand*{\bidi@beamer@leftskip}{%
   \if@RTL
     \rightskip
@@ -3094,6 +3094,10 @@ by Vafa Khalighi.
     \ifbeamercolorempty[bg]{block body example}{\vskip-.25ex}{\leavevmode\vskip-\dimexpr.75ex+\baselineskip\relax}\vbox{}%
 }
 
+\bidi@csundef{beamer@@tmpop@abstract begin@default}
+
+\defbeamertemplate*{abstract begin}{default}
+{\beamercolorbox[vmode]{abstract}\bidi@beamer@leftskip2em\bidi@beamer@rightskip2em plus 1fill\usebeamerfont*{abstract}}
 
 %    \end{macrocode}
 % \iffalse
@@ -3869,7 +3873,7 @@ by Vafa Khalighi.
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \def\bididate{2022/06/10}
-\def\bidi@version{37.8}
+\def\bidi@version{37.9}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -4203,7 +4207,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %    \begin{macrocode}
 \def\bididate{2022/06/10}
 \catcode`@=11
-\def\bidi@version{37.8}
+\def\bidi@version{37.9}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
