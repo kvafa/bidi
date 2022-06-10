@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v37.7
+v37.8
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/06/09
+Current version release date: 2022/06/10
 
 ___________________________________________
 Vafa Khalighi
@@ -90,6 +90,7 @@ by Vafa Khalighi.
 \generate{\file{beamerbaseframecomponents-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseframecomponents-xetex-bidi.def}}}
 \generate{\file{beamerbaselocalstructure-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaselocalstructure-xetex-bidi.def}}}
 \generate{\file{beamerbasenavigation-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbasenavigation-xetex-bidi.def}}}
+\generate{\file{beamerbaseoverlay-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseoverlay-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemecircles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemecircles-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemeinmargin-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemeinmargin-xetex-bidi.def}}}
@@ -258,7 +259,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 37.7 of the bidi
+  pdftitle={Source documentation for version 37.8 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -277,7 +278,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 37.7}}
+%\large Source documentation for \textcolor{blue!65!black}{version 37.8}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -287,7 +288,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 37.7}}
+%Source documentation for \textcolor{blue!65!black}{version 37.8}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -336,7 +337,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{53787}
+%% \CheckSum{53796}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2943,6 +2944,17 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerbasenavigation-xetex-bidi.def>
+%<*beamerbaseoverlay-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerbaseoverlay-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerbaseoverlay-xetex-bidi.def}[2022/06/10 v0.1 bidi adaptations for beamerbaseoverlay package for XeTeX engine]
+\renewcommand<>{\color}{\alt#1{\beameroriginal{\color}}{\beamer@gobbleoptionalinsp}}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerbaseoverlay-xetex-bidi.def>
 %<*beamerinnerthemedefault-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerinnerthemedefault-xetex-bidi.def}}
@@ -3856,8 +3868,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/06/09}
-\def\bidi@version{37.7}
+\def\bididate{2022/06/10}
+\def\bidi@version{37.8}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -3945,7 +3957,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released June 9, 2022. 
+  Released June 10, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4189,9 +4201,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/06/09}
+\def\bididate{2022/06/10}
 \catcode`@=11
-\def\bidi@version{37.7}
+\def\bidi@version{37.8}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -4293,7 +4305,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released June 9, 2022. 
+  Released June 10, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -24724,7 +24736,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2022/06/09 v1.4.5 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2022/06/10 v1.4.6 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
@@ -25683,6 +25695,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{beamerbaseframecomponents}{\input{beamerbaseframecomponents-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaselocalstructure}{\input{beamerbaselocalstructure-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbasenavigation}{\input{beamerbasenavigation-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerbaseoverlay}{\input{beamerbaseoverlay-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemecircles}{\input{beamerinnerthemecircles-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemeinmargin}{\input{beamerinnerthemeinmargin-xetex-bidi.def}}{}
