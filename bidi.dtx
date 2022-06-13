@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v38.1
+v38.2
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -263,7 +263,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 38.1 of the bidi
+  pdftitle={Source documentation for version 38.2 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -282,7 +282,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 38.1}}
+%\large Source documentation for \textcolor{blue!65!black}{version 38.2}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -292,7 +292,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 38.1}}
+%Source documentation for \textcolor{blue!65!black}{version 38.2}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -341,7 +341,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{54317}
+%% \CheckSum{54318}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4226,7 +4226,7 @@ by Vafa Khalighi.
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \def\bididate{2022/06/13}
-\def\bidi@version{38.1}
+\def\bidi@version{38.2}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -4560,7 +4560,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %    \begin{macrocode}
 \def\bididate{2022/06/13}
 \catcode`@=11
-\def\bidi@version{38.1}
+\def\bidi@version{38.2}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -24982,14 +24982,14 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{xcolor-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{xcolor-xetex-bidi.def}[2013/04/08 v0.2 bidi adaptations for xcolor package for XeTeX engine]
+\ProvidesFile{xcolor-xetex-bidi.def}[2022/06/13 v0.3 bidi adaptations for xcolor package for XeTeX engine]
 \long\def\color@b@x#1#2#3%
  {\leavevmode\ifmmode\else\if@RTL\beginL\fi\fi
   \setbox\z@\hbox{\kern\fboxsep{\set@color\if@RTL\beginR\fi#3\if@RTL\endR\fi}\kern\fboxsep}%
   \dimen@\ht\z@\advance\dimen@\fboxsep\ht\z@\dimen@
   \dimen@\dp\z@\advance\dimen@\fboxsep\dp\z@\dimen@
   {#1{#2\color@block{\wd\z@}{\ht\z@}{\dp\z@}\box\z@}}\ifmmode\else\if@RTL\endL\fi\fi}
-\def\normalcolor{\let\current@color\default@color\ifhmode\if@RTL\beginL\aftergroup\endR\fi\fi\set@color\ifhmode\if@RTL\beginR\aftergroup\endL\fi\fi}
+\protected\def\normalcolor{\let\current@color\default@color\ifhmode\if@RTL\beginL\aftergroup\endR\fi\fi\set@color\ifhmode\if@RTL\beginR\aftergroup\endL\fi\fi}
 \DeclareRobustCommand\color
  {\ifhmode\if@RTL\beginL\aftergroup\endR\fi\fi\@ifnextchar[\@undeclaredcolor\@declaredcolor}
 \def\@undeclaredcolor[#1]#2%
