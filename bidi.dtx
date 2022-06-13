@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v38.0
+v38.1
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/06/11
+Current version release date: 2022/06/13
 
 ___________________________________________
 Vafa Khalighi
@@ -94,10 +94,12 @@ by Vafa Khalighi.
 \generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemecircles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemecircles-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemeinmargin-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemeinmargin-xetex-bidi.def}}}
+\generate{\file{beamerinnerthememetropolis-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthememetropolis-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerectangles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerectangles-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerounded-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerounded-xetex-bidi.def}}}
 \generate{\file{beamerouterthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemedefault-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeinfolines-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeinfolines-xetex-bidi.def}}}
+\generate{\file{beamerouterthememetropolis-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthememetropolis-xetex-bidi.def}}}
 \generate{\file{beamerouterthememiniframes-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthememiniframes-xetex-bidi.def}}}
 \generate{\file{beamerouterthemesidebar-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesidebar-xetex-bidi.def}}}
 \generate{\file{beamerouterthemesplit-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemesplit-xetex-bidi.def}}}
@@ -259,7 +261,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 38.0 of the bidi
+  pdftitle={Source documentation for version 38.1 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -278,7 +280,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 38.0}}
+%\large Source documentation for \textcolor{blue!65!black}{version 38.1}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -288,7 +290,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 38.0}}
+%Source documentation for \textcolor{blue!65!black}{version 38.1}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -337,7 +339,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{53812}
+%% \CheckSum{54085}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2411,7 +2413,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerbaseframecomponents-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2022/06/09 v0.3 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
+\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2022/06/13 v0.4 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
 \renewcommand{\setbeamersize}[1]{%
   \beamer@dogeometryfalse%
   \setkeys{beamer@margin}{#1}%
@@ -2554,6 +2556,27 @@ by Vafa Khalighi.
       \hskip-\bidi@beamer@Gm@rmargin%
     }}\hfil%
 }
+
+\def\ps@empty{%
+  \let\@mkboth\@gobbletwo%
+  \def\@oddhead{\begingroup%
+    \setbox\beamer@tempbox=\hbox{\usebeamertemplate***{background canvas}\hyper@pagetransition\hyper@pageduration}%
+    \beamer@tempdim=\ht\beamer@tempbox%
+    \setbox\beamer@tempbox=\hbox{\lower\beamer@tempdim\hbox{\box\beamer@tempbox}}%
+    \wd\beamer@tempbox=0pt\ht\beamer@tempbox=0pt\dp\beamer@tempbox=0pt%
+    \setbox\@tempboxa=\hbox{\usebeamertemplate***{background}}%
+    \beamer@tempdim=\ht\@tempboxa%
+    \setbox\@tempboxa=\hbox{\lower\beamer@tempdim\hbox{\box\@tempboxa}}%
+    \wd\@tempboxa=0pt\ht\@tempboxa=0pt\dp\@tempboxa=0pt%
+    \vbox{\hbox{\hskip-\Gm@lmargin\raise\headheight\box\beamer@tempbox\raise\headheight\box\@tempboxa}\hfil}%
+    \endgroup%
+  }
+  \def\@oddfoot{{\normalcolor{\hfil%
+    \setbox\beamer@tempbox=\hbox{\usebeamertemplate***{navigation symbols}\hskip-\Gm@rmargin\hskip2pt}%
+    \ht\beamer@tempbox=0pt%
+    \dp\beamer@tempbox=0pt%
+    \box\beamer@tempbox}}}
+  \let\@evenhead\@oddhead\let\@evenfoot\@oddfoot}
 
 \renewcommand<>\beamer@columncom[2][\beamer@colmode]{%
   \beamer@colclose%
@@ -3214,6 +3237,138 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerinnerthemeinmargin-xetex-bidi.def>
+%<*beamerinnerthememetropolis-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerinnerthememetropolis-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerinnerthememetropolis-xetex-bidi.def}[2022/06/13 v0.1 bidi adaptations for beamerinnerthememetropolis package for XeTeX engine]
+\setbeamertemplate{title}{
+  \bidi@beamer@ragged%
+  \linespread{1.0}%
+  \inserttitle%
+  \par%
+  \vspace*{0.5em}
+}
+
+\setbeamertemplate{subtitle}{
+  \bidi@beamer@ragged%
+  \insertsubtitle%
+  \par%
+  \vspace*{0.5em}
+}
+
+\bidi@csundef{beamer@@tmpop@section page@progressbar}
+
+\defbeamertemplate{section page}{progressbar}{
+  \centering
+  \begin{minipage}{22em}
+    \bidi@beamer@ragged
+    \usebeamercolor[fg]{section title}
+    \usebeamerfont{section title}
+    \insertsectionhead\\[-1ex]
+    \usebeamertemplate*{progress bar in section page}
+    \par
+    \ifx\insertsubsectionhead\@empty\else%
+      \usebeamercolor[fg]{subsection title}%
+      \usebeamerfont{subsection title}%
+      \insertsubsectionhead
+    \fi
+  \end{minipage}
+  \par
+  \vspace{\baselineskip}
+}
+
+\setbeamertemplate{progress bar in section page}{
+  \setlength{\metropolis@progressonsectionpage}{%
+    \textwidth * \ratio{\insertframenumber pt}{\inserttotalframenumber pt}%
+  }%
+  \begin{tikzpicture}
+    \fill[bg] (0,0) rectangle (\textwidth, \metropolis@progressonsectionpage@linewidth);
+\if@RTLmain
+    \fill[fg] (\textwidth-\metropolis@progressonsectionpage,0) rectangle (\textwidth, \metropolis@progressonsectionpage@linewidth);
+\else
+    \fill[fg] (0,0) rectangle (\metropolis@progressonsectionpage, \metropolis@progressonsectionpage@linewidth);
+\fi
+  \end{tikzpicture}%
+}
+
+\renewcommand{\metropolis@block}[1]{
+  \par\vskip\medskipamount%
+  \setlength{\parskip}{0pt}
+  \ifbeamercolorempty[bg]{block title#1}{%
+    \if@RTL
+      \begin{beamercolorbox}[leftskip=0pt plus 4em]{block title#1}%
+    \else
+      \begin{beamercolorbox}[rightskip=0pt plus 4em]{block title#1}%
+    \fi
+  }{%
+  \ifbeamercolorempty[bg]{block title}{%
+    \if@RTL
+      \begin{beamercolorbox}[leftskip=0pt plus 4em]{block title#1}%
+    \else
+      \begin{beamercolorbox}[rightskip=0pt plus 4em]{block title#1}%
+    \fi
+  }%
+  {%
+  \if@RTL
+    \begin{beamercolorbox}[
+      sep=\dimexpr\metropolis@blocksep-\metropolis@blockadjust\relax,
+      rightskip=\metropolis@blockadjust,
+      leftskip=\dimexpr\metropolis@blockadjust plus 4em\relax
+    ]{block title#1}%
+    \else
+    \begin{beamercolorbox}[
+      sep=\dimexpr\metropolis@blocksep-\metropolis@blockadjust\relax,
+      leftskip=\metropolis@blockadjust,
+      rightskip=\dimexpr\metropolis@blockadjust plus 4em\relax
+    ]{block title#1}%
+    \fi
+  }}%
+      \usebeamerfont*{block title#1}%
+      \metropolis@strut%
+      \insertblocktitle%
+      \metropolis@strut%
+  \end{beamercolorbox}%
+  \nointerlineskip%
+  \ifbeamercolorempty[bg]{block body#1}{%
+    \begin{beamercolorbox}[vmode]{block body#1}}{
+  \ifbeamercolorempty[bg]{block body}{%
+    \begin{beamercolorbox}[vmode]{block body#1}%
+  }{%
+    \begin{beamercolorbox}[sep=\metropolis@blocksep, vmode]{block body#1}%
+    \vspace{-\metropolis@parskip}
+  }}%
+      \usebeamerfont{block body#1}%
+      \setlength{\parskip}{\metropolis@parskip}%
+}
+
+
+\setbeamertemplate{footnote}{%
+  \parindent 0em\noindent%
+  \bidi@beamer@ragged
+  \usebeamercolor{footnote}\hbox to 0.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+
+\setbeamertemplate{RTLfootnote}{%
+  \parindent 0em\noindent%
+  \raggedleft
+  \usebeamercolor{footnote}\hbox to 0.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+
+\setbeamertemplate{LTRfootnote}{%
+  \parindent 0em\noindent%
+  \raggedright
+  \usebeamercolor{footnote}\hbox to 0.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+
+\setbeamertemplate{itemize items}{\textbullet}
+
+\setbeamertemplate{section page}[progressbar]
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerinnerthememetropolis-xetex-bidi.def>
 %<*beamerinnerthemerectangles-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerinnerthemerectangles-xetex-bidi.def}}
@@ -3317,6 +3472,36 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerouterthemeinfolines-xetex-bidi.def>
+%<*beamerouterthememetropolis-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerouterthememetropolis-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerouterthememetropolis-xetex-bidi.def}[2022/06/13 v0.1 bidi adaptations for beamerouterthememetropolis package for XeTeX engine]
+\setbeamertemplate{progress bar in head/foot}{
+  \nointerlineskip
+  \setlength{\metropolis@progressinheadfoot}{%
+    \paperwidth * \ratio{\insertframenumber pt}{\inserttotalframenumber pt}%
+  }%
+  \begin{beamercolorbox}[wd=\paperwidth]{progress bar in head/foot}
+    \begin{tikzpicture}
+      \fill[bg] (0,0) rectangle (\paperwidth, \metropolis@progressinheadfoot@linewidth);
+\if@RTLmain
+      \fill[fg] (\paperwidth-\metropolis@progressinheadfoot,0) rectangle (\paperwidth, \metropolis@progressinheadfoot@linewidth);
+\else
+      \fill[fg] (0,0) rectangle (\metropolis@progressinheadfoot, \metropolis@progressinheadfoot@linewidth);
+\fi
+    \end{tikzpicture}%
+  \end{beamercolorbox}
+}
+
+\AtBeginDocument{%
+  \setbeamertemplate{frametitle}[plain]%
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerouterthememetropolis-xetex-bidi.def>
 %<*beamerouterthememiniframes-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerouterthememiniframes-xetex-bidi.def}}
@@ -3885,8 +4070,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/06/11}
-\def\bidi@version{38.0}
+\def\bididate{2022/06/13}
+\def\bidi@version{38.1}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -3974,7 +4159,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released June 11, 2022. 
+  Released June 13, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4218,9 +4403,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/06/11}
+\def\bididate{2022/06/13}
 \catcode`@=11
-\def\bidi@version{38.0}
+\def\bidi@version{38.1}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -4322,7 +4507,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released June 11, 2022. 
+  Released June 13, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -24753,7 +24938,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2022/06/10 v1.4.6 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2022/06/13 v1.4.7 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
@@ -25716,10 +25901,12 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemecircles}{\input{beamerinnerthemecircles-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemeinmargin}{\input{beamerinnerthemeinmargin-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerinnerthememetropolis}{\input{beamerinnerthememetropolis-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerectangles}{\input{beamerinnerthemerectangles-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerounded}{\input{beamerinnerthemerounded-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemedefault}{\input{beamerouterthemedefault-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeinfolines}{\input{beamerouterthemeinfolines-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerouterthememetropolis}{\input{beamerouterthememetropolis-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthememiniframes}{\input{beamerouterthememiniframes-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemesidebar}{\input{beamerouterthemesidebar-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemesplit}{\input{beamerouterthemesplit-xetex-bidi.def}}{}
