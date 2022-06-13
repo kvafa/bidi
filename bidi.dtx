@@ -93,11 +93,13 @@ by Vafa Khalighi.
 \generate{\file{beamerbaseoverlay-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseoverlay-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemecircles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemecircles-xetex-bidi.def}}}
+\generate{\file{beamerinnerthemefocus-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemefocus-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemeinmargin-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemeinmargin-xetex-bidi.def}}}
 \generate{\file{beamerinnerthememetropolis-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthememetropolis-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerectangles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerectangles-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemerounded-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemerounded-xetex-bidi.def}}}
 \generate{\file{beamerouterthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemedefault-xetex-bidi.def}}}
+\generate{\file{beamerouterthemefocus-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemefocus-xetex-bidi.def}}}
 \generate{\file{beamerouterthemeinfolines-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthemeinfolines-xetex-bidi.def}}}
 \generate{\file{beamerouterthememetropolis-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthememetropolis-xetex-bidi.def}}}
 \generate{\file{beamerouterthememiniframes-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerouterthememiniframes-xetex-bidi.def}}}
@@ -339,7 +341,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{54085}
+%% \CheckSum{54317}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3135,6 +3137,80 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerinnerthemecircles-xetex-bidi.def>
+%<*beamerinnerthemefocus-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerinnerthemefocus-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerinnerthemefocus-xetex-bidi.def}[2022/06/13 v0.1 bidi adaptations for beamerinnerthemefocus package for XeTeX engine]
+\setbeamertemplate{section in toc}[square]
+\setbeamertemplate{subsection in toc}[square]
+
+\setbeamertemplate{itemize items}[square]
+\setbeamertemplate{itemize subitem}[triangle]
+
+\bidi@csundef{beamer@@tmpop@title page@focus}
+
+\defbeamertemplate*{title page}{focus}{%
+    {%
+       	\usebeamercolor{frametitle}\colorlet{focus@@temp}{bg}%
+        \begin{tikzpicture}[overlay, remember picture]
+            \fill[color=focus@@temp] (current page.north west) rectangle ([shift = {(0, -0.45\paperheight)}] current page.north east);
+    \end{tikzpicture}
+    }
+    
+    \vspace{-1.65\baselineskip}
+    \begin{minipage}[b][0.35\paperheight]{\textwidth}
+        \vspace{\baselineskip}
+        \usebeamerfont{title}
+        \usebeamercolor[fg]{frametitle}
+        \inserttitle
+    \end{minipage}
+    
+    \begin{minipage}[t][0.1\paperheight]{\textwidth}
+        \usebeamerfont{subtitle}
+        \usebeamercolor[fg]{frametitle}
+        \insertsubtitle
+    \end{minipage}
+    
+    % Set the title graphic in a zero-height box, so that
+    % the position of other elements is not affected.
+    {\vfuzz=9999pt\vbox to 0pt {
+        \if@RTL
+          \raggedright
+        \else
+          \raggedleft
+        \fi
+        \inserttitlegraphic
+    }}
+    
+    \begin{minipage}[t]{\textwidth}
+        \usebeamerfont{author}
+        \insertauthor
+    \end{minipage}
+    
+    \vspace*{\baselineskip}
+    \begin{minipage}[t]{\textwidth}
+        \usebeamerfont{institute}
+        \insertinstitute
+    \end{minipage}
+    
+    \vspace*{\baselineskip}
+    \begin{minipage}[t]{\textwidth}
+        \usebeamerfont{date}
+        \insertdate
+    \end{minipage}
+
+   	\vspace*{0pt plus 100fill}
+    
+    \addtocounter{framenumber}{-1}
+    \addtocounter{realframenumber}{-1}
+}
+
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerinnerthemefocus-xetex-bidi.def>
 %<*beamerinnerthemeinmargin-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerinnerthemeinmargin-xetex-bidi.def}}
@@ -3411,6 +3487,85 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerouterthemedefault-xetex-bidi.def>
+%<*beamerouterthemefocus-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerouterthemefocus-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerouterthemefocus-xetex-bidi.def}[2022/06/13 v0.1 bidi adaptations for beamerouterthemefocus package for XeTeX engine]
+\bidi@undef\beamer@@tmpop@footline@progressbar
+
+\defbeamertemplate*{footline}{progressbar}{%
+    % If not appendix.
+    \ifnum\mainend<0% From package appendixnumberbeamer.
+        %
+        \settowidth{\focus@pbar@leftoffset}{1}%
+        \addtolength{\focus@pbar@leftoffset}{1.5em}%
+        %
+        \ifx\beamer@focus@totalframenumbering\no%
+            \settowidth{\focus@pbar@rightoffset}{}%
+            \addtolength{\focus@pbar@rightoffset}{0.5em}%
+        \else%
+            \settowidth{\focus@pbar@rightoffset}{\inserttotalframenumber}%
+            \addtolength{\focus@pbar@rightoffset}{1.5em}%
+        \fi%
+        %
+        % If not title page.
+        \ifnum\value{realframenumber}>0%
+            \ifnum\value{framenumber}<\inserttotalframenumber%
+                \begin{tikzpicture}[inner xsep=0.5em, inner ysep=0.5ex]\usebeamerfont{footline}
+                    \pgfmathsetmacro{\focus@pbar@progress}%
+                        {(\paperwidth-\focus@pbar@leftoffset-\focus@pbar@rightoffset)*(\insertframenumber/\inserttotalframenumber)}
+                
+                    \clip (0,0) rectangle ++(\paperwidth,\the\focus@pbar@height);
+\if@RTLmain
+                    \fill[footline.bg] (\paperwidth,0) rectangle ++(-\the\focus@pbar@leftoffset,\the\focus@pbar@height);
+                    \fill[footline.bg] (\paperwidth-\the\focus@pbar@leftoffset,0) rectangle ++(-\focus@pbar@progress pt,\the\focus@pbar@height)
+                                       ++(0,{-0.5*\the\focus@pbar@height}) node[anchor=west, text=footline.fg] {\strut\insertframenumber};
+\else
+                    \fill[footline.bg] (0,0) rectangle ++(\the\focus@pbar@leftoffset,\the\focus@pbar@height);
+                    \fill[footline.bg] (\the\focus@pbar@leftoffset,0) rectangle ++(\focus@pbar@progress pt,\the\focus@pbar@height)
+                                       ++(0,{-0.5*\the\focus@pbar@height}) node[anchor=east, text=footline.fg] {\strut\insertframenumber};
+\fi                   
+                    \ifx\beamer@focus@totalframenumbering\no%
+                    \else%
+\if@RTLmain
+                        \fill[footline.bg] (0,0) rectangle ++(\the\focus@pbar@rightoffset,\the\focus@pbar@height)
+                                           ++(0,{-0.5*\the\focus@pbar@height}) node[anchor=east, text=footline.fg] {\strut\inserttotalframenumber};
+\else
+                        \fill[footline.bg] (\paperwidth,0) rectangle ++(-\the\focus@pbar@rightoffset,\the\focus@pbar@height)
+                                           ++(0,{-0.5*\the\focus@pbar@height}) node[anchor=west, text=footline.fg] {\strut\inserttotalframenumber};
+\fi
+                    \fi%
+                \end{tikzpicture}%
+            \else%
+                \begin{tikzpicture}[inner xsep=0.5em, inner ysep=0.5ex]
+                    \clip (0,0) rectangle ++(\paperwidth,\the\focus@pbar@height);
+                    \fill[footline.bg] (0,0) rectangle ++(\paperwidth,\the\focus@pbar@height);
+\if@RTLmain
+                    \node[anchor=west, footline.fg] at ({\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut\insertframenumber};
+\else                    
+                    \node[anchor=east, footline.fg] at ({\paperwidth-\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut\insertframenumber};
+\fi
+                    \ifx\beamer@focus@totalframenumbering\no%
+                    \else%
+\if@RTLmain
+                        \node[footline.fg] at ({\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut/};
+                        \node[anchor=east, footline.fg] at ({\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut\inserttotalframenumber};
+\else
+                        \node[footline.fg] at ({\paperwidth-\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut/};
+                        \node[anchor=west, footline.fg] at ({\paperwidth-\the\focus@pbar@rightoffset},{0.5*\focus@pbar@height}) {\strut\inserttotalframenumber};
+\fi
+                    \fi%
+                \end{tikzpicture}%
+            \fi%
+        \fi%
+    \fi%
+}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerouterthemefocus-xetex-bidi.def>
 %<*beamerouterthemeinfolines-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerouterthemeinfolines-xetex-bidi.def}}
@@ -25900,11 +26055,13 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{beamerbaseoverlay}{\input{beamerbaseoverlay-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemecircles}{\input{beamerinnerthemecircles-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerinnerthemefocus}{\input{beamerinnerthemefocus-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemeinmargin}{\input{beamerinnerthemeinmargin-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthememetropolis}{\input{beamerinnerthememetropolis-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerectangles}{\input{beamerinnerthemerectangles-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemerounded}{\input{beamerinnerthemerounded-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemedefault}{\input{beamerouterthemedefault-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerouterthemefocus}{\input{beamerouterthemefocus-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthemeinfolines}{\input{beamerouterthemeinfolines-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthememetropolis}{\input{beamerouterthememetropolis-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerouterthememiniframes}{\input{beamerouterthememiniframes-xetex-bidi.def}}{}
