@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v38.2
+v38.3
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/06/13
+Current version release date: 2022/07/25
 
 ___________________________________________
 Vafa Khalighi
@@ -263,7 +263,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 38.2 of the bidi
+  pdftitle={Source documentation for version 38.3 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -282,7 +282,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 38.2}}
+%\large Source documentation for \textcolor{blue!65!black}{version 38.3}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -292,7 +292,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 38.2}}
+%Source documentation for \textcolor{blue!65!black}{version 38.3}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -341,7 +341,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{54318}
+%% \CheckSum{54383}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4225,8 +4225,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/06/13}
-\def\bidi@version{38.2}
+\def\bididate{2022/07/25}
+\def\bidi@version{38.3}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -4314,7 +4314,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released June 13, 2022. 
+  Released July 25, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4558,9 +4558,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/06/13}
+\def\bididate{2022/07/25}
 \catcode`@=11
-\def\bidi@version{38.2}
+\def\bidi@version{38.3}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -4662,7 +4662,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released June 13, 2022. 
+  Released July 25, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -5423,7 +5423,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 % \section{File \texttt{biditools.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{biditools}[2022/06/06 v2.2 Programming tools for bidi package]
+\ProvidesPackage{biditools}[2022/07/25 v2.3 Programming tools for bidi package]
 \providecommand{\@bidi@saveprimitive}[2]{\begingroup\escapechar`\\\relax
   \edef\@tempa{\string#1}\edef\@tempb{\meaning#1}%
   \ifx\@tempa\@tempb \global\let#2#1%
@@ -5530,6 +5530,29 @@ ill-advised in the old versions of bidi package.%
   \expandafter\def\csname\expandafter\@gobbletwo\string#2%
                     \expandafter\@gobbletwo\string#3\endcsname
                        {\let#2#3%
+                       \let#1#3}}
+\def\noteqnewif#1#2{%
+  \count@\escapechar \escapechar\m@ne
+    \let#1\iffalse
+    \let#2\iffalse
+    \not@eq@if#1#2\iftrue\iffalse
+  \escapechar\count@}
+\def\not@eq@if#1#2#3#4{%
+  \expandafter\def\csname\expandafter\@gobbletwo\string#1%
+                    \expandafter\@gobbletwo\string#3\endcsname
+                       {\let#1#3%
+                       \let#2#4}%
+  \expandafter\def\csname\expandafter\@gobbletwo\string#1%
+                    \expandafter\@gobbletwo\string#4\endcsname
+                       {\let#1#4%
+                       \let#2#3}%
+  \expandafter\def\csname\expandafter\@gobbletwo\string#2%
+                    \expandafter\@gobbletwo\string#3\endcsname
+                       {\let#2#3%
+                       \let#1#4}%
+  \expandafter\def\csname\expandafter\@gobbletwo\string#2%
+                    \expandafter\@gobbletwo\string#4\endcsname
+                       {\let#2#4%
                        \let#1#3}}
 \newcommand*{\SetBoolean}[2]{%
   \lowercase{\def\@tempa{#2}}%
