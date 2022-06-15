@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/07/25
+Current version release date: 2022/06/15
 
 ___________________________________________
 Vafa Khalighi
@@ -341,7 +341,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{54383}
+%% \CheckSum{54385}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4225,7 +4225,7 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/07/25}
+\def\bididate{2022/06/15}
 \def\bidi@version{38.3}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
@@ -4314,7 +4314,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released July 25, 2022. 
+  Released June 15, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4558,7 +4558,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/07/25}
+\def\bididate{2022/06/15}
 \catcode`@=11
 \def\bidi@version{38.3}
 \let \protect \relax
@@ -4662,7 +4662,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released July 25, 2022. 
+  Released June 15, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -5423,7 +5423,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 % \section{File \texttt{biditools.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{biditools}[2022/07/25 v2.3 Programming tools for bidi package]
+\ProvidesPackage{biditools}[2022/06/15 v2.3 Programming tools for bidi package]
 \providecommand{\@bidi@saveprimitive}[2]{\begingroup\escapechar`\\\relax
   \edef\@tempa{\string#1}\edef\@tempb{\meaning#1}%
   \ifx\@tempa\@tempb \global\let#2#1%
@@ -23756,7 +23756,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{tocbasic-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{tocbasic-xetex-bidi.def}[2022/05/27 v0.4 bidi adaptations for tocbasic package for XeTeX engine]
+\ProvidesFile{tocbasic-xetex-bidi.def}[2022/06/15 v0.5 bidi adaptations for tocbasic package for XeTeX engine]
 \bidi@undef\scr@dte@def@l@undottedtocline
 \bidi@undef\scr@dte@undottedtocline@init
 \DeclareTOCEntryStyle{undottedtocline}[{%
@@ -24518,13 +24518,17 @@ to\rtside{\box\bslice\hfil}}
   \scr@dte@tocline{#1}{##1}{##2}%
 }
 
-\renewcommand*{\scr@tso@figure@pagenumberformat}[1]{%
-   {\normalfont\normalcolor #1}%
- }
- 
-\renewcommand*{\scr@tso@table@pagenumberformat}[1]{%
-   {\normalfont\normalcolor #1}%
- }
+\if@bidi@csdef{scr@tso@figure@pagenumberformat}{%
+  \renewcommand*{\scr@tso@figure@pagenumberformat}[1]{%
+     {\normalfont\normalcolor #1}%
+   }%
+}{}
+
+\if@bidi@csdef{scr@tso@table@pagenumberformat}{%
+  \renewcommand*{\scr@tso@table@pagenumberformat}[1]{%
+     {\normalfont\normalcolor #1}%
+   }%
+}{}
  
 %    \end{macrocode}
 % \iffalse
