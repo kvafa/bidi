@@ -102,7 +102,7 @@ There is also \texttt{extrafootnotefeatures} option that allows footnotes to be 
 \item With any of the commands in the first row, you can typeset LTR paragraphs.
 \item With any of the commands in the second row, you can typeset RTL paragraphs.
 \end{itemize}
-\begin{lstlisting}[morekeywords={newfontfamily,Parsifont}]
+\begin{lstlisting}
 \documentclass{article}
 \usepackage{bidi}
 \begin{document}
@@ -221,7 +221,7 @@ Also please note that in \texttt{twocolumn} documents, the width of the \Lcs{foo
 \Lcs{text}\Largb{\Larga{main}}
 \end{BDef}
 \Lcs{RTLcases} is defined in bidi for typesetting RTL cases. \Lcs{text} is defined in \textsf{amsmath} package, so this means that you need to load \textsf{amsmath} package too.
-\begin{lstlisting}[morekeywords={RTLcases,text}]
+\begin{lstlisting}
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{bidi}
@@ -242,7 +242,7 @@ Also please note that in \texttt{twocolumn} documents, the width of the \Lcs{foo
 \Lcs{SepMark}\Largb{\Larga{mark}}\quad\Lcs{@SepMark}
 \end{BDef}
 Generally in Standard \LaTeX, dot is used for separation between section numbers, equation numbers any anything else which needs to be seperated. You can use \Lcs{SepMark} to use any other mark as the seperation mark instead a dot.
-\begin{lstlisting}[morekeywords={SepMark,subsection,subsubsection}]
+\begin{lstlisting}
 \documentclass{article}
 \usepackage{bidi}
 \SepMark{-}
@@ -255,7 +255,7 @@ Generally in Standard \LaTeX, dot is used for separation between section numbers
 
 If you decide to change the numbering of chapters, sections, subsections, equations, figures and \ldots, you should either load \textsf{amsmath} package and use \Lcs{numberwithin} macro to do this or do the ordinary way, but instead dot write \Lcs{@SepMark}. Using dot instead \Lcs{@SepMark} will certainly make trouble.
 
-\begin{lstlisting}[morekeywords={theequation,thesection,SepMark}]
+\begin{lstlisting}
 \documentclass{article}
 \usepackage{bidi}
 \SepMark{-}
