@@ -4761,34 +4761,50 @@ Bidirectional typesetting in plain TeX and LaTeX]
 \definecolor{colIdentifier}{rgb}{0,0,0}
 \definecolor{colComments}{rgb}{1,0,0}
 \definecolor{colString}{rgb}{0,0.5,0}
-\lstset{
-    language=[LaTeX]TEX,
-    float=hbp,
-    basicstyle=\ttfamily\small, 
-    identifierstyle=\color{colIdentifier}, 
-    keywordstyle=\color{colKeys}, 
-    stringstyle=\color{colString}, 
-    commentstyle=\color{colComments}, 
-    backgroundcolor=\color{hellgelb},
-    columns=flexible, 
-    tabsize=4, 
-    extendedchars=true, 
-    showspaces=false, 
-    showstringspaces=false, 
-    numbers=left,
-    numbersep=0.9em,
-    numberstyle=\tiny, %
-    frame=single,
-    captionpos=b,
-    xleftmargin=1em,
-    breaklines=true,
-    breakautoindent=false,
-    breakindent=0pt,
-    escapeinside=**,
-    pos=r,
+\lstset{%
+    language=TeX,%
+    float=hbp,%
+    basicstyle=\ttfamily\small,%
+    identifierstyle=\color{colIdentifier},% 
+    keywordstyle=\color{colKeys},% 
+    texcsstyle=*\color{colKeys},%
+    stringstyle=\color{colString},% 
+    commentstyle=\color{colComments},% 
+    backgroundcolor=\color{hellgelb},%
+    columns=flexible,% 
+    tabsize=4,% 
+    extendedchars=true,% 
+    showspaces=false,% 
+    showstringspaces=false,% 
+    numbers=left,%
+    numbersep=0.9em,%
+    numberstyle=\tiny,%
+    frame=single,%
+    captionpos=b,%
+    xleftmargin=1em,%
+    breaklines=true,%
+    breakautoindent=false,%
+    breakindent=0pt,%
+    escapeinside=**,%
+    pos=r,%
     explpreset={%
-    xleftmargin=1em,columns=flexible,language=[LaTeX]TEX},
-    morekeywords={setLTR,setLR,setRTL,setRL,LRE,LR,RLE,RL,lr,bidiversion,bididate}
+      xleftmargin=1em,%
+      columns=flexible,%
+      language=TEX%
+    },%
+    moretexcs={%
+      setLTR,%
+      setLR,%
+      setRTL,%
+      setRL,%
+      LRE,%
+      LR,%
+      RLE,%
+      RL,%
+      lr,%
+      bidiversion,%
+      bididate%
+    }%
 }
 \newcommand\HLON{%
   \gdef\lst@alloverstyle##1{%
