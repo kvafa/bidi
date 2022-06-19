@@ -4758,6 +4758,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 \RequirePackage{showexpl}
 \definecolor{hellgelb}{rgb}{1,1,0.85}
 \definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colCS}{rgb}{0,0,1}
 \definecolor{colIdentifier}{rgb}{0,0,0}
 \definecolor{colComments}{rgb}{1,0,0}
 \definecolor{colString}{rgb}{0,0.5,0}
@@ -4767,7 +4768,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
     basicstyle=\ttfamily\small,%
     identifierstyle=\color{colIdentifier},% 
     keywordstyle=\color{colKeys},% 
-    texcsstyle=*\color{colKeys},%
+    texcsstyle=*\color{colCS},%
     stringstyle=\color{colString},% 
     commentstyle=\color{colComments},% 
     backgroundcolor=\color{hellgelb},%
@@ -4790,7 +4791,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
     explpreset={%
       xleftmargin=1em,%
       columns=flexible,%
-      language=TEX%
+      language=TeX%
     },%
     moretexcs={%
       bididate,%
