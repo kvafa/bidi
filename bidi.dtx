@@ -341,7 +341,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{54385}
+%% \CheckSum{54496}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2984,7 +2984,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerinnerthemedefault-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerinnerthemedefault-xetex-bidi.def}[2022/06/10 v0.5 bidi adaptations for beamerinnerthemedefault package for XeTeX engine]
+\ProvidesFile{beamerinnerthemedefault-xetex-bidi.def}[2022/07/25 v0.6 bidi adaptations for beamerinnerthemedefault package for XeTeX engine]
 \newcommand*{\bidi@beamer@leftskip}{%
   \if@RTL
     \rightskip
@@ -3123,6 +3123,65 @@ by Vafa Khalighi.
 
 \defbeamertemplate*{abstract begin}{default}
 {\beamercolorbox[vmode]{abstract}\bidi@beamer@leftskip2em\bidi@beamer@rightskip2em plus 1fill\usebeamerfont*{abstract}}
+
+\bidi@undef\beamer@@tmpop@button@default
+
+\defbeamertemplate*{button}{default}
+{%
+  \setbox\beamer@tempbox=\hbox{{\insertbuttontext}}%
+  \ht\beamer@tempbox=6pt%
+  \dp\beamer@tempbox=0pt%
+  \setbox\beamer@tempbox=\vbox{\box\beamer@tempbox\vskip2pt}%
+  \beamer@tempdim=\wd\beamer@tempbox%
+  \beamer@dima=\beamer@tempdim\advance\beamer@dima by2.2pt
+  \beamer@dimb=\beamer@tempdim\advance\beamer@dimb by4pt
+  \if@RTL
+    \kern4pt%
+    \box\beamer@tempbox%
+    \hskip-\beamer@tempdim%
+  \fi
+  \begin{pgfpicture}{-4pt}{0pt}{\the\beamer@tempdim}{8pt}
+    \color{bg}
+    \pgfsetlinewidth{0.8pt}
+    \pgfpathqmoveto{0pt}{0pt}
+    \pgfpathqcurveto{-2.2pt}{0pt}{-4pt}{1.8pt}{-4pt}{4pt}
+    \pgfpathqcurveto{-4pt}{6.2pt}{-2.2pt}{8pt}{0pt}{8pt}
+    \pgfpathlineto{\pgfpoint{\the\beamer@tempdim}{8pt}}
+    \pgfpathcurveto%
+    {\pgfpoint{\the\beamer@dima}{8pt}}%
+    {\pgfpoint{\the\beamer@dimb}{6.2pt}}%
+    {\pgfpoint{\the\beamer@dimb}{4pt}}
+    \pgfpathcurveto%
+    {\pgfpoint{\the\beamer@dimb}{1.8pt}}%
+    {\pgfpoint{\the\beamer@dima}{0pt}}%
+    {\pgfpoint{\the\beamer@tempdim}{0pt}}
+    \pgfpathclose
+    \pgfusepathqfill
+    \colorlet{bg}{parent.bg}
+    \usebeamercolor[fg]{button border}
+    \pgfpathqmoveto{0pt}{0pt}
+    \pgfpathqcurveto{-2.2pt}{0pt}{-4pt}{1.8pt}{-4pt}{4pt}
+    \pgfpathqcurveto{-4pt}{6.2pt}{-2.2pt}{8pt}{0pt}{8pt}
+    \pgfpathlineto{\pgfpoint{\the\beamer@tempdim}{8pt}}
+    \pgfpathcurveto%
+    {\pgfpoint{\the\beamer@dima}{8pt}}%
+    {\pgfpoint{\the\beamer@dimb}{6.2pt}}%
+    {\pgfpoint{\the\beamer@dimb}{4pt}}
+    \pgfpathcurveto%
+    {\pgfpoint{\the\beamer@dimb}{1.8pt}}%
+    {\pgfpoint{\the\beamer@dima}{0pt}}%
+    {\pgfpoint{\the\beamer@tempdim}{0pt}}
+    \pgfpathclose
+    \pgfusepathqstroke
+  \end{pgfpicture}%
+  \if@RTL
+  \else
+    \hskip-\beamer@tempdim%
+    \box\beamer@tempbox%
+    \kern4pt%
+  \fi
+}
+
 
 %    \end{macrocode}
 % \iffalse
