@@ -342,7 +342,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{54758}
+%% \CheckSum{0}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2822,8 +2822,6 @@ by Vafa Khalighi.
 % \section{File \texttt{beamerbaseframesize-xetex-bidi.def}}
 %    \begin{macrocode}
 \ProvidesFile{beamerbaseframesize-xetex-bidi.def}[2022/07/25 v0.1 bidi adaptations for beamerbaseframesize package for XeTeX engine]
-\newdimen\bidi@beamer@@tempboxa@width
-
 \def\beamer@framezoom<#1><#2>[#3](#4,#5)(#6,#7){%
   \par\nointerlineskip%
   \global\beamer@slidehaszoomtrue%
@@ -2851,10 +2849,9 @@ by Vafa Khalighi.
       \fi%    
     }}}%
     \ht\@tempboxa=0pt%
-    \bidi@beamer@@tempboxa@width\wd\@tempboxa
     \wd\@tempboxa=0pt%
     \dp\@tempboxa=0pt%
-    \setbox\@tempboxa=\vbox{\if@RTL\moveleft\dimexpr\bidi@beamer@@tempboxa@width-#6-#4\relax\else\moveright#4\fi\hbox{\lower#5\vbox{\box\@tempboxa}}}%
+    \setbox\@tempboxa=\vbox{\if@RTL\moveleft\else\moveright\fi#4\hbox{\lower#5\vbox{\box\@tempboxa}}}%
     \ht\@tempboxa=0pt%
     \wd\@tempboxa=0pt%
     \dp\@tempboxa=0pt%
@@ -2904,11 +2901,7 @@ by Vafa Khalighi.
       \dp\@tempboxa=0pt%
       \setbox\beamer@framebox=\vbox to\beamer@frametextheight{{%
           \ifbeamer@plainframe\beamer@leftmargin=\Gm@lmargin\fi%
-          \if@RTL
-          \begin{pgfpicture}{\paperwidth-\beamer@leftmargin}{-\beamer@frametextheight}{\paperwidth-\beamer@leftmargin}{0pt}
-          \else
           \begin{pgfpicture}{\beamer@leftmargin}{-\beamer@frametextheight}{\beamer@leftmargin}{0pt}
-          \fi
             \pgftext[left,top]{\box\@tempboxa}
             \pgfpathrectangle{\pgfpoint{0pt}{-\@tempdimc}}{\pgfpoint{\@tempdimb}{\@tempdimc}}%
             \pgfusepath{clip}
