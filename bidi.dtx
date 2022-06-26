@@ -342,7 +342,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{54797}
+%% \CheckSum{54836}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3113,6 +3113,49 @@ by Vafa Khalighi.
 \else
   \begin{pgfpicture}{1pt}{0pt}{6pt}{5pt}
     \pgfuseobject{beamergotosymbol}%
+  \end{pgfpicture}%
+\fi
+}
+
+\pgfdefobject{bidi@beamer@RTL@skipsymbol}{\pgfpoint{0pt}{-1pt}}{\pgfpoint{7pt}{5pt}}
+{
+  \pgfpathqmoveto{5.5bp}{0.5bp}
+  \pgfpathqlineto{3.5bp}{2bp}
+  \pgfpathqlineto{5.5bp}{3.5bp}
+  \pgfpathqmoveto{3.5bp}{0.5bp}
+  \pgfpathqlineto{1.5bp}{2bp}
+  \pgfpathqlineto{3.5bp}{3.5bp}
+  \pgfusepathqfill
+}
+
+\def\insertskipsymbol{%
+\if@RTL
+  \begin{pgfpicture}{-1pt}{0pt}{6pt}{5pt}
+    \pgfuseobject{bidi@beamer@RTL@skipsymbol}%
+  \end{pgfpicture}%
+\else
+  \begin{pgfpicture}{1pt}{0pt}{8pt}{5pt}
+    \pgfuseobject{beamerskipsymbol}%
+  \end{pgfpicture}%
+\fi
+}
+
+\pgfdefobject{bidi@beamer@RTL@returnsymbol}{\pgfpoint{0pt}{-1pt}}{\pgfpoint{5pt}{5pt}}
+{
+  \pgfpathqmoveto{1.5bp}{0.5bp}
+  \pgfpathqlineto{3.5bp}{2bp}
+  \pgfpathqlineto{1.5bp}{3.5bp}
+  \pgfusepathqfill
+}
+
+\def\insertreturnsymbol{%
+\if@RTL
+  \begin{pgfpicture}{-1pt}{0pt}{4pt}{5pt}
+    \pgfuseobject{bidi@beamer@RTL@returnsymbol}%
+  \end{pgfpicture}%
+\else
+  \begin{pgfpicture}{1pt}{0pt}{6pt}{5pt}
+    \pgfuseobject{beamerreturnsymbol}%
   \end{pgfpicture}%
 \fi
 }
