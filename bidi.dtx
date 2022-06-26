@@ -87,10 +87,13 @@ by Vafa Khalighi.
 \generate{\file{beamerbaseauxtemplates-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseauxtemplates-xetex-bidi.def}}}
 \generate{\file{beamerbaseboxes-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseboxes-xetex-bidi.def}}}
 \generate{\file{beamerbasecolor-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbasecolor-xetex-bidi.def}}}
+\generate{\file{beamerbasecompatibility-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbasecompatibility-xetex-bidi.def}}}
 \generate{\file{beamerbaseframecomponents-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseframecomponents-xetex-bidi.def}}}
 \generate{\file{beamerbaseframesize-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseframesize-xetex-bidi.def}}}
 \generate{\file{beamerbaselocalstructure-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaselocalstructure-xetex-bidi.def}}}
+\generate{\file{beamerbasemisc-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbasemisc-xetex-bidi.def}}}
 \generate{\file{beamerbasenavigation-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbasenavigation-xetex-bidi.def}}}
+\generate{\file{beamerbasenotes-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbasenotes-xetex-bidi.def}}}
 \generate{\file{beamerbaseoverlay-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerbaseoverlay-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemedefault-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemedefault-xetex-bidi.def}}}
 \generate{\file{beamerinnerthemecircles-xetex-bidi.def}{\from{\jobname.dtx}{table,beamerinnerthemecircles-xetex-bidi.def}}}
@@ -342,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{54836}
+%% \CheckSum{55096}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2412,6 +2415,17 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerbasecolor-xetex-bidi.def>
+%<*beamerbasecompatibility-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerbasecompatibility-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerbasecompatibility-xetex-bidi.def}[2022/07/25 v0.1 bidi adaptations for beamerbasecompatibility package for XeTeX engine]
+\def\insertvrule#1#2{\hbox{{\color{#2}\hskip-\Gm@lmargin\vrule width \paperwidth height #1\hskip-\Gm@rmargin}}}
+
+
+%    \end{macrocode}
+% \iffalse
+%</beamerbasecompatibility-xetex-bidi.def>
 %<*beamerbaseframecomponents-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerbaseframecomponents-xetex-bidi.def}}
@@ -3040,6 +3054,24 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerbaselocalstructure-xetex-bidi.def>
+%<*beamerbasemisc-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerbasemisc-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerbasemisc-xetex-bidi.def}[2022/07/25 v0.1 bidi adaptations for beamerbasemisc package for XeTeX engine]
+\define@key{beamerst}{width}{%
+  \def\beamer@ststart{%
+    \begin{minipage}[t]{#1}%
+      \bidi@beamer@ragged
+      \beamer@stalign
+      \beamer@stlinebreakrule
+    }%
+  \def\beamer@stend{\end{minipage}}}
+  
+
+%    \end{macrocode}
+% \iffalse
+%</beamerbasemisc-xetex-bidi.def>
 %<*beamerbasenavigation-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerbasenavigation-xetex-bidi.def}}
@@ -3164,6 +3196,64 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</beamerbasenavigation-xetex-bidi.def>
+%<*beamerbasenotes-xetex-bidi.def>
+%\fi
+% \section{File \texttt{beamerbasenotes-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{beamerbasenotes-xetex-bidi.def}[2022/07/25 v0.1 bidi adaptations for beamerbasenotes package for XeTeX engine]
+\renewcommand\beamer@outsideframenote[2][]{%
+  \beamer@savemode%
+  \ifbeamer@inlecture%
+    \def\beamer@noteenvstart{}%
+    \def\beamer@noteenvend{}%
+    \setkeys{beamernotes}{#1}%
+    \ifbeamer@notes
+    \begingroup
+      \setbeamertemplate{itemize item}{\textbullet}
+      \setbeamertemplate{itemize subitem}{--}
+      \setbeamertemplate{enumerate item}{\insertenumlabel.}
+      \setbeamertemplate{enumerate subitem}{\insertenumlabel.\insertsubenumlabel}
+      \def\@oddhead{}
+      \def\@oddfoot{}
+      \let\@evenhead\@oddhead
+      \let\@evenfoot\@oddfoot
+      \def\beamer@backgroundtemplate{}%
+      \setbeamercolor{item}{fg=black,bg=white}
+      \color{black}%
+      \nointerlineskip
+      \leavevmode
+      \hbox{\hskip-\Gm@lmargin\hskip1cm\vbox to\textheight{%
+                                  %pretend to have ``standard'' margins
+          \edef\beamer@origlmargin{\Gm@lmargin}%
+          \edef\beamer@origrmargin{\Gm@rmargin}%
+          \def\Gm@lmargin{1cm}%
+          \def\Gm@rmargin{1cm}%
+          \textwidth=\dimexpr\paperwidth-\Gm@lmargin-\Gm@rmargin\relax%
+          \hsize=\textwidth%
+          \@arrayparboxrestore%
+          \vskip-\headheight%
+          \def\insertnote{\vbox{}%
+            \beamer@noteenvstart#2\beamer@noteenvend%
+          }%
+          \usebeamertemplate*{note page}%
+          \vfil%
+          \vskip-4pt% foot separator
+          \vskip-\footheight}\hskip-\Gm@lmargin\hskip1cm}%
+      \ifbeamer@twoscreensnotes%
+        \pgfpagescurrentpagewillbelogicalpage{2}%
+        \advance\c@page by-1\relax%
+      \fi%
+      \clearpage
+      \endgroup
+    \fi%
+  \fi%
+  \beamer@resumemode}
+  
+  
+
+%    \end{macrocode}
+% \iffalse
+%</beamerbasenotes-xetex-bidi.def>
 %<*beamerbaseoverlay-xetex-bidi.def>
 %\fi
 % \section{File \texttt{beamerbaseoverlay-xetex-bidi.def}}
@@ -3726,7 +3816,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerouterthemedefault-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerouterthemedefault-xetex-bidi.def}[2022/06/07 v0.1 bidi adaptations for beamerouterthemedefault package for XeTeX engine]
+\ProvidesFile{beamerouterthemedefault-xetex-bidi.def}[2022/07/25 v0.2 bidi adaptations for beamerouterthemedefault package for XeTeX engine]
 \def\beamer@fteleft{\if@RTLmain\vskip0.35cm\advance\leftskip by 1.7cm\advance\rightskip by1.7cm\else\fi}
 
 \def\beamer@fteright{\if@RTLmain\else\vskip0.35cm\advance\leftskip by 1.7cm\advance\rightskip by1.7cm\fi}
@@ -3736,6 +3826,74 @@ by Vafa Khalighi.
     \setbeamertemplate{frametitle}[default][right]
   \fi
 }
+
+\bidi@csundef{beamer@@tmpop@note page@default}
+
+\newcommand*{\bidi@beamer@today}{%
+\the\year-\ifnum\month<10\relax0\fi\the\month-\ifnum\day<10\relax0\fi\the\day}
+
+\defbeamertemplate*{note page}{default}
+{%
+  {%
+    \scriptsize
+    \usebeamerfont{note title}\usebeamercolor[fg]{note title}%
+    \ifbeamercolorempty[bg]{note title}{}{%
+      \insertvrule{.25\paperheight}{note title.bg}%
+      \vskip-.25\paperheight%
+      \nointerlineskip%
+    }%
+    \vbox{
+      \hfill\insertslideintonotes{0.25}\hskip-\Gm@rmargin\hskip0pt%
+      \vskip-0.25\paperheight%
+      \nointerlineskip
+      \if@RTL
+      \begin{pgfpicture}{-\textwidth}{0cm}{-\textwidth}{0cm}
+        \begin{pgflowlevelscope}{\pgftransformrotate{-90}}
+          {\pgftransformshift{\pgfpoint{2cm}{0.2cm}}%
+          \pgftext[base,right]{\usebeamerfont{note date}\usebeamercolor[fg]{note date}\bidi@beamer@today}}
+        \end{pgflowlevelscope}
+      \end{pgfpicture}%
+      \else
+      \begin{pgfpicture}{0cm}{0cm}{0cm}{0cm}
+        \begin{pgflowlevelscope}{\pgftransformrotate{90}}
+          {\pgftransformshift{\pgfpoint{-2cm}{0.2cm}}%
+          \pgftext[base,left]{\usebeamerfont{note date}\usebeamercolor[fg]{note date}\bidi@beamer@today}}
+        \end{pgflowlevelscope}
+      \end{pgfpicture}%
+      \fi}
+    \nointerlineskip
+    \vbox to .25\paperheight{\vskip0.5em
+      \hbox{\insertshorttitle[width=0.75\textwidth]}%
+      \setbox\beamer@tempbox=\hbox{\insertsection}%
+      \hbox{\ifdim\wd\beamer@tempbox>1pt{\hskip4pt\raise3pt\hbox{\vrule
+            width0.4pt height7pt\vrule width 9pt
+            height0.4pt}}\hskip1pt\hbox{\begin{minipage}[t]{0.71\textwidth}\def\breakhere{}\insertsection\end{minipage}}\fi%
+      }%
+      \setbox\beamer@tempbox=\hbox{\insertsubsection}%
+      \hbox{\ifdim\wd\beamer@tempbox>1pt{\hskip17.4pt\raise3pt\hbox{\vrule
+            width0.4pt height7pt\vrule width 9pt
+            height0.4pt}}\hskip1pt\hbox{\begin{minipage}[t]{0.71\textwidth}\def\breakhere{}\insertsubsection\end{minipage}}\fi%
+      }%
+      \setbox\beamer@tempbox=\hbox{\insertshortframetitle}%
+      \hbox{\ifdim\wd\beamer@tempbox>1pt{\hskip30.8pt\raise3pt\hbox{\vrule
+            width0.4pt height7pt\vrule width 9pt
+            height0.4pt}}\hskip1pt\hbox{\insertshortframetitle[width=0.67\textwidth]}\fi%
+      }%
+      \vfil}%
+  }%
+  \ifbeamercolorempty[bg]{note page}{}{%
+    \nointerlineskip%
+    \insertvrule{.75\paperheight}{note page.bg}%
+    \vskip-.75\paperheight%
+  }%
+  \vskip.25em
+  \nointerlineskip
+  \if@RTL
+    \@hboxRconstructtrue
+  \fi
+  \insertnote
+}
+
 
 
 %    \end{macrocode}
@@ -26376,10 +26534,13 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{beamerbaseauxtemplates}{\input{beamerbaseauxtemplates-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaseboxes}{\input{beamerbaseboxes-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbasecolor}{\input{beamerbasecolor-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerbasecompatibility}{\input{beamerbasecompatibility-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaseframecomponents}{\input{beamerbaseframecomponents-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaseframesize}{\input{beamerbaseframesize-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaselocalstructure}{\input{beamerbaselocalstructure-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerbasemisc}{\input{beamerbasemisc-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbasenavigation}{\input{beamerbasenavigation-xetex-bidi.def}}{}
+\@ifpackageloaded{beamerbasenotes}{\input{beamerbasenotes-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerbaseoverlay}{\input{beamerbaseoverlay-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemedefault}{\input{beamerinnerthemedefault-xetex-bidi.def}}{}
 \@ifpackageloaded{beamerinnerthemecircles}{\input{beamerinnerthemecircles-xetex-bidi.def}}{}
