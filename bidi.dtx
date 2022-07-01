@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/07/07
+Current version release date: 2022/07/01
 
 ___________________________________________
 Vafa Khalighi
@@ -344,7 +344,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{55044}
+%% \CheckSum{55066}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4588,7 +4588,7 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/07/07}
+\def\bididate{2022/07/01}
 \def\bidi@version{38.5}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
@@ -4677,7 +4677,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released July 7, 2022. 
+  Released July 1, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4921,7 +4921,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/07/07}
+\def\bididate{2022/07/01}
 \catcode`@=11
 \def\bidi@version{38.5}
 \let \protect \relax
@@ -5025,7 +5025,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released July 7, 2022. 
+  Released July 1, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -12541,7 +12541,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{extrafootnotefeatures-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{extrafootnotefeatures-xetex-bidi.def}[2018/10/11 v1.7 bidi extra footnote features for XeTeX engine]
+\ProvidesFile{extrafootnotefeatures-xetex-bidi.def}[2022/07/01 v1.8 bidi extra footnote features for XeTeX engine]
 \newif\if@bidi@void@footins
 \newif\if@bidi@void@@mpfootins
 \newcommand*{\@bidi@before@Hy@hyperfootnotes}{%
@@ -12884,6 +12884,8 @@ bidi implementation of tufte title]
   \divide\dimen0 by\m@m@k \advance\dimen0 by\m@m@h
   \setbox2 \vsplit0 to \dimen0
   \unvbox2 }
+\newdimen\columnfootnoterulesep
+\columnfootnoterulesep\footnotesep
 \bidi@ensure@newcommand{\twocolumnfootnotes}{%
   \@namedef{foottextfontv@r}{\foottextfont}%  % [RS]
   \@bidi@before@Hy@hyperfootnotes
@@ -12986,12 +12988,12 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@twocol@footgroup}[1]{%
   \@namedef{@twocol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
-    \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+    \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{\tw@}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mptwocol@footgroup}[1]{%
 \@namedef{@mptwocol@footgroup#1}{{%
  \def\baselinestretch{\m@m@footnote@spacing}%
-  \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+  \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
   \m@mrigidbalance{\@nameuse{@mpfootins#1}}{\tw@}{\splittopskip}}}}
 \bidi@ensure@newcommand{\threecolumnfootnotes}{%
   \@namedef{foottextfontv@r}{\foottextfont}%  % [RS]
@@ -13089,12 +13091,12 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@threecol@footgroup}[1]{%
 \@namedef{@threecol@footgroup#1}{{%
  \def\baselinestretch{\m@m@footnote@spacing}%
-  \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+  \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
   \m@mrigidbalance{\@nameuse{footins#1}}{\thr@@}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpthreecol@footgroup}[1]{%
 \@namedef{@mpthreecol@footgroup#1}{{%
  \def\baselinestretch{\m@m@footnote@spacing}%
-  \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+  \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
   \m@mrigidbalance{\@nameuse{@mpfootins#1}}{\thr@@}{\splittopskip}}}}
 \bidi@ensure@newcommand{\fourcolumnfootnotes}{%
   \@namedef{foottextfontv@r}{\foottextfont}%  % [RS]
@@ -13198,12 +13200,12 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@fourcol@footgroup}[1]{%
   \@namedef{@fourcol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
-    \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+    \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{4}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpfourcol@footgroup}[1]{%
 \@namedef{@mpfourcol@footgroup#1}{{%
  \def\baselinestretch{\m@m@footnote@spacing}%
-  \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+  \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
   \m@mrigidbalance{\@nameuse{@mpfootins#1}}{4}{\splittopskip}}}}
 \bidi@ensure@newcommand{\fivecolumnfootnotes}{%
   \@namedef{foottextfontv@r}{\foottextfont}%  % [RS]
@@ -13307,12 +13309,12 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@fivecol@footgroup}[1]{%
   \@namedef{@fivecol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
-    \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+    \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{5}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpfivecol@footgroup}[1]{%
 \@namedef{@mpfivecol@footgroup#1}{{%
  \def\baselinestretch{\m@m@footnote@spacing}%
-  \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+  \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
   \m@mrigidbalance{\@nameuse{@mpfootins#1}}{5}{\splittopskip}}}}
 \bidi@ensure@newcommand{\sixcolumnfootnotes}{%
   \@namedef{foottextfontv@r}{\foottextfont}%  % [RS]
@@ -13416,12 +13418,12 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@sixcol@footgroup}[1]{%
   \@namedef{@sixcol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
-    \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+    \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{6}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpsixcol@footgroup}[1]{%
 \@namedef{@mpsixcol@footgroup#1}{{%
  \def\baselinestretch{\m@m@footnote@spacing}%
-  \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+  \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
   \m@mrigidbalance{\@nameuse{@mpfootins#1}}{6}{\splittopskip}}}}
 \bidi@ensure@newcommand{\sevencolumnfootnotes}{%
   \@namedef{foottextfontv@r}{\foottextfont}%  % [RS]
@@ -13525,12 +13527,12 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@sevencol@footgroup}[1]{%
   \@namedef{@sevencol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
-    \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+    \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{7}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpsevencol@footgroup}[1]{%
 \@namedef{@mpsevencol@footgroup#1}{{%
  \def\baselinestretch{\m@m@footnote@spacing}%
-  \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+  \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
   \m@mrigidbalance{\@nameuse{@mpfootins#1}}{7}{\splittopskip}}}}
 \bidi@ensure@newcommand{\eightcolumnfootnotes}{%
   \@namedef{foottextfontv@r}{\foottextfont}%  % [RS]
@@ -13634,12 +13636,12 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@eightcol@footgroup}[1]{%
   \@namedef{@eightcol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
-    \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+    \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{8}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpeightcol@footgroup}[1]{%
 \@namedef{@mpeightcol@footgroup#1}{{%
  \def\baselinestretch{\m@m@footnote@spacing}%
-  \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+  \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
   \m@mrigidbalance{\@nameuse{@mpfootins#1}}{8}{\splittopskip}}}}
 \bidi@ensure@newcommand{\ninecolumnfootnotes}{%
   \@namedef{foottextfontv@r}{\foottextfont}%  % [RS]
@@ -13743,12 +13745,12 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@ninecol@footgroup}[1]{%
   \@namedef{@ninecol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
-    \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+    \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{9}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpninecol@footgroup}[1]{%
 \@namedef{@mpninecol@footgroup#1}{{%
  \def\baselinestretch{\m@m@footnote@spacing}%
-  \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+  \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
   \m@mrigidbalance{\@nameuse{@mpfootins#1}}{9}{\splittopskip}}}}
 \bidi@ensure@newcommand{\tencolumnfootnotes}{%
   \@namedef{foottextfontv@r}{\foottextfont}%  % [RS]
@@ -13852,12 +13854,12 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@tencol@footgroup}[1]{%
   \@namedef{@tencol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
-    \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+    \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{10}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mptencol@footgroup}[1]{%
 \@namedef{@mptencol@footgroup#1}{{%
  \def\baselinestretch{\m@m@footnote@spacing}%
-  \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
+  \@nameuse{foottextfont#1} \splittopskip=\columnfootnoterulesep%\ht\strutbox
   \m@mrigidbalance{\@nameuse{@mpfootins#1}}{10}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@munvxh}[1]{%
   \setbox0=\vbox{\unvbox#1%
