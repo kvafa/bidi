@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v38.6
+v38.7
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/07/02
+Current version release date: 2022/07/04
 
 ___________________________________________
 Vafa Khalighi
@@ -191,6 +191,7 @@ by Vafa Khalighi.
 \generate{\file{multienum-xetex-bidi.def}{\from{\jobname.dtx}{table,multienum-xetex-bidi.def}}}
 \generate{\file{natbib-xetex-bidi.def}{\from{\jobname.dtx}{table,natbib-xetex-bidi.def}}}
 \generate{\file{newfloat-xetex-bidi.def}{\from{\jobname.dtx}{table,newfloat-xetex-bidi.def}}}
+\generate{\file{nicematrix-xetex-bidi.def}{\from{\jobname.dtx}{table,nicematrix-xetex-bidi.def}}}
 \generate{\file{ntheorem-xetex-bidi.def}{\from{\jobname.dtx}{table,ntheorem-xetex-bidi.def}}}
 \generate{\file{ntheorem-hyper-xetex-bidi.def}{\from{\jobname.dtx}{table,ntheorem-hyper-xetex-bidi.def}}}
 \generate{\file{overpic-xetex-bidi.def}{\from{\jobname.dtx}{table,overpic-xetex-bidi.def}}}
@@ -266,7 +267,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 38.6 of the bidi
+  pdftitle={Source documentation for version 38.7 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -285,7 +286,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 38.6}}
+%\large Source documentation for \textcolor{blue!65!black}{version 38.7}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -295,7 +296,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 38.6}}
+%Source documentation for \textcolor{blue!65!black}{version 38.7}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -344,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{55521}
+%% \CheckSum{55533}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4588,8 +4589,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/07/02}
-\def\bidi@version{38.6}
+\def\bididate{2022/07/04}
+\def\bidi@version{38.7}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -4676,7 +4677,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released July 2, 2022. 
+  Released July 4, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4920,9 +4921,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/07/02}
+\def\bididate{2022/07/04}
 \catcode`@=11
-\def\bidi@version{38.6}
+\def\bidi@version{38.7}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -5024,7 +5025,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released July 2, 2022. 
+  Released July 4, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -19564,6 +19565,21 @@ bidi implementation of tufte title]
 %    \end{macrocode}
 % \iffalse
 %</newfloat-xetex-bidi.def>
+%<*nicematrix-xetex-bidi.def>
+%\fi
+% \section{File \texttt{nicematrix-xetex-bidi.def}}
+%    \begin{macrocode}
+\ProvidesFile{nicematrix-xetex-bidi.def}[2022/07/04 v0.1 bidi adaptations for nicematrix package for XeTeX engine]
+\ExplSyntaxOn
+\bidi@patchcmd{\__nicematrix_array:}{\@tabarray}{%
+  \bool_if:NF \l__nicematrix_NiceTabular_bool \@RTLtabfalse
+  \@tabarray
+}{}{}
+\ExplSyntaxOff
+
+%    \end{macrocode}
+% \iffalse
+%</nicematrix-xetex-bidi.def>
 %<*ntheorem-xetex-bidi.def>
 %\fi
 % \section{File \texttt{ntheorem-xetex-bidi.def}}
@@ -25845,7 +25861,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2022/06/27 v1.4.8 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2022/07/04 v1.4.9 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
@@ -26784,6 +26800,7 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \@ifpackageloaded{multienum}{\input{multienum-xetex-bidi.def}}{}
 \@ifpackageloaded{natbib}{\input{natbib-xetex-bidi.def}}{}
 \@ifpackageloaded{newfloat}{\input{newfloat-xetex-bidi.def}}{}
+\@ifpackageloaded{nicematrix}{\input{nicematrix-xetex-bidi.def}}{}
 \@ifpackageloaded{minitoc}{\input{minitoc-xetex-bidi.def}}{}
 \@ifpackageloaded{pgfsys}{\input{pgfsys.code-xetex-bidi.def}}{}
 \@ifpackageloaded{picinpar}{\input{picinpar-xetex-bidi.def}}{}
