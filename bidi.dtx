@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v38.7
+v38.8
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/07/04
+Current version release date: 2022/07/07
 
 ___________________________________________
 Vafa Khalighi
@@ -267,7 +267,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 38.7 of the bidi
+  pdftitle={Source documentation for version 38.8 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -286,7 +286,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 38.7}}
+%\large Source documentation for \textcolor{blue!65!black}{version 38.8}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -296,7 +296,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 38.7}}
+%Source documentation for \textcolor{blue!65!black}{version 38.8}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -345,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{55533}
+%% \CheckSum{55484}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4589,8 +4589,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/07/04}
-\def\bidi@version{38.7}
+\def\bididate{2022/07/07}
+\def\bidi@version{38.8}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -4677,7 +4677,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released July 4, 2022. 
+  Released July 7, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4921,9 +4921,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/07/04}
+\def\bididate{2022/07/07}
 \catcode`@=11
-\def\bidi@version{38.7}
+\def\bidi@version{38.8}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -5025,7 +5025,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released July 4, 2022. 
+  Released July 7, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -12541,7 +12541,11 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{extrafootnotefeatures-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{extrafootnotefeatures-xetex-bidi.def}[2022/07/02 v1.9 bidi extra footnote features for XeTeX engine]
+\ProvidesFile{extrafootnotefeatures-xetex-bidi.def}[2022/07/07 v2.0 bidi extra footnote features for XeTeX engine]
+\newdimen\bidi@columnwidth
+\def\bidi@floathook{%
+  \bidi@columnwidth\columnwidth
+}
 \newif\if@bidi@void@footins
 \newif\if@bidi@void@@mpfootins
 \newcommand*{\@bidi@before@Hy@hyperfootnotes}{%
@@ -12754,10 +12758,10 @@ bidi implementation of tufte title]
 \LTRfootmarkstyle{\textsuperscript{#1}}
 \RTLfootmarkstyle{\textsuperscript{#1}}
 \newcommand*{\bidi@normal@footmarkwidth}{%
-  \setlength{\footmarkwidth}{1em plus.4em minus.4em}%
+  \setlength{\footmarkwidth}{1em plus.3em minus.3em}%
 }
 \newcommand*{\bidi@star@footmarkwidth}{%
-  \setlength{\footmarkwidth}{0em plus.4em minus.4em}%
+  \setlength{\footmarkwidth}{0em plus.3em minus.3em}%
 }
 \bidi@normal@footmarkwidth
 \bidi@ensure@newcommand{\m@mdoextrafeet}{\extrafeetins}
@@ -14193,10 +14197,8 @@ bidi implementation of tufte title]
 \newskip\m@mipn@skip
 \bidi@ensure@newcommand*{\m@minterparanoteglue}[1]{%
   {\foottextfont\global\m@mipn@skip=#1\relax}}
-\m@minterparanoteglue{1em plus.4em minus.4em}
-\@ifpackageloaded{multicol}{%
+\m@minterparanoteglue{1em plus.3em minus.3em}
 \bidi@ensure@newcommand*{\m@mmakehboxofhboxes}{%
- \hsize\textwidth%
  \setbox0=\hbox{}%
   \loop
     \unpenalty
@@ -14204,28 +14206,14 @@ bidi implementation of tufte title]
   \ifhbox2
     \setbox0=\hbox{\box2\unhbox0}
   \repeat}
-}{%
-\bidi@ensure@newcommand*{\m@mmakehboxofhboxes}{%
- \setbox0=\hbox{}%
-  \loop
-    \unpenalty
-    \setbox2=\lastbox
-  \ifhbox2
-    \setbox0=\hbox{\box2\unhbox0}
-  \repeat}}
 \bidi@ensure@newcommand*{\m@mremovehboxes}{\setbox0=\lastbox
   \ifhbox0{\m@mremovehboxes}\unhbox0 \fi}
 \newcommand*\AddExtraParaSkip[1]{%
-  \if@bidi@csdef{footfudgefactor}{%
-    \PackageError{bidi}{%
-      The control sequence `\string\AddExtraParaSkip`
-      must be used before the control sequence
-      `\string\paragraphfootnotes'  in the preamble%
-    }\@ehc
-  }{%
     \def\bidi@xparaskip{\advance\@tempdima#1\relax}%
-  }%
 }
+\let\bidi@xparaskip\relax
+\@onlypreamble\AddExtraParaSkip
+\@onlypreamble\bidi@xparaskip
 \bidi@ensure@newcommand{\paragraphfootnotes}{%
   \@namedef{foottextfontv@r}{\foottextfont}%  % [RS]
   \@bidi@before@Hy@hyperfootnotes
@@ -14254,30 +14242,27 @@ bidi implementation of tufte title]
   \bidi@make@mppara@LTRfootgroup{v@l}%
   \let\mp@footgroupv@r\@mppara@footgroupv@r
   \let\mp@LTRfootgroupv@l\@mppara@LTRfootgroupv@l
-  \begingroup
-  \def\baselinestretch{\m@m@footnote@spacing}%
-   \foottextfont
-   \@tempdima\footnotesep
-   \advance\@tempdima -\ht\strutbox
-   \ifdim\@tempdima<\z@ \@tempdima\z@ \fi
-   \advance\@tempdima.5\normalbaselineskip
-   \bidi@xparaskip
-   \xdef\bidi@paraskip{\the\@tempdima\relax}%
-   \ifdim\skip\footinsv@r>\bigskipamount
-   \else
-     \global\advance\skip\footinsv@r\bidi@paraskip
-   \fi
-   \ifdim\skip\footinsv@l>\bigskipamount
-   \else
-     \global\advance\skip\footinsv@l\bidi@paraskip
-   \fi
-   \@tempdima\normalbaselineskip
-   \multiply \@tempdima \@cclvi
-   \@tempdimb \columnwidth
-   \divide \@tempdimb \@cclvi
-   \divide \@tempdima \@tempdimb
-   \xdef\footfudgefactor{\strip@pt\@tempdima}%
-   \endgroup
+  \g@addto@macro\bidi@floathook{%
+    \begingroup
+      \foottextfont \@tempdima\normalbaselineskip
+      \multiply \@tempdima \@cclvi
+      \@tempdimb \columnwidth
+      \divide \@tempdimb \@cclvi
+      \divide \@tempdima \@tempdimb
+      \xdef\footfudgefactor{\strip@pt\@tempdima}%
+    \endgroup
+  }
+  \AtBeginDocument{%
+    \begingroup
+      \foottextfont
+      \@tempdima\footnotesep
+      \advance\@tempdima -\ht\strutbox
+      \ifdim\@tempdima<\z@ \@tempdima\z@ \fi
+      \advance\@tempdima.5\normalbaselineskip
+      \bidi@xparaskip 
+      \xdef\bidi@paraskip{\the\@tempdima\relax}%
+    \endgroup
+  }
    \@ifstar\bidi@star@footmarkwidth\bidi@normal@footmarkwidth
 }
 \newcommand{\normalRTLparaLTRfootnotes}{%
@@ -14316,34 +14301,29 @@ bidi implementation of tufte title]
   \bidi@make@mppara@LTRfootgroup{v@l}%
   \let\mp@footgroupv@r\@mppara@footgroupv@r
   \let\mp@LTRfootgroupv@l\@mppara@LTRfootgroupv@l
-  \begingroup
-  \def\baselinestretch{\m@m@footnote@spacing}%
-   \foottextfont
-   \@tempdima\footnotesep
-   \advance\@tempdima -\ht\strutbox
-   \ifdim\@tempdima<\z@ \@tempdima\z@ \fi
-   \advance\@tempdima.5\normalbaselineskip
-   \bidi@xparaskip
-   \xdef\bidi@paraskip{\the\@tempdima\relax}%
-   \ifdim\skip\footinsv@r>\bigskipamount
-   \else
-     \global\advance\skip\footinsv@r\bidi@paraskip
-   \fi
-   \ifdim\skip\footinsv@l>\bigskipamount
-   \else
-     \global\advance\skip\footinsv@l\bidi@paraskip
-   \fi
-   \@tempdima\normalbaselineskip
-   \multiply \@tempdima \@cclvi
-   \@tempdimb \columnwidth
-   \divide \@tempdimb \@cclvi
-   \divide \@tempdima \@tempdimb
-   \xdef\footfudgefactor{\strip@pt\@tempdima}%
-   \endgroup
+  \g@addto@macro\bidi@floathook{%
+    \begingroup
+      \LTRfoottextfont \@tempdima\normalbaselineskip
+      \multiply \@tempdima \@cclvi
+      \@tempdimb \columnwidth
+      \divide \@tempdimb \@cclvi
+      \divide \@tempdima \@tempdimb
+      \xdef\footfudgefactor{\strip@pt\@tempdima}%
+    \endgroup
+  }
+  \AtBeginDocument{%
+    \begingroup
+      \LTRfoottextfont
+      \@tempdima\footnotesep
+      \advance\@tempdima -\ht\strutbox
+      \ifdim\@tempdima<\z@ \@tempdima\z@ \fi
+      \advance\@tempdima.5\normalbaselineskip
+      \bidi@xparaskip 
+      \xdef\bidi@paraskip{\the\@tempdima\relax}%
+    \endgroup
+  }
    \@ifstar\bidi@star@footmarkwidth\bidi@normal@footmarkwidth
 }
-\let\bidi@xparaskip\relax
-\@onlypreamble\AddExtraParaSkip
 \bidi@ensure@newcommand{\@parafootnotetext}[1]{\insert
   \if@RTL@footnote
     \footinsv@r
@@ -14455,6 +14435,7 @@ bidi implementation of tufte title]
 \@namedef{@para@footgroup#1}{%
   \unvbox\@nameuse{footins#1}
   \@RTLtrue
+  \hsize\bidi@columnwidth
   \m@mmakehboxofhboxes
   \setbox0=\hbox{\unhbox0 \m@mremovehboxes}%
   \@parboxrestore%
@@ -14465,6 +14446,7 @@ bidi implementation of tufte title]
 \@namedef{@para@LTRfootgroup#1}{%
   \unvbox\@nameuse{footins#1}
   \@RTLfalse
+  \hsize\bidi@columnwidth
   \m@mmakehboxofhboxes
   \setbox0=\hbox{\unhbox0 \m@mremovehboxes}%
   \@parboxrestore%
@@ -14582,6 +14564,9 @@ bidi implementation of tufte title]
 \newcommand\FeetBelowRagged{\let\bidi@mopfn@bottom\relax}
 \FeetAboveFloat
 \FeetBelowRagged
+\AtBeginDocument{%
+  \bidi@floathook
+}
 %    \end{macrocode}
 % \iffalse
 %</extrafootnotefeatures-xetex-bidi.def>
