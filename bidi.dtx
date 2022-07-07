@@ -14435,10 +14435,10 @@ bidi implementation of tufte title]
 \@namedef{@para@footgroup#1}{%
   \unvbox\@nameuse{footins#1}
   \@RTLtrue
-  \hsize\bidi@columnwidth
   \m@mmakehboxofhboxes
   \setbox0=\hbox{\unhbox0 \m@mremovehboxes}%
-  \@parboxrestore%
+  \hsize\bidi@columnwidth
+  \@parboxrestore
   \def\baselinestretch{\m@m@footnote@spacing}%
   \@nameuse{foottextfont#1}%
   \noindent\unhbox0\par}}
@@ -14446,10 +14446,10 @@ bidi implementation of tufte title]
 \@namedef{@para@LTRfootgroup#1}{%
   \unvbox\@nameuse{footins#1}
   \@RTLfalse
-  \hsize\bidi@columnwidth
   \m@mmakehboxofhboxes
   \setbox0=\hbox{\unhbox0 \m@mremovehboxes}%
-  \@parboxrestore%
+  \hsize\bidi@columnwidth
+  \@parboxrestore
   \def\baselinestretch{\m@m@footnote@spacing}%
   \@nameuse{foottextfont#1}%
   \noindent\unhbox0\par}}
