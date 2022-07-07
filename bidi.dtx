@@ -345,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{55484}
+%% \CheckSum{55450}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -12885,23 +12885,14 @@ bidi implementation of tufte title]
 \newinsert\@mpfootinsv@l
 \bidi@ensure@newcommand{\mp@footgroupv@r}{}
 \newcount\m@m@k \newdimen\m@m@h
-\@ifpackageloaded{multicol}{%
 \bidi@ensure@newcommand*{\m@mrigidbalance}[3]{\setbox0=\box#1 \m@m@k=#2 \m@m@h=#3
-  \hsize\textwidth
+  \hsize\bidi@columnwidth
   \@@line{\beginR\splittopskip=\m@m@h \vbadness=\@M \hfilneg
   \valign{##\vfill\cr\m@mdosplits}\endR}}
 \newcommand*{\bidi@LTRrigidbalance}[3]{\setbox0=\box#1 \m@m@k=#2 \m@m@h=#3
-  \hsize\textwidth
+  \hsize\bidi@columnwidth
   \@@line{\splittopskip=\m@m@h \vbadness=\@M \hfilneg
   \valign{##\vfill\cr\m@mdosplits}}}
-}{%
-\bidi@ensure@newcommand*{\m@mrigidbalance}[3]{\setbox0=\box#1 \m@m@k=#2 \m@m@h=#3
-  \@@line{\beginR\splittopskip=\m@m@h \vbadness=\@M \hfilneg
-  \valign{##\vfill\cr\m@mdosplits}\endR}}
-\newcommand*{\bidi@LTRrigidbalance}[3]{\setbox0=\box#1 \m@m@k=#2 \m@m@h=#3
-  \@@line{\splittopskip=\m@m@h \vbadness=\@M \hfilneg
-  \valign{##\vfill\cr\m@mdosplits}}}
-}
 \bidi@ensure@newcommand*{\m@mdosplits}{\ifnum\m@m@k>0 \noalign{\hfil}\m@msplitoff
   \global\advance\m@m@k-1\cr\m@mdosplits\fi}
 \bidi@ensure@newcommand*{\m@msplitoff}{\dimen0=\ht0
