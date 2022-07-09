@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v38.9
+v39.0
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/07/08
+Current version release date: 2022/07/10
 
 ___________________________________________
 Vafa Khalighi
@@ -267,7 +267,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 38.9 of the bidi
+  pdftitle={Source documentation for version 39.0 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -286,7 +286,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 38.9}}
+%\large Source documentation for \textcolor{blue!65!black}{version 39.0}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -296,7 +296,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 38.9}}
+%Source documentation for \textcolor{blue!65!black}{version 39.0}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -345,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{55452}
+%% \CheckSum{0}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4589,8 +4589,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/07/08}
-\def\bidi@version{38.9}
+\def\bididate{2022/07/10}
+\def\bidi@version{39.0}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -4677,7 +4677,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released July 8, 2022. 
+  Released July 10, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4921,9 +4921,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/07/08}
+\def\bididate{2022/07/10}
 \catcode`@=11
-\def\bidi@version{38.9}
+\def\bidi@version{39.0}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -5025,7 +5025,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released July 8, 2022. 
+  Released July 10, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -12541,12 +12541,11 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{extrafootnotefeatures-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{extrafootnotefeatures-xetex-bidi.def}[2022/07/08 v2.1 bidi extra footnote features for XeTeX engine]
+\ProvidesFile{extrafootnotefeatures-xetex-bidi.def}[2022/07/10 v2.2 bidi extra footnote features for XeTeX engine]
 \newdimen\bidi@columnwidth
 \def\bidi@floathook{%
   \bidi@columnwidth\columnwidth
 }
-\newif\if@bidi@void@footins
 \newif\if@bidi@void@@mpfootins
 \newcommand*{\@bidi@before@Hy@hyperfootnotes}{%
 \if@bidi@csundef{ifHy@hyperfootnotes}{}{%
@@ -12766,33 +12765,10 @@ bidi implementation of tufte title]
 \bidi@normal@footmarkwidth
 \bidi@ensure@newcommand{\m@mdoextrafeet}{\extrafeetins}
 \bidi@ensure@newcommand*{\extrafeetins}{%
-  \setbox\@outputbox \vbox{%
-    \boxmaxdepth \@maxdepth
-    \unvbox\@outputbox
-    \ifvoid\footinsv@r
-      \ifvoid\footinsv@l
-      \else
-        \@footstartv@l
-        \@LTRfootgroupv@l
-      \fi
-    \else
-      \@footstartv@r
-      \@footgroupv@r
-      \ifvoid\footinsv@l
-      \else
-        \@@footstart@@v@l
-        \@LTRfootgroupv@l
-      \fi
-    \fi
-    \ifvoid\@bidi@copyins@
-    \else
-      \vskip \skip\@bidi@copyins@
-      \color@begingroup
-        \normalcolor
-        \unvbox \@bidi@copyins@
-      \color@endgroup
-    \fi
-    \extrafeetinshook}}
+  \bidi@joinfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+  \bidi@joinfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@joinfootnotes\@bidi@copyins@{}{\unvbox\@bidi@copyins@}%
+    \extrafeetinshook}
 \bidi@ensure@newcommand{\extrafeetinshook}{}
 \bidi@ensure@newcommand{\foottextfont}{\footnotesize}
 \bidi@ensure@newcommand{\LTRfoottextfont}{\footnotesize}
@@ -12805,6 +12781,29 @@ bidi implementation of tufte title]
   \splittopskip=\footnotesep
   \splitmaxdepth=\dp\strutbox
   \@parboxrestore}
+\def\bidi@ifmulticol#1#2{\@tempswafalse
+  \ifnum\col@number>\@ne
+    \ifnum\count\footins>1999 \@tempswatrue \fi
+  \fi
+  \if@tempswa #1\else #2\fi
+}
+\def\bidi@joinfootnotes#1#2#3{%
+  \ifvoid#1
+  \else
+    \@tempskipa\skip#1%
+    \bidi@ifmulticol{\divide\@tempskipa\col@number}{}%
+    \edef\bidi@footskip{\vskip\the\@tempskipa\relax}%
+    \ifvoid\footins
+      \global\setbox\footins\vbox{#2#3}%
+    \else
+      \global\setbox\footins\vbox{%
+         \unvbox\footins
+         \bidi@footskip
+         #2#3%
+       }%
+    \fi
+  \fi
+}
 \bidi@ensure@newcommand{\m@mdoextrafeetmini}{%
   \extrafeetminihook}
 \bidi@ensure@newcommand{\extrafeetendmini}{%
@@ -12853,22 +12852,11 @@ bidi implementation of tufte title]
   \expandafter\@iiiparbox\@mpargs{\unvbox\@tempboxa}}
 \bidi@ensure@newcommand{\m@make@footstart}[1]{%
   \@namedef{@footstart#1}{%
-  \if@bidi@void@footins
-    \bidi@mopfn@bottom
-  \fi
     \leftskip=\z@
     \rightskip=\z@
     \parindent=\z@
-    \vskip\skip\footins
-  \if@bidi@void@footins
-    \footnoterule
-  \fi}}
-\newcommand{\bidi@make@footstart@@}[1]{%
-  \@namedef{@@footstart@@#1}{%
-    \leftskip=\z@
-    \rightskip=\z@
-    \parindent=\z@
-    \vskip\skip\footins}}
+  }%
+}
 \newinsert\footinsv@r
 \skip\footinsv@r\bigskipamount
 \count\footinsv@r=1000 % no magnifcation
@@ -12879,7 +12867,6 @@ bidi implementation of tufte title]
 \count\footinsv@l=1000 % no magnifcation
 \dimen\footinsv@l=\footinsdim
 \m@make@footstart{v@l}
-\bidi@make@footstart@@{v@l}
 \bidi@ensure@newcommand{\@footgroupv@r}{}
 \newinsert\@mpfootinsv@r
 \newinsert\@mpfootinsv@l
@@ -14222,10 +14209,8 @@ bidi implementation of tufte title]
   \count\footinsv@l=1000\relax
   \bidi@make@para@LTRfootgroup{v@l}%
   \m@make@para@footstart{v@l}%
-  \bidi@make@para@footstart@@{v@l}%
   \let\@LTRfootgroupv@l\@para@LTRfootgroupv@l
   \let\@footstartv@l\@para@footstartv@l
-  \let\@@footstart@@v@l\@@para@footstart@@v@l
   \let\@mpfootnotetext\@mpparafootnotetext
   \let\@mpLTRfootnotetext\@mpparaLTRfootnotetext
   \let\@mpRTLfootnotetext\@mpparaRTLfootnotetext
@@ -14277,10 +14262,8 @@ bidi implementation of tufte title]
   \count\footinsv@l=1000\relax
   \bidi@make@para@LTRfootgroup{v@l}%
   \m@make@para@footstart{v@l}%
-  \bidi@make@para@footstart@@{v@l}%
   \let\@LTRfootgroupv@l\@para@LTRfootgroupv@l
   \let\@footstartv@l\@para@footstartv@l
-  \let\@@footstart@@v@l\@@para@footstart@@v@l
   \if@RTL@footnote
     \let\@mpfootnotetext\m@mold@mpfootnotetext
   \else
@@ -14425,6 +14408,8 @@ bidi implementation of tufte title]
   \m@mungebox}\m@mmf@prepare}
 \bidi@ensure@newcommand{\m@make@para@footgroup}[1]{%
 \@namedef{@para@footgroup#1}{%
+  \advance\@tempskipa -\bidi@paraskip
+  \edef\bidi@footskip{\vskip\the\@tempskipa\relax}%
   \unvbox\@nameuse{footins#1}
   \@RTLtrue
   \m@mmakehboxofhboxes
@@ -14436,6 +14421,8 @@ bidi implementation of tufte title]
   \noindent\unhbox0\par}}
 \bidi@ensure@newcommand{\bidi@make@para@LTRfootgroup}[1]{%
 \@namedef{@para@LTRfootgroup#1}{%
+  \advance\@tempskipa -\bidi@paraskip
+  \edef\bidi@footskip{\vskip\the\@tempskipa\relax}%
   \unvbox\@nameuse{footins#1}
   \@RTLfalse
   \m@mmakehboxofhboxes
@@ -14465,22 +14452,12 @@ bidi implementation of tufte title]
   \noindent\unhbox0\par}}
 \bidi@ensure@newcommand{\m@make@para@footstart}[1]{%
 \@namedef{@para@footstart#1}{%
-  \if@bidi@void@footins
-    \bidi@mopfn@bottom
-  \fi
+  \global\advance\skip\@nameuse{footins#1}\bidi@paraskip
   \leftskip=\z@
   \rightskip=\z@
   \parindent=\z@
-  \vskip\skip\footins
-  \if@bidi@void@footins
-    \footnoterule
-  \fi}}
-\bidi@ensure@newcommand{\bidi@make@para@footstart@@}[1]{%
-\@namedef{@@para@footstart@@#1}{%
-  \leftskip=\z@
-  \rightskip=\z@
-  \parindent=\z@
-  \vskip\skip\footins}}
+  }%
+}
 \bidi@ensure@newcommand*{\m@m@makecolfloats}{%
   \xdef\@freelist{\@freelist\@midlist}%
   \global\let\@midlist\@empty
@@ -14526,28 +14503,24 @@ bidi implementation of tufte title]
 }
 \gdef\mem@makecol{%
   \m@m@makecolintro
+  \m@mdoextrafeet
   \ifvoid\footins
-    \global\@bidi@void@footinstrue
     \setbox\@outputbox \box\@cclv
   \else
-    \global\@bidi@void@footinsfalse
     \m@mopfootnote
   \fi
-  \m@mdoextrafeet
   \m@m@makecolfloats
   \m@m@makecoltext
   \global \maxdepth \@maxdepth}
 \gdef\bidi@makecolbf{%
   \m@m@makecolintro
+  \m@mdoextrafeet
   \setbox\@outputbox \box\@cclv
   \m@m@makecolfloats
   \ifvoid\footins
-    \global\@bidi@void@footinstrue
   \else
-    \global\@bidi@void@footinsfalse
     \bidi@mopfootnotebf
   \fi
-  \m@mdoextrafeet
   \m@m@makecoltext
   \global \maxdepth \@maxdepth}
 \newcommand{\FeetAboveFloat}{\gdef\@makecol{\mem@makecol}}
@@ -14558,6 +14531,11 @@ bidi implementation of tufte title]
 \FeetBelowRagged
 \AtBeginDocument{%
   \bidi@floathook
+  \if@bidi@csundef{multi@column@out}{%
+    \let\bidi@ifmulticol\@secondoftwo
+  }{%
+    \bidi@preto\multi@column@out\m@mdoextrafeet
+  }%
 }
 %    \end{macrocode}
 % \iffalse
@@ -19152,7 +19130,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{multicol-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{multicol-xetex-bidi.def}[2022/02/01 v1.3 bidi adaptations for multicol package for XeTeX engine]
+\ProvidesFile{multicol-xetex-bidi.def}[2022/07/10 v1.4 bidi adaptations for multicol package for XeTeX engine]
 \def\page@sofar{%
    \process@cols\mult@rightbox
        {\ifvoid\count@
@@ -19288,103 +19266,6 @@ bidi implementation of tufte title]
   \kern2.6\p@}
 \def\textwidth@footnoterule{\kern-3\p@
   \hrule \@width \textwidth \kern 2.6\p@}
-\def\bidi@leave@mult@copyins{%
-   \advance\dimen@-\skip\@bidi@copyins@
-   \advance\dimen@-\ht\@bidi@copyins@
-}
-\bidi@AtEndPreamble{%
-  \if@bidi@csdef{footinsv@l}{%
-    \def\bidi@leave@mult@footins@vr{%
-       \advance\dimen@-\skip\footinsv@r
-       \advance\dimen@-\ht\footinsv@r
-     }%
-    \def\bidi@leave@mult@footins@vl{%
-       \advance\dimen@-\skip\footinsv@l
-       \advance\dimen@-\ht\footinsv@l
-     }%
-    \def\bidi@init@mult@footinsv@r{%
-      \multiply\count\footinsv@r\col@number
-      \multiply\skip \footinsv@r\col@number
-    }%
-    \def\bidi@init@mult@footinsv@l{%
-      \multiply\count\footinsv@l\col@number
-      \multiply\skip \footinsv@l\col@number
-    }%
-    \def\bidi@reinsert@footnotesv@r{\ifvoid\footinsv@r\else
-             \insert\footinsv@r{}\fi}%
-    \def\bidi@reinsert@footnotesv@l{\ifvoid\footinsv@l\else
-             \insert\footinsv@l{}\fi}%
-    \bidi@patchcmd{\prepare@multicols}{%
-      \reinsert@footnotes
-    }{%
-      \reinsert@footnotes
-      \bidi@init@mult@footinsv@r
-      \bidi@reinsert@footnotesv@r
-      \bidi@init@mult@footinsv@l
-      \bidi@reinsert@footnotesv@l
-    }{}{}%
-    \bidi@patchcmd{\multi@column@out}{%
-      \ifnum \c@tracingmulticols>\thr@@
-    }{%
-       \ifvoid\footinsv@r
-         \ifvoid\footinsv@l
-         \else
-           \PackageWarning{multicol}%
-            {I moved some lines to
-             the next page.\MessageBreak
-             Footnotes on page
-             \thepage\space might be wrong}%    
-         \fi
-       \else
-         \PackageWarning{multicol}%
-          {I moved some lines to
-           the next page.\MessageBreak
-           Footnotes on page
-           \thepage\space might be wrong}%
-       \fi
-  \ifnum \c@tracingmulticols>\thr@@
-}{}{}%
-\bidi@patchcmd{\endmulticols}{%
-  \reinsert@footnotes
-}{%
-  \reinsert@footnotes
-  \bidi@reinsert@footnotesv@r
-  \bidi@reinsert@footnotesv@l
-}{}{}%
-\bidi@patchcmd{\speci@ls}{%
-  \reinsert@footnotes
-}{%
-  \reinsert@footnotes
-  \bidi@reinsert@footnotesv@r
-  \bidi@reinsert@footnotesv@l
-}{}{}%
-\bidi@patchcmd{\speci@ls}{%
-  \reinsert@footnotes
-}{%
-  \reinsert@footnotes
-  \bidi@reinsert@footnotesv@r
-  \bidi@reinsert@footnotesv@l
-}{}{}%
-  }{}%
-  \bidi@patchcmd{\multi@column@out}{%
-     \ifvbox \@kludgeins
-  }{%
-    \if@bidi@csdef{footinsv@l}{%
-      \divide\skip\footinsv@r\col@number
-       \ifvoid\footinsv@r \else
-          \bidi@leave@mult@footins@vr
-       \fi
-      \divide\skip\footinsv@l\col@number
-       \ifvoid\footinsv@l \else
-          \bidi@leave@mult@footins@vl
-       \fi
-     }{}%
-     \ifvoid\@bidi@copyins@ \else
-        \bidi@leave@mult@copyins
-     \fi
-     \ifvbox \@kludgeins
-  }{}{}%
-}
 %    \end{macrocode}
 % \iffalse
 %</multicol-xetex-bidi.def>
