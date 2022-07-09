@@ -19266,6 +19266,25 @@ bidi implementation of tufte title]
   \kern2.6\p@}
 \def\textwidth@footnoterule{\kern-3\p@
   \hrule \@width \textwidth \kern 2.6\p@}
+\def\bidi@leave@mult@copyins{%
+   \advance\dimen@-\skip\@bidi@copyins@
+   \advance\dimen@-\ht\@bidi@copyins@
+}  
+
+\bidi@AtEndPreamble{%  
+  \if@bidi@csundef{footinsv@l}{%
+    \bidi@patchcmd{\multi@column@out}{%
+      \ifvbox \@kludgeins
+    }{%
+      \ifvoid\@bidi@copyins@ \else
+        \bidi@leave@mult@copyins
+      \fi
+      \ifvbox \@kludgeins  
+    }{}{}%
+  }{}%
+}
+  
+  
 %    \end{macrocode}
 % \iffalse
 %</multicol-xetex-bidi.def>
