@@ -12873,11 +12873,9 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\mp@footgroupv@r}{}
 \newcount\m@m@k \newdimen\m@m@h
 \bidi@ensure@newcommand*{\m@mrigidbalance}[3]{\setbox0=\box#1 \m@m@k=#2 \m@m@h=#3
-  \hsize\bidi@columnwidth
   \@@line{\beginR\splittopskip=\m@m@h \vbadness=\@M \hfilneg
   \valign{##\vfill\cr\m@mdosplits}\endR}}
 \newcommand*{\bidi@LTRrigidbalance}[3]{\setbox0=\box#1 \m@m@k=#2 \m@m@h=#3
-  \hsize\bidi@columnwidth
   \@@line{\splittopskip=\m@m@h \vbadness=\@M \hfilneg
   \valign{##\vfill\cr\m@mdosplits}}}
 \bidi@ensure@newcommand*{\m@mdosplits}{\ifnum\m@m@k>0 \noalign{\hfil}\m@msplitoff
@@ -13011,11 +13009,13 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@twocol@footgroup}[1]{%
   \@namedef{@twocol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{\tw@}{\splittopskip}}}}
 \newcommand{\bidi@make@twocol@LTRfootgroup}[1]{%
   \@namedef{@twocol@LTRfootgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \bidi@LTRrigidbalance{\@nameuse{footins#1}}{\tw@}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mptwocol@footgroup}[1]{%
@@ -13147,11 +13147,13 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@threecol@footgroup}[1]{%
 \@namedef{@threecol@footgroup#1}{{%
  \def\baselinestretch{\m@m@footnote@spacing}%
+ \hsize\bidi@columnwidth
   \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
   \m@mrigidbalance{\@nameuse{footins#1}}{\thr@@}{\splittopskip}}}}
 \newcommand{\bidi@make@threecol@LTRfootgroup}[1]{%
 \@namedef{@threecol@LTRfootgroup#1}{{%
  \def\baselinestretch{\m@m@footnote@spacing}%
+ \hsize\bidi@columnwidth
   \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
   \bidi@LTRrigidbalance{\@nameuse{footins#1}}{\thr@@}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpthreecol@footgroup}[1]{%
@@ -13289,11 +13291,13 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@fourcol@footgroup}[1]{%
   \@namedef{@fourcol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{4}{\splittopskip}}}}
 \newcommand{\bidi@make@fourcol@LTRfootgroup}[1]{%
   \@namedef{@fourcol@LTRfootgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \bidi@LTRrigidbalance{\@nameuse{footins#1}}{4}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpfourcol@footgroup}[1]{%
@@ -13431,11 +13435,13 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@fivecol@footgroup}[1]{%
   \@namedef{@fivecol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{5}{\splittopskip}}}}
 \newcommand{\bidi@make@fivecol@LTRfootgroup}[1]{%
   \@namedef{@fivecol@LTRfootgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \bidi@LTRrigidbalance{\@nameuse{footins#1}}{5}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpfivecol@footgroup}[1]{%
@@ -13573,11 +13579,13 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@sixcol@footgroup}[1]{%
   \@namedef{@sixcol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{6}{\splittopskip}}}}
 \newcommand{\bidi@make@sixcol@LTRfootgroup}[1]{%
   \@namedef{@sixcol@LTRfootgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \bidi@LTRrigidbalance{\@nameuse{footins#1}}{6}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpsixcol@footgroup}[1]{%
@@ -13715,11 +13723,13 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@sevencol@footgroup}[1]{%
   \@namedef{@sevencol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{7}{\splittopskip}}}}
 \newcommand{\bidi@make@sevencol@LTRfootgroup}[1]{%
   \@namedef{@sevencol@LTRfootgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \bidi@LTRrigidbalance{\@nameuse{footins#1}}{7}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpsevencol@footgroup}[1]{%
@@ -13857,11 +13867,13 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@eightcol@footgroup}[1]{%
   \@namedef{@eightcol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{8}{\splittopskip}}}}
 \newcommand{\bidi@make@eightcol@LTRfootgroup}[1]{%
   \@namedef{@eightcol@LTRfootgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \bidi@LTRrigidbalance{\@nameuse{footins#1}}{8}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpeightcol@footgroup}[1]{%
@@ -13999,11 +14011,13 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@ninecol@footgroup}[1]{%
   \@namedef{@ninecol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{9}{\splittopskip}}}}
 \newcommand{\bidi@make@ninecol@LTRfootgroup}[1]{%
   \@namedef{@ninecol@LTRfootgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \bidi@LTRrigidbalance{\@nameuse{footins#1}}{9}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mpninecol@footgroup}[1]{%
@@ -14141,11 +14155,13 @@ bidi implementation of tufte title]
 \bidi@ensure@newcommand{\m@make@tencol@footgroup}[1]{%
   \@namedef{@tencol@footgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \m@mrigidbalance{\@nameuse{footins#1}}{10}{\splittopskip}}}}
 \newcommand{\bidi@make@tencol@LTRfootgroup}[1]{%
   \@namedef{@tencol@LTRfootgroup#1}{{%
    \def\baselinestretch{\m@m@footnote@spacing}%
+   \hsize\bidi@columnwidth
     \@nameuse{foottextfont#1} \splittopskip=\ht\strutbox
      \bidi@LTRrigidbalance{\@nameuse{footins#1}}{10}{\splittopskip}}}}
 \bidi@ensure@newcommand{\m@make@mptencol@footgroup}[1]{%
