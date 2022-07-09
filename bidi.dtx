@@ -345,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{0}
+%% \CheckSum{55412}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -14545,12 +14545,44 @@ bidi implementation of tufte title]
 \newcommand\FeetBelowRagged{\let\bidi@mopfn@bottom\relax}
 \FeetAboveFloat
 \FeetBelowRagged
+\def\bidi@reinserts#1{\ifvoid#1\else
+    \ifnum\count\@currbox>\z@
+      \advance\@pageht \ht#1%
+      \advance\@pageht \skip#1%
+      \advance\@pageht \dp#1%
+    \fi
+    \insert#1{\unvbox#1}%
+  \fi
+}
+\def\bidi@init@multi@footins#1{%
+    \multiply\count#1\col@number
+    \multiply\skip#1\col@number
+}
+\def\bidi@reinsert@footnotes#1{\ifvoid#1\else
+         \insert#1{}\fi}
 \AtBeginDocument{%
+  \bidi@preto\@doclearpage\m@mdoextrafeet
+  \g@addto@macro\@reinserts{%
+    \bidi@reinserts\footinsv@r
+    \bidi@reinserts\footinsv@l
+  }
   \bidi@floathook
+  \g@addto@macro\@floatplacement{%
+    \bidi@ifmulticol{}{\bidi@floathook}%
+  }%
   \if@bidi@csundef{multi@column@out}{%
+    \@onlypreamble\bidi@init@multi@footins
     \let\bidi@ifmulticol\@secondoftwo
   }{%
     \bidi@preto\multi@column@out\m@mdoextrafeet
+    \g@addto@macro\init@mult@footins{%
+      \bidi@init@multi@footins\footinsv@r
+      \bidi@init@multi@footins\footinsv@l
+    }%
+    \g@addto@macro\reinsert@footnotes{%
+      \bidi@reinsert@footnotes\footinsv@r
+      \bidi@reinsert@footnotes\footinsv@l
+    }%
   }%
 }
 %    \end{macrocode}
