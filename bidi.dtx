@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v39.0
+v39.1
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/07/10
+Current version release date: 2022/07/12
 
 ___________________________________________
 Vafa Khalighi
@@ -267,7 +267,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 39.0 of the bidi
+  pdftitle={Source documentation for version 39.1 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -286,7 +286,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 39.0}}
+%\large Source documentation for \textcolor{blue!65!black}{version 39.1}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -296,7 +296,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 39.0}}
+%Source documentation for \textcolor{blue!65!black}{version 39.1}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -345,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{55412}
+%% \CheckSum{55403}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4589,8 +4589,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/07/10}
-\def\bidi@version{39.0}
+\def\bididate{2022/07/12}
+\def\bidi@version{39.1}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -4677,7 +4677,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released July 10, 2022. 
+  Released July 12, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4921,9 +4921,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/07/10}
+\def\bididate{2022/07/12}
 \catcode`@=11
-\def\bidi@version{39.0}
+\def\bidi@version{39.1}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -5025,7 +5025,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released July 10, 2022. 
+  Released July 12, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -12541,7 +12541,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{extrafootnotefeatures-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{extrafootnotefeatures-xetex-bidi.def}[2022/07/10 v2.2 bidi extra footnote features for XeTeX engine]
+\ProvidesFile{extrafootnotefeatures-xetex-bidi.def}[2022/07/12 v2.3 bidi extra footnote features for XeTeX engine]
 \newdimen\bidi@columnwidth
 \def\bidi@floathook{%
   \bidi@columnwidth\columnwidth
@@ -14208,6 +14208,10 @@ bidi implementation of tufte title]
 \let\bidi@xparaskip\relax
 \@onlypreamble\AddExtraParaSkip
 \@onlypreamble\bidi@xparaskip
+\def\bidi@startparafootskip#1{%
+  \global\advance\skip#1\bidi@paraskip
+}
+\@onlypreamble\bidi@startparafootskip
 \bidi@ensure@newcommand{\paragraphfootnotes}{%
   \@namedef{foottextfontv@r}{\foottextfont}%  % [RS]
   \@namedef{foottextfontv@l}{\LTRfoottextfont}%
@@ -14255,11 +14259,13 @@ bidi implementation of tufte title]
       \bidi@xparaskip 
       \xdef\bidi@paraskip{\the\@tempdima\relax}%
     \endgroup
+    \bidi@startparafootskip\footinsv@r
+    \bidi@startparafootskip\footinsv@l
   }
    \@ifstar\bidi@star@footmarkwidth\bidi@normal@footmarkwidth
 }
 \newcommand{\normalRTLparaLTRfootnotes}{%
-  \@namedef{foottextfontv@r}{\foottextfont}%  
+  \@namedef{foottextfontv@l}{\LTRfoottextfont}%  
   \@bidi@before@Hy@hyperfootnotes
   \if@RTL@footnote
     \let\@footnotetext\m@mold@footnotetext
@@ -14268,12 +14274,6 @@ bidi implementation of tufte title]
   \fi
   \let\@LTRfootnotetext\@paraLTRfootnotetext
   \let\@RTLfootnotetext\m@mold@RTLfootnotetext
-  \dimen\footinsv@r=\footinsdim
-  \count\footinsv@r=1000\relax
-  \m@make@para@footgroup{v@r}%
-  \m@make@para@footstart{v@r}%
-  \let\@footgroupv@r\@para@footgroupv@r
-  \let\@footstartv@r\@para@footstartv@r
   \dimen\footinsv@l=\footinsdim
   \count\footinsv@l=1000\relax
   \bidi@make@para@LTRfootgroup{v@l}%
@@ -14288,9 +14288,7 @@ bidi implementation of tufte title]
   \let\@mpLTRfootnotetext\@mpparaLTRfootnotetext
   \let\@mpRTLfootnotetext\m@mold@mpRTLfootnotetext
   \@bidi@after@Hy@hyperfootnotes
-  \m@make@mppara@footgroup{v@r}%
   \bidi@make@mppara@LTRfootgroup{v@l}%
-  \let\mp@footgroupv@r\@mppara@footgroupv@r
   \let\mp@LTRfootgroupv@l\@mppara@LTRfootgroupv@l
   \g@addto@macro\bidi@floathook{%
     \begingroup
@@ -14312,6 +14310,7 @@ bidi implementation of tufte title]
       \bidi@xparaskip 
       \xdef\bidi@paraskip{\the\@tempdima\relax}%
     \endgroup
+    \bidi@startparafootskip\footinsv@l
   }
    \@ifstar\bidi@star@footmarkwidth\bidi@normal@footmarkwidth
 }
@@ -14468,7 +14467,6 @@ bidi implementation of tufte title]
   \noindent\unhbox0\par}}
 \bidi@ensure@newcommand{\m@make@para@footstart}[1]{%
 \@namedef{@para@footstart#1}{%
-  \global\advance\skip\@nameuse{footins#1}\bidi@paraskip
   \leftskip=\z@
   \rightskip=\z@
   \parindent=\z@
