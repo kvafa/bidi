@@ -345,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{55403}
+%% \CheckSum{55411}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -12793,6 +12793,7 @@ bidi implementation of tufte title]
     \@tempskipa\skip#1%
     \bidi@ifmulticol{\divide\@tempskipa\col@number}{}%
     \edef\bidi@footskip{\vskip\the\@tempskipa\relax}%
+    \@startfootgroup
     \ifvoid\footins
       \global\setbox\footins\vbox{#2#3}%
     \else
@@ -12858,12 +12859,12 @@ bidi implementation of tufte title]
   }%
 }
 \newinsert\footinsv@r
-\skip\footinsv@r\bigskipamount
+\skip\footinsv@r\skip\footins
 \count\footinsv@r=1000 % no magnifcation
 \dimen\footinsv@r=\footinsdim
 \m@make@footstart{v@r}
 \newinsert\footinsv@l
-\skip\footinsv@l\bigskipamount
+\skip\footinsv@l\skip\footins
 \count\footinsv@l=1000 % no magnifcation
 \dimen\footinsv@l=\footinsdim
 \m@make@footstart{v@l}
@@ -14221,6 +14222,8 @@ bidi implementation of tufte title]
   \let\@RTLfootnotetext\@paraRTLfootnotetext
   \dimen\footinsv@r=\footinsdim
   \count\footinsv@r=1000\relax
+  \bidi@make@para@startfootgroup
+  \let\@startfootgroup\@para@startfootgroup
   \m@make@para@footgroup{v@r}%
   \m@make@para@footstart{v@r}%
   \let\@footgroupv@r\@para@footgroupv@r
@@ -14276,6 +14279,8 @@ bidi implementation of tufte title]
   \let\@RTLfootnotetext\m@mold@RTLfootnotetext
   \dimen\footinsv@l=\footinsdim
   \count\footinsv@l=1000\relax
+  \bidi@make@para@startfootgroup
+  \let\@startfootgroup\@para@startfootgroup
   \bidi@make@para@LTRfootgroup{v@l}%
   \m@make@para@footstart{v@l}%
   \let\@LTRfootgroupv@l\@para@LTRfootgroupv@l
@@ -14423,8 +14428,6 @@ bidi implementation of tufte title]
   \m@mungebox}\m@mmf@prepare}
 \bidi@ensure@newcommand{\m@make@para@footgroup}[1]{%
 \@namedef{@para@footgroup#1}{%
-  \advance\@tempskipa -\bidi@paraskip
-  \edef\bidi@footskip{\vskip\the\@tempskipa\relax}%
   \unvbox\@nameuse{footins#1}
   \@RTLtrue
   \m@mmakehboxofhboxes
@@ -14436,8 +14439,6 @@ bidi implementation of tufte title]
   \noindent\unhbox0\par}}
 \bidi@ensure@newcommand{\bidi@make@para@LTRfootgroup}[1]{%
 \@namedef{@para@LTRfootgroup#1}{%
-  \advance\@tempskipa -\bidi@paraskip
-  \edef\bidi@footskip{\vskip\the\@tempskipa\relax}%
   \unvbox\@nameuse{footins#1}
   \@RTLfalse
   \m@mmakehboxofhboxes
@@ -14447,6 +14448,13 @@ bidi implementation of tufte title]
   \def\baselinestretch{\m@m@footnote@spacing}%
   \@nameuse{foottextfont#1}%
   \noindent\unhbox0\par}}
+\newcommand{\bidi@make@para@startfootgroup}{%
+\@namedef{@para@startfootgroup}{%
+  \advance\@tempskipa -\bidi@paraskip
+  \edef\bidi@footskip{\vskip\the\@tempskipa\relax}%
+}%
+}
+\let\@startfootgroup\relax
 \bidi@ensure@newcommand{\m@make@mppara@footgroup}[1]{%
 \@namedef{@mppara@footgroup#1}{%
   \unvbox\@nameuse{@mpfootins#1}
