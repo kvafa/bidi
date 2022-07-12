@@ -345,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{55411}
+%% \CheckSum{55408}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -12793,7 +12793,7 @@ bidi implementation of tufte title]
     \@tempskipa\skip#1%
     \bidi@ifmulticol{\divide\@tempskipa\col@number}{}%
     \edef\bidi@footskip{\vskip\the\@tempskipa\relax}%
-    \@startfootgroup
+    \bidi@removexfootskip
     \ifvoid\footins
       \global\setbox\footins\vbox{#2#3}%
     \else
@@ -14222,8 +14222,7 @@ bidi implementation of tufte title]
   \let\@RTLfootnotetext\@paraRTLfootnotetext
   \dimen\footinsv@r=\footinsdim
   \count\footinsv@r=1000\relax
-  \bidi@make@para@startfootgroup
-  \let\@startfootgroup\@para@startfootgroup
+  \let\bidi@removexfootskip\bidi@removexparafootskip
   \m@make@para@footgroup{v@r}%
   \m@make@para@footstart{v@r}%
   \let\@footgroupv@r\@para@footgroupv@r
@@ -14279,8 +14278,7 @@ bidi implementation of tufte title]
   \let\@RTLfootnotetext\m@mold@RTLfootnotetext
   \dimen\footinsv@l=\footinsdim
   \count\footinsv@l=1000\relax
-  \bidi@make@para@startfootgroup
-  \let\@startfootgroup\@para@startfootgroup
+  \let\bidi@removexfootskip\bidi@removexparafootskip
   \bidi@make@para@LTRfootgroup{v@l}%
   \m@make@para@footstart{v@l}%
   \let\@LTRfootgroupv@l\@para@LTRfootgroupv@l
@@ -14448,13 +14446,11 @@ bidi implementation of tufte title]
   \def\baselinestretch{\m@m@footnote@spacing}%
   \@nameuse{foottextfont#1}%
   \noindent\unhbox0\par}}
-\newcommand{\bidi@make@para@startfootgroup}{%
-\@namedef{@para@startfootgroup}{%
+\newcommand{\bidi@removexparafootskip}{%
   \advance\@tempskipa -\bidi@paraskip
   \edef\bidi@footskip{\vskip\the\@tempskipa\relax}%
-}%
 }
-\let\@startfootgroup\relax
+\let\bidi@removexfootskip\relax
 \bidi@ensure@newcommand{\m@make@mppara@footgroup}[1]{%
 \@namedef{@mppara@footgroup#1}{%
   \unvbox\@nameuse{@mpfootins#1}
