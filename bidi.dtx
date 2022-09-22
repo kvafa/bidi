@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v39.4
+v39.5
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -267,7 +267,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 39.4 of the bidi
+  pdftitle={Source documentation for version 39.5 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -286,7 +286,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 39.4}}
+%\large Source documentation for \textcolor{blue!65!black}{version 39.5}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -296,7 +296,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 39.4}}
+%Source documentation for \textcolor{blue!65!black}{version 39.5}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -345,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{55488}
+%% \CheckSum{55446}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4590,7 +4590,7 @@ by Vafa Khalighi.
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \def\bididate{2022/09/22}
-\def\bidi@version{39.4}
+\def\bidi@version{39.5}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -4923,7 +4923,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %    \begin{macrocode}
 \def\bididate{2022/09/22}
 \catcode`@=11
-\def\bidi@version{39.4}
+\def\bidi@version{39.5}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -20079,40 +20079,24 @@ to\rtside{\box\bslice\hfil}}
   \psset[pstricks]{shift=0}% reset value
 }
 
-\def\ps@@scalebox{%
-  \leavevmode%
-  \hbox{%
-    \ifdim\pst@tempd\p@<\z@%
-      \pst@dimg=\pst@tempd\ht\pst@hbox%
-      \pst@dimh=\pst@tempd\dp\pst@hbox%
-      \dp\pst@hbox=-\pst@dimg%
-      \ht\pst@hbox=-\pst@dimh%
-    \else%
-      \ht\pst@hbox=\pst@tempd\ht\pst@hbox%
-      \dp\pst@hbox=\pst@tempd\dp\pst@hbox%
-    \fi%
-    \pst@dima=\pst@tempc\wd\pst@hbox%
-    \ifdim\pst@dima<\z@\kern-\pst@dima\fi%
-    \if@RTL
-    \pst@Verb{
-      CP CP translate
-      1 \pst@tempc div 1 \pst@tempd div scale
-      \tx@NET}%
-    \else
-    \pst@Verb{CP CP translate \pst@tempa \tx@NET}%
-    \fi
-    \hbox to \z@{\box\pst@hbox\hss}%
-    \if@RTL
-    \pst@Verb{CP CP translate \pst@tempa \tx@NET}%
-    \else
-    \pst@Verb{
-      CP CP translate
-      1 \pst@tempc div 1 \pst@tempd div scale
-      \tx@NET}%
-    \fi
-    \ifdim\pst@dima>\z@\kern\pst@dima\fi%
-  }%
-}
+\bidi@patchcmd\@@scalebox{%
+  \special{x: bscale \pst@tempc \pst@tempd}%
+  \hbox to \z@{\box\pst@hbox\hss}%
+  \special{x: escale}%
+}{%
+  \if@RTL
+    \special{x: escale}%
+  \else
+    \special{x: bscale \pst@tempc \pst@tempd}%
+  \fi
+  \hbox to \z@{\box\pst@hbox\hss}%
+  \if@RTL
+    \special{x: bscale \pst@tempc \pst@tempd}%
+  \else
+    \special{x: escale}%
+  \fi
+}{}{}
+\let\ps@@scalebox\@@scalebox
 
 %    \end{macrocode}
 % \iffalse
