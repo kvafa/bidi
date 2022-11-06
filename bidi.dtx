@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v39.5
+v39.6
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2022/09/22
+Current version release date: 2022/11/06
 
 ___________________________________________
 Vafa Khalighi
@@ -267,7 +267,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 39.5 of the bidi
+  pdftitle={Source documentation for version 39.6 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -286,7 +286,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 39.5}}
+%\large Source documentation for \textcolor{blue!65!black}{version 39.6}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -296,7 +296,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 39.5}}
+%Source documentation for \textcolor{blue!65!black}{version 39.6}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -345,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{55446}
+%% \CheckSum{55469}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4589,9 +4589,11 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2022/09/22}
-\def\bidi@version{39.5}
-\ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
+\def\bididate{2022/11/06}
+\def\bidi@version{39.6}
+\def\bidi@releasename{Women, Life, and Liberty}
+\newcommand*{\bidireleasename}{\bidi@releasename}
+\ProvidesPackage{bidi}[\bididate\space v\bidi@version\space (Release \bidi@releasename)\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
 * ^^J%
@@ -4606,7 +4608,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 * Copyright (c) 2007--2022 Vafa Khalighi^^J%
 * Copyright (c) 2018--2020 bidi-tex GitHub organization^^J%
 * ^^J%
-* v\bidi@version, \bididate^^J%
+* v\bidi@version\space (Release \bidi@releasename), \bididate^^J%
 * ^^J%
 * License: LaTeX Project Public License, version^^J%
 * 1.3c or higher (your choice)^^J%
@@ -4670,14 +4672,14 @@ Bidirectional typesetting in plain TeX and LaTeX]
 \newif\if@bidi@list@minipage@parbox
 \newif\if@bidi@list@minipage@parbox@not@nob
 \newcommand*{\@bidi@pdfcreator}{%
-  The bidi package, v\bidi@version, \bididate
+  The bidi package, v\bidi@version\space (Release \bidi@releasename), \bididate
 }
 \newcommand*{\@bidi@pdfproducer}{%
-  The bidi package, v\bidi@version, \bididate
+  The bidi package, v\bidi@version\space (Release \bidi@releasename), \bididate
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
-  This is the bidi package, Version \bidi@version,
-  Released September 22, 2022. 
+  This is the bidi package, Version \bidi@version\space (Release \bidi@releasename),
+  Released November 6, 2022. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4921,9 +4923,11 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2022/09/22}
+\def\bididate{2022/11/06}
 \catcode`@=11
-\def\bidi@version{39.5}
+\def\bidi@version{39.6}
+\def\bidi@releasename{Women, Life, and Liberty}
+\def\bidireleasename{\bidi@releasename}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -4939,7 +4943,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 * Copyright (c) 2007--2022 Vafa Khalighi^^J%
 * Copyright (c) 2018--2020 bidi-tex GitHub organization^^J%
 * ^^J%
-* v\bidi@version, \bididate^^J%
+* v\bidi@version\space (Release \bidi@releasename), \bididate^^J%
 * ^^J%
 * License: LaTeX Project Public License, version^^J%
 * 1.3c or higher (your choice)^^J%
@@ -5018,14 +5022,14 @@ Bidirectional typesetting in plain TeX and LaTeX]
 \def\@bidi@logo@{\@bidi@logo@hb@xt@\hsize{\hss\LRE{\bf Typeset by the bidi package\quad\@bidi@logo{bidi-logo.pdf}}}}
 \def\nobidilogo{\let\@bidi@logo@\@empty \let\@bidi@inslogo@\@empty}
 \def\@bidi@pdfcreator{%
-  The bidi package, v\bidi@version, \bididate
+  The bidi package, v\bidi@version\space (Release \bidi@releasename), \bididate
 }
 \def\@bidi@pdfproducer{%
-  The bidi package, v\bidi@version, \bididate
+  The bidi package, v\bidi@version\space (Release \bidi@releasename), \bididate
 }
 \def\@bidi@pdfcustomproperties{%
-  This is the bidi package, Version \bidi@version,
-  Released September 22, 2022. 
+  This is the bidi package, Version \bidi@version\space (Release \bidi@releasename),
+  Released November 6, 2022. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -17272,7 +17276,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{lettrine-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{lettrine-xetex-bidi.def}[2019/05/01 v0.7 bidi adaptations for lettrine package for XeTeX engine]
+\ProvidesFile{lettrine-xetex-bidi.def}[2022/11/06 v0.8 bidi adaptations for lettrine package for XeTeX engine]
 \def\@lettrine[#1]#2#3{%
   \def\l@initial{#2}\let\l@refstring\l@initial
   \setcounter{L@lines}{\value{DefaultLines}}%
@@ -17288,7 +17292,6 @@ bidi implementation of tufte title]
   \ifLettrineImage\L@imagetrue\else\L@imagefalse\fi
   \ifLettrineOnGrid\L@gridtrue\else\L@gridfalse\fi
   \ifLettrineRealHeight\L@realhtrue\else\L@realhfalse\fi
-  \ifLettrineSelfRef\L@selfreftrue\else\L@selfreffalse\fi
   \setkeys{L}{#1}%
   \sbox{\L@tbox}{\LettrineTextFont{\LettrineSecondString}}%
   \ifL@realh
@@ -17338,7 +17341,7 @@ bidi implementation of tufte title]
   \@tempdima=\L@oversize pt\relax
   \PackageInfo{lettrine.sty}%
     {Targeted height = \the\L@target@tht\MessageBreak
-     (no accent, loversize=0),\MessageBreak
+     (for loversize=0, accent excluded),\MessageBreak
      Lettrine height = \the\LettrineHeight\space (#2)%
      \ifdim\@tempdima=\z@\else\space loversize=\L@oversize\fi;%
      \MessageBreak reported}%
@@ -17389,9 +17392,9 @@ bidi implementation of tufte title]
   \fi
   \@tempcnta=\tw@
   \@whilenum \@tempcnta<\c@L@lines\do{%
-     \if@RTL
+    \if@RTL
        \edef\L@parshape{\L@parshape \z@ \the\L@next}%
-     \else
+    \else
        \edef\L@parshape{\L@parshape \the\L@Nindent \the\L@next}%
      \fi
      \addtolength{\L@Nindent}{\L@slope}%
@@ -17409,6 +17412,7 @@ bidi implementation of tufte title]
   \usebox{\L@tbox}%
   \ifnum\@listdepth>0 \Lreset@listparshape \fi
 }
+
 %    \end{macrocode}
 % \iffalse
 %</lettrine-xetex-bidi.def>
