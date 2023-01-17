@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2023/01/08
+Current version release date: 2023/01/18
 
 ___________________________________________
 Vafa Khalighi
@@ -345,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{58810}
+%% \CheckSum{58794}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2430,7 +2430,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerbaseframecomponents-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2023/01/08 v0.5 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
+\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2023/01/18 v0.5 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
 \renewcommand{\setbeamersize}[1]{%
   \beamer@dogeometryfalse%
   \setkeys{beamer@margin}{#1}%
@@ -4589,7 +4589,7 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2023/01/08}
+\def\bididate{2023/01/18}
 \def\bidi@version{39.7}
 \def\bidi@releasename{Serge Lang}
 \newcommand*{\bidireleasename}{\bidi@releasename}
@@ -4679,7 +4679,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version\space (Release \bidi@releasename),
-  Released January 8, 2023. 
+  Released January 18, 2023. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4923,7 +4923,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2023/01/08}
+\def\bididate{2023/01/18}
 \catcode`@=11
 \def\bidi@version{39.7}
 \def\bidi@releasename{Serge Lang}
@@ -5029,7 +5029,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version\space (Release \bidi@releasename),
-  Released January 8, 2023. 
+  Released January 18, 2023. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -12545,7 +12545,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{extrafootnotefeatures-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{extrafootnotefeatures-xetex-bidi.def}[2023/01/08 v2.5 bidi extra footnote features for XeTeX engine]
+\ProvidesFile{extrafootnotefeatures-xetex-bidi.def}[2023/01/18 v2.5 bidi extra footnote features for XeTeX engine]
 \newdimen\bidi@columnwidth
 \def\bidi@floathook{%
   \bidi@columnwidth\columnwidth
@@ -12630,8 +12630,7 @@ bidi implementation of tufte title]
 \newcommand{\bidi@bidiold@footnotetext}[1]{%
   \bidi@step@absolutefootnote@count
     \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
-    \global\setbox\footins\vbox{%
-    \unvbox\footins
+    \insert\footins{%
     \if@RTL@footnote\@RTLtrue\else\@RTLfalse\fi%
     \def\baselinestretch{\m@m@footnote@spacing}%
     \reset@font
@@ -12644,7 +12643,6 @@ bidi implementation of tufte title]
       \@normalfootfmt{#1}%
     \color@endgroup}%    
       \m@mmf@prepare
-      \bidi@reinsertfinalfootnoteperpage\footins{}{\unvbox\footins}%
 }
 \renewcommand{\@RTLfootnotetext}[1]{%
     \insert\footins{%
@@ -12663,8 +12661,7 @@ bidi implementation of tufte title]
 \newcommand{\bidi@bidiold@RTLfootnotetext}[1]{%
   \bidi@step@absolutefootnote@count
     \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
-    \global\setbox\footins\vbox{%
-    \unvbox\footins
+    \insert\footins{%
     \@RTLtrue%
     \def\baselinestretch{\m@m@footnote@spacing}%
     \reset@font
@@ -12677,7 +12674,6 @@ bidi implementation of tufte title]
       \@normalRTLfootfmt{#1}%
     \color@endgroup}%    
       \m@mmf@prepare
-      \bidi@reinsertfinalfootnoteperpage\footins{}{\unvbox\footins}%
 }
 \renewcommand{\@LTRfootnotetext}[1]{%
     \insert\footins{%
@@ -16895,7 +16891,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{footnote-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{footnote-xetex-bidi.def}[2023/01/08 v1.2 bidi footnote macros for XeTeX engine]
+\ProvidesFile{footnote-xetex-bidi.def}[2023/01/18 v1.2 bidi footnote macros for XeTeX engine]
 \if@RTLmain\@RTL@footnotetrue\else\@RTL@footnotefalse\fi
 \newif\ifbidi@autofootnoterule
 \def\bidi@mpfootnoterule{\footnoterule}
