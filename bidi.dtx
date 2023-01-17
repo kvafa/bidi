@@ -345,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{58513}
+%% \CheckSum{58810}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -12628,7 +12628,8 @@ bidi implementation of tufte title]
     \color@endgroup}%    
       \m@mmf@prepare}
 \newcommand{\bidi@bidiold@footnotetext}[1]{%
-    \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@step@absolutefootnote@count
+    \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
     \global\setbox\footins\vbox{%
     \unvbox\footins
     \if@RTL@footnote\@RTLtrue\else\@RTLfalse\fi%
@@ -12642,7 +12643,9 @@ bidi implementation of tufte title]
     \color@begingroup
       \@normalfootfmt{#1}%
     \color@endgroup}%    
-      \m@mmf@prepare}
+      \m@mmf@prepare
+      \bidi@reinsertfinalfootnoteperpage\footins{}{\unvbox\footins}%
+}
 \renewcommand{\@RTLfootnotetext}[1]{%
     \insert\footins{%
     \@RTLtrue%
@@ -12658,7 +12661,8 @@ bidi implementation of tufte title]
     \color@endgroup}%    
       \m@mmf@prepare}
 \newcommand{\bidi@bidiold@RTLfootnotetext}[1]{%
-    \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@step@absolutefootnote@count
+    \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
     \global\setbox\footins\vbox{%
     \unvbox\footins
     \@RTLtrue%
@@ -12672,7 +12676,9 @@ bidi implementation of tufte title]
     \color@begingroup
       \@normalRTLfootfmt{#1}%
     \color@endgroup}%    
-      \m@mmf@prepare}
+      \m@mmf@prepare
+      \bidi@reinsertfinalfootnoteperpage\footins{}{\unvbox\footins}%
+}
 \renewcommand{\@LTRfootnotetext}[1]{%
     \insert\footins{%
     \@RTLfalse%
@@ -12869,7 +12875,7 @@ bidi implementation of tufte title]
     \fi
   \fi
 }
-\def\bidi@insertfootnotes#1#2#3{%
+\def\bidi@reinsertfootnote#1#2#3{%
   \ifvoid#1
   \else
     \insert\footins{#2#3}%
@@ -12891,6 +12897,60 @@ bidi implementation of tufte title]
          #2#3%
        }%
     \fi
+  \fi
+}
+\newcount\bidi@absolutepage@count 
+\bidi@absolutepage@count\@ne
+\newcount\bidi@absolutefootnote@count 
+\bidi@AfterOutputBoxOutputPage{%
+  \if@filesw
+      \edef\@tempa{%
+        \write\@auxout{%
+          \string\bidi@finalfootnoteperpage%
+          {\noexpand\number\noexpand\bidi@absolutepage@count}%
+          {\noexpand\number\noexpand\bidi@absolutefootnote@count}%
+        }%
+      }%
+      \@tempa
+    \fi
+}
+\bidi@AtEndOutputPage{%
+  \global\advance\bidi@absolutepage@count\@ne
+}
+\newcommand*{\bidi@finalfootnoteperpage}[2]{%
+  \expandafter\gdef\csname bidi@currentpagefinalfootnote@@#1\endcsname{#2}%
+}
+\newif\if@bidi@finalfootnoteperpage
+\newcommand{\bidi@ifafterfinalfootnoteperpage}[2]{%
+  \if@bidi@csundef{bidi@currentpagefinalfootnote@@\number\bidi@absolutepage@count}{%
+  \global\@bidi@finalfootnoteperpagetrue
+  }{%
+    \global\@bidi@finalfootnoteperpagefalse
+    \ifnum\bidi@absolutefootnote@count=\bidi@csuse{bidi@currentpagefinalfootnote@@\number\bidi@absolutepage@count}%
+      #1%
+    \else
+      #2%
+    \fi
+  }%
+}
+\newcommand{\bidi@reinsertfinalfootnoteperpage}[3]{%
+  \bidi@ifafterfinalfootnoteperpage{%
+    \bidi@reinsertfootnote{#1}{#2}{#3}%
+  }{%
+  }%
+}
+\newcommand*{\bidi@step@absolutefootnote@count}{%
+  \global\advance\bidi@absolutefootnote@count\@ne
+}
+\bidi@AfterEndDocumentCheckLabelsRerun{%
+  \if@bidi@finalfootnoteperpage
+    \PackageWarningNoLine{bidi}{%
+      The absolute final footnote is not
+      known on every page of your
+      document. Rerun TeX to get the 
+      absolute final footnote on every page 
+      of your document%
+    }%
   \fi
 }
 \bidi@ensure@newcommand{\m@mdoextrafeetmini}{%
@@ -13019,10 +13079,11 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@TwoColfootnotetext}[1]{%
+  \bidi@step@absolutefootnote@count
   \if@RTL@footnote
-    \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+    \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \else
-    \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+    \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \fi
   \global\setbox
   \if@RTL@footnote
@@ -13046,7 +13107,13 @@ bidi implementation of tufte title]
   \color@begingroup
     \@twocolfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \if@RTL@footnote
+    \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+  \else
+    \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \fi 
+}
 \bidi@ensure@newcommand{\@twocolLTRfootnotetext}[1]{\insert\footinsv@l{\@RTLfalse%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\LTRfoottextfont
@@ -13058,7 +13125,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@TwoColLTRfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+  \bidi@step@absolutefootnote@count
+\bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \global\setbox\footinsv@l\vbox{%
   \unvbox\footinsv@l
   \@RTLfalse
@@ -13070,7 +13138,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@twocolLTRfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+}
 \bidi@ensure@newcommand{\@twocolRTLfootnotetext}[1]{\insert\footinsv@r{\@RTLtrue%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\RTLfoottextfont
@@ -13082,7 +13152,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@TwoColRTLfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@step@absolutefootnote@count
+\bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \global\setbox\footinsv@r\vbox{%
   \unvbox\footinsv@r
   \@RTLtrue
@@ -13094,7 +13165,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@twocolRTLfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+}
 \bidi@ensure@newcommand{\@preamtwofmt}{%
   \hsize .45\hsize
   \parindent=\z@
@@ -13304,10 +13377,11 @@ bidi implementation of tufte title]
     \@threecolfootfmt{#1}%
   \color@endgroup}\m@mmf@prepare}
 \newcommand{\@ThreeColfootnotetext}[1]{%
+  \bidi@step@absolutefootnote@count
   \if@RTL@footnote
-    \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+    \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \else
-    \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+    \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \fi
   \global\setbox
   \if@RTL@footnote
@@ -13330,7 +13404,13 @@ bidi implementation of tufte title]
     \csname p@footnote\endcsname\@thefnmark}%
   \color@begingroup
     \@threecolfootfmt{#1}%
-  \color@endgroup}\m@mmf@prepare}
+  \color@endgroup}\m@mmf@prepare
+  \if@RTL@footnote
+    \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+  \else
+    \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \fi  
+}
 \bidi@ensure@newcommand{\@threecolLTRfootnotetext}[1]{\insert\footinsv@l{\@RTLfalse%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\LTRfoottextfont
@@ -13341,7 +13421,8 @@ bidi implementation of tufte title]
     \@threecolLTRfootfmt{#1}%
   \color@endgroup}\m@mmf@prepare}
 \newcommand{\@ThreeColLTRfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \global\setbox\footinsv@l\vbox{%
   \unvbox\footinsv@l
   \@RTLfalse
@@ -13352,7 +13433,9 @@ bidi implementation of tufte title]
     \csname p@footnote\endcsname\@thefnmark}%
   \color@begingroup
     \@threecolLTRfootfmt{#1}%
-  \color@endgroup}\m@mmf@prepare}
+  \color@endgroup}\m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+}
 \bidi@ensure@newcommand{\@threecolRTLfootnotetext}[1]{\insert\footinsv@r{\@RTLtrue%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\RTLfoottextfont
@@ -13363,7 +13446,8 @@ bidi implementation of tufte title]
     \@threecolRTLfootfmt{#1}%
   \color@endgroup}\m@mmf@prepare}
 \newcommand{\@ThreeColRTLfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \global\setbox\footinsv@r\vbox{%
   \unvbox\footinsv@r
   \@RTLtrue
@@ -13374,7 +13458,9 @@ bidi implementation of tufte title]
     \csname p@footnote\endcsname\@thefnmark}%
   \color@begingroup
     \@threecolRTLfootfmt{#1}%
-  \color@endgroup}\m@mmf@prepare}
+  \color@endgroup}\m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+}
 \bidi@ensure@newcommand{\@preamthreefmt}{%
   \hsize .3\hsize
   \parindent=\z@
@@ -13579,10 +13665,11 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@FourColfootnotetext}[1]{%
+  \bidi@step@absolutefootnote@count
   \if@RTL@footnote
-    \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+    \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \else
-    \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+    \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \fi
   \global\setbox
   \if@RTL@footnote
@@ -13606,7 +13693,13 @@ bidi implementation of tufte title]
   \color@begingroup
     \@fourcolfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \if@RTL@footnote
+    \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+  \else
+    \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \fi  
+}
 \bidi@ensure@newcommand{\@fourcolLTRfootnotetext}[1]{\insert\footinsv@l{\@RTLfalse%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\LTRfoottextfont
@@ -13618,7 +13711,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@FourColLTRfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \global\setbox\footinsv@l\vbox{%
   \unvbox\footinsv@l
   \@RTLfalse%
@@ -13630,7 +13724,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@fourcolLTRfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+}
 \bidi@ensure@newcommand{\@fourcolRTLfootnotetext}[1]{\insert\footinsv@r{\@RTLtrue%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\RTLfoottextfont
@@ -13642,7 +13738,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@FourColRTLfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \global\setbox\footinsv@r\vbox{%
   \unvbox\footinsv@r
   \@RTLtrue
@@ -13654,7 +13751,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@fourcolRTLfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+}
 \bidi@ensure@newcommand{\@preamfourfmt}{%
   \hsize .25\hsize
   \parindent=\z@
@@ -13865,10 +13964,11 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@FiveColfootnotetext}[1]{%
+  \bidi@step@absolutefootnote@count
   \if@RTL@footnote
-    \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+    \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \else
-    \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+    \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \fi
   \global\setbox
   \if@RTL@footnote
@@ -13892,7 +13992,13 @@ bidi implementation of tufte title]
   \color@begingroup
     \@fivecolfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \if@RTL@footnote
+    \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+  \else
+    \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \fi
+}
 \bidi@ensure@newcommand{\@fivecolLTRfootnotetext}[1]{\insert\footinsv@l{\@RTLfalse%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\LTRfoottextfont
@@ -13904,7 +14010,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@FiveColLTRfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \global\setbox\footinsv@l\vbox{%
   \unvbox\footinsv@l
   \@RTLfalse
@@ -13916,7 +14023,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@fivecolLTRfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+}
 \bidi@ensure@newcommand{\@fivecolRTLfootnotetext}[1]{\insert\footinsv@r{\@RTLtrue%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\RTLfoottextfont
@@ -13928,7 +14037,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@FiveColRTLfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \global\setbox\footinsv@r\vbox{%
   \unvbox\footinsv@r
   \@RTLtrue
@@ -13940,7 +14050,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@fivecolRTLfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+}
 \bidi@ensure@newcommand{\@preamfivefmt}{%
   \hsize .2\hsize
   \parindent=\z@
@@ -14151,10 +14263,11 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@SixColfootnotetext}[1]{%
+  \bidi@step@absolutefootnote@count
   \if@RTL@footnote
-    \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+    \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \else
-    \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+    \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \fi
   \global\setbox
   \if@RTL@footnote
@@ -14178,7 +14291,13 @@ bidi implementation of tufte title]
   \color@begingroup
     \@sixcolfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \if@RTL@footnote
+    \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+  \else
+    \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \fi
+}
 \bidi@ensure@newcommand{\@sixcolLTRfootnotetext}[1]{\insert\footinsv@l{\@RTLfalse%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\LTRfoottextfont
@@ -14190,7 +14309,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@SixColLTRfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \global\setbox\footinsv@l\vbox{%
   \unvbox\footinsv@l
   \@RTLfalse
@@ -14202,7 +14322,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@sixcolLTRfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+}
 \bidi@ensure@newcommand{\@sixcolRTLfootnotetext}[1]{\insert\footinsv@r{\@RTLtrue%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\RTLfoottextfont
@@ -14214,7 +14336,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@SixColRTLfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \global\setbox\footinsv@r\vbox{%
   \unvbox\footinsv@r
   \@RTLtrue
@@ -14226,7 +14349,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@sixcolRTLfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+}
 \bidi@ensure@newcommand{\@preamsixfmt}{%
   \hsize .16\hsize
   \parindent=\z@
@@ -14437,10 +14562,11 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@SevenColfootnotetext}[1]{%
+  \bidi@step@absolutefootnote@count
   \if@RTL@footnote
-    \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+    \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \else
-    \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+    \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \fi
   \global\setbox
   \if@RTL@footnote
@@ -14464,7 +14590,13 @@ bidi implementation of tufte title]
   \color@begingroup
     \@sevencolfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \if@RTL@footnote
+    \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+  \else
+    \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \fi
+}
 \bidi@ensure@newcommand{\@sevencolLTRfootnotetext}[1]{\insert\footinsv@l{\@RTLfalse%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\LTRfoottextfont
@@ -14476,7 +14608,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@SevenColLTRfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \global\setbox\footinsv@l\vbox{%
   \unvbox\footinsv@l
   \@RTLfalse
@@ -14488,7 +14621,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@sevencolLTRfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+}
 \bidi@ensure@newcommand{\@sevencolRTLfootnotetext}[1]{\insert\footinsv@r{\@RTLtrue%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\RTLfoottextfont
@@ -14500,7 +14635,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@SevenColRTLfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \global\setbox\footinsv@r\vbox{%
   \unvbox\footinsv@r
   \@RTLtrue
@@ -14512,7 +14648,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@sevencolRTLfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+}
 \bidi@ensure@newcommand{\@preamsevenfmt}{%
   \hsize .142\hsize
   \parindent=\z@
@@ -14723,10 +14861,11 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@EightColfootnotetext}[1]{%
+  \bidi@step@absolutefootnote@count
   \if@RTL@footnote
-    \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+    \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \else
-    \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+    \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \fi
   \global\setbox
   \if@RTL@footnote
@@ -14750,7 +14889,13 @@ bidi implementation of tufte title]
   \color@begingroup
     \@eightcolfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \if@RTL@footnote
+    \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+  \else
+    \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \fi
+}
 \bidi@ensure@newcommand{\@eightcolLTRfootnotetext}[1]{\insert\footinsv@l{\@RTLfalse%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\LTRfoottextfont
@@ -14762,7 +14907,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@EightColLTRfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \global\setbox\footinsv@l\vbox{%
   \unvbox\footinsv@l
   \@RTLfalse
@@ -14774,7 +14920,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@eightcolLTRfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+}
 \bidi@ensure@newcommand{\@eightcolRTLfootnotetext}[1]{\insert\footinsv@r{\@RTLtrue%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\RTLfoottextfont
@@ -14786,7 +14934,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@EightColRTLfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \global\setbox\footinsv@r\vbox{%
   \unvbox\footinsv@r
   \@RTLtrue%
@@ -14798,7 +14947,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@eightcolRTLfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+}
 \bidi@ensure@newcommand{\@preameightfmt}{%
   \hsize .125\hsize
   \parindent=\z@
@@ -15009,10 +15160,11 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@NineColfootnotetext}[1]{%
+  \bidi@step@absolutefootnote@count
   \if@RTL@footnote
-    \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+    \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \else
-    \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+    \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \fi
   \global\setbox
   \if@RTL@footnote
@@ -15036,7 +15188,13 @@ bidi implementation of tufte title]
   \color@begingroup
     \@ninecolfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \if@RTL@footnote
+    \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+  \else
+    \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \fi
+}
 \bidi@ensure@newcommand{\@ninecolLTRfootnotetext}[1]{\insert\footinsv@l{\@RTLfalse%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\LTRfoottextfont
@@ -15048,7 +15206,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@NineColLTRfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \global\setbox\footinsv@l\vbox{%
   \unvbox\footinsv@l
   \@RTLfalse
@@ -15060,7 +15219,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@ninecolLTRfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+}
 \bidi@ensure@newcommand{\@ninecolRTLfootnotetext}[1]{\insert\footinsv@r{\@RTLtrue%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\RTLfoottextfont
@@ -15072,7 +15233,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@NineColRTLfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \global\setbox\footinsv@r\vbox{%
   \unvbox\footinsv@r
   \@RTLtrue
@@ -15084,7 +15246,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@ninecolRTLfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+}
 \bidi@ensure@newcommand{\@preamninefmt}{%
   \hsize .1\hsize
   \parindent=\z@
@@ -15295,10 +15459,11 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@TenColfootnotetext}[1]{%
+  \bidi@step@absolutefootnote@count
   \if@RTL@footnote
-    \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+    \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \else
-    \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+    \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \fi
   \global\setbox
   \if@RTL@footnote
@@ -15322,7 +15487,13 @@ bidi implementation of tufte title]
   \color@begingroup
     \@tencolfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \if@RTL@footnote
+    \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+  \else
+    \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \fi
+}
 \bidi@ensure@newcommand{\@tencolLTRfootnotetext}[1]{\insert\footinsv@l{\@RTLfalse%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\LTRfoottextfont
@@ -15334,7 +15505,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@TenColLTRfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \global\setbox\footinsv@l\vbox{%
   \unvbox\footinsv@l
   \@RTLfalse%
@@ -15346,7 +15518,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@tencolLTRfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+}
 \bidi@ensure@newcommand{\@tencolRTLfootnotetext}[1]{\insert\footinsv@r{\@RTLtrue%
   \def\baselinestretch{\m@m@footnote@spacing}%
   \reset@font\RTLfoottextfont
@@ -15358,7 +15532,8 @@ bidi implementation of tufte title]
   \color@endgroup}%
   \m@mmf@prepare}
 \newcommand{\@TenColRTLfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \global\setbox\footinsv@r\vbox{%
   \unvbox\footinsv@r
   \@RTLtrue
@@ -15370,7 +15545,9 @@ bidi implementation of tufte title]
   \color@begingroup
     \@tencolRTLfootfmt{#1}%
   \color@endgroup}%
-  \m@mmf@prepare}
+  \m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+}
 \bidi@ensure@newcommand{\@preamtenfmt}{%
   \hsize .1\hsize
   \parindent=\z@
@@ -15779,10 +15956,11 @@ bidi implementation of tufte title]
     \color@endgroup}%
   \m@mungebox}\m@mmf@prepare}
 \newcommand{\@Parafootnotetext}[1]{%
+  \bidi@step@absolutefootnote@count
   \if@RTL@footnote
-    \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+    \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \else
-    \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+    \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
   \fi
  \global\setbox
   \if@RTL@footnote
@@ -15807,7 +15985,13 @@ bidi implementation of tufte title]
     \color@begingroup
       \noindent \@parafootfmt{#1}%
     \color@endgroup}%
-  \m@mungebox}\m@mmf@prepare}
+  \m@mungebox}\m@mmf@prepare
+  \if@RTL@footnote
+    \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+  \else
+    \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \fi
+}
 \bidi@ensure@newcommand{\@paraLTRfootnotetext}[1]{\insert\footinsv@l{%
  \let\bidi@RTL@everypar\@empty%
  \def\baselinestretch{\m@m@footnote@spacing}%
@@ -15821,7 +16005,8 @@ bidi implementation of tufte title]
     \color@endgroup}%
   \m@mungebox}\m@mmf@prepare}
 \newcommand{\@ParaLTRfootnotetext}[1]{%
- \bidi@insertfootnotes\footinsv@r\@footstartv@r\@footgroupv@r
+  \bidi@step@absolutefootnote@count
+ \bidi@reinsertfootnote\footinsv@r\@footstartv@r\@footgroupv@r
  \global\setbox\footinsv@l\vbox{%
  \unvbox\footinsv@l
  \let\bidi@RTL@everypar\@empty%
@@ -15834,7 +16019,9 @@ bidi implementation of tufte title]
     \color@begingroup
       \noindent \@paraLTRfootfmt{#1}%
     \color@endgroup}%
-  \m@mungebox}\m@mmf@prepare}
+  \m@mungebox}\m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+}
 \bidi@ensure@newcommand{\@paraRTLfootnotetext}[1]{\insert\footinsv@r{%
   \let\bidi@RTL@everypar\@empty%
   \def\baselinestretch{\m@m@footnote@spacing}%
@@ -15848,7 +16035,8 @@ bidi implementation of tufte title]
     \color@endgroup}%
   \m@mungebox}\m@mmf@prepare}
 \newcommand{\@ParaRTLfootnotetext}[1]{%
-  \bidi@insertfootnotes\footinsv@l\@footstartv@l\@LTRfootgroupv@l
+  \bidi@step@absolutefootnote@count
+  \bidi@reinsertfootnote\footinsv@l\@footstartv@l\@LTRfootgroupv@l
   \global\setbox\footinsv@r\vbox{%
   \unvbox\footinsv@r
   \let\bidi@RTL@everypar\@empty%
@@ -15861,7 +16049,9 @@ bidi implementation of tufte title]
     \color@begingroup
       \noindent \@paraRTLfootfmt{#1}%
     \color@endgroup}%
-  \m@mungebox}\m@mmf@prepare}
+  \m@mungebox}\m@mmf@prepare
+  \bidi@reinsertfinalfootnoteperpage\footinsv@r\@footstartv@r\@footgroupv@r
+}
 \bidi@ensure@newcommand{\@parafootfmt}[1]{%
   \parindent=\z@
   \parfillskip=0pt \@plus 1fil
