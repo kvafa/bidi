@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v39.7
+v39.8
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -30,7 +30,7 @@ The announcements for the new releases of the package will
 also appear in the Discussions space under the Announcements
 category.
   
-Current version release date: 2023/01/18
+Current version release date: 2023/02/19
 
 ___________________________________________
 Vafa Khalighi
@@ -267,7 +267,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 39.7 of the bidi
+  pdftitle={Source documentation for version 39.8 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -286,7 +286,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 39.7}}
+%\large Source documentation for \textcolor{blue!65!black}{version 39.8}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -296,7 +296,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 39.7}}
+%Source documentation for \textcolor{blue!65!black}{version 39.8}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -345,7 +345,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{58794}
+%% \CheckSum{0}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -370,7 +370,7 @@ by Vafa Khalighi.
 %
 %
 %    \begin{macrocode}
-\ProvidesFile{amsart-xetex-bidi.def}[2017/08/09 v1.1 bidi adaptations for amsart class for XeTeX engine]
+\ProvidesFile{amsart-xetex-bidi.def}[2023/02/19 v1.2 bidi adaptations for amsart class for XeTeX engine]
 \def\@tocline#1#2#3#4#5#6#7{\relax
   \ifnum #1>\c@tocdepth % then omit
   \else
@@ -446,12 +446,7 @@ by Vafa Khalighi.
       \csname p@footnote\endcsname\@thefnmark}%
     \@makefntext{%
       \rule\z@\footnotesep\ignorespaces#1\unskip\strut\par}}}    
-      
-      
-\footdir@temp\footdir@ORG@bidi@amsart@footnotetext\@footnotetext{\bidi@footdir@footnote}%    
-\footdir@temp\footdir@ORG@bidi@amsart@RTLfootnotetext\@RTLfootnotetext{R}%
-\footdir@temp\footdir@ORG@bidi@amsart@LTRfootnotetext\@LTRfootnotetext{L}%
-      
+            
 \renewenvironment{thebibliography}[1]{%
   \@bibtitlestyle
   \normalfont\bibliofont\labelsep .5em\relax
@@ -589,7 +584,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{amsbook-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{amsbook-xetex-bidi.def}[2017/08/09 v1.2 bidi adaptations for amsbook class for XeTeX engine]
+\ProvidesFile{amsbook-xetex-bidi.def}[2023/02/19 v1.3 bidi adaptations for amsbook class for XeTeX engine]
 \def\@tocline#1#2#3#4#5#6#7{\relax
   \ifnum #1>\c@tocdepth % then omit
   \else
@@ -672,12 +667,6 @@ by Vafa Khalighi.
       \csname p@footnote\endcsname\@thefnmark}%
     \@makefntext{%
       \rule\z@\footnotesep\ignorespaces#1\unskip\strut\par}}}
-
-
-
-\footdir@temp\footdir@ORG@bidi@amsbook@footnotetext\@footnotetext{\bidi@footdir@footnote}%    
-\footdir@temp\footdir@ORG@bidi@amsbook@RTLfootnotetext\@RTLfootnotetext{R}%
-\footdir@temp\footdir@ORG@bidi@amsbook@LTRfootnotetext\@LTRfootnotetext{L}%
 
 \renewenvironment{thebibliography}[1]{%
   \@bibtitlestyle
@@ -2430,7 +2419,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{beamerbaseframecomponents-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2023/01/18 v0.5 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
+\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2023/02/19 v0.6 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
 \renewcommand{\setbeamersize}[1]{%
   \beamer@dogeometryfalse%
   \setkeys{beamer@margin}{#1}%
@@ -2744,10 +2733,6 @@ by Vafa Khalighi.
 \let\@footnotetext=\beamer@framefootnotetext
 \let\@RTLfootnotetext=\beamer@frameRTLfootnotetext
 \let\@LTRfootnotetext=\beamer@frameLTRfootnotetext
-
-\footdir@temp\footdir@ORG@bidi@beamer@footnotetext\@footnotetext{\bidi@footdir@footnote}%  
-\footdir@temp\footdir@ORG@bidi@beamer@RTLfootnotetext\@RTLfootnotetext{R}%
-\footdir@temp\footdir@ORG@bidi@beamer@LTRfootnotetext\@LTRfootnotetext{L}%
 
 \renewcommand<>{\footnote}[1][]{%
   \let\beamer@footnotetext=\@footnotetext%
@@ -4589,9 +4574,9 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2023/01/18}
-\def\bidi@version{39.7}
-\def\bidi@releasename{Serge Lang}
+\def\bididate{2023/02/19}
+\def\bidi@version{39.8}
+\def\bidi@releasename{Michael Spivak}
 \newcommand*{\bidireleasename}{\bidi@releasename}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space (Release \bidi@releasename)\space
 Bidirectional typesetting in plain TeX and LaTeX]
@@ -4679,7 +4664,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version\space (Release \bidi@releasename),
-  Released January 18, 2023. 
+  Released February 19, 2023. 
 }
 \newcommand*{\bidi@beamer@ragged}{}
 \@RTLmainfalse
@@ -4923,10 +4908,10 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2023/01/18}
+\def\bididate{2023/02/19}
 \catcode`@=11
-\def\bidi@version{39.7}
-\def\bidi@releasename{Serge Lang}
+\def\bidi@version{39.8}
+\def\bidi@releasename{Michael Spivak}
 \def\bidireleasename{\bidi@releasename}
 \let \protect \relax
 \newlinechar`\^^J
@@ -5029,7 +5014,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version\space (Release \bidi@releasename),
-  Released January 18, 2023. 
+  Released February 19, 2023. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -11599,14 +11584,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{dblfnote-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{dblfnote-xetex-bidi.def}[2012/12/12 v0.3 bidi adaptations for dblfnote package for XeTeX engine]
-\let\autofootnoterule\relax
-\let\rightfootnoterule\relax
-\let\leftfootnoterule\relax
-\let\textwidthfootnoterule\relax
-\let\LRfootnoterule\relax
-\def\footnoterule{\kern-3\p@
-  \hrule \@width  \DFNcolumnwidth \kern 2.6\p@}%   
+\ProvidesFile{dblfnote-xetex-bidi.def}[2023/02/19 v0.4 bidi adaptations for dblfnote package for XeTeX engine]
 \AtBeginDocument{\let\dfn@latex@footnotetext\@footnotetext
 \let\@footnotetext\dfn@footnotetext}
 \long\def\dfn@LTRfootnotetext#1{{\setbox\dfn@boxa\vbox{
@@ -12545,7 +12523,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{extrafootnotefeatures-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{extrafootnotefeatures-xetex-bidi.def}[2023/01/18 v2.5 bidi extra footnote features for XeTeX engine]
+\ProvidesFile{extrafootnotefeatures-xetex-bidi.def}[2023/02/19 v2.6 bidi extra footnote features for XeTeX engine]
 \newdimen\bidi@columnwidth
 \def\bidi@floathook{%
   \bidi@columnwidth\columnwidth
@@ -12584,13 +12562,6 @@ bidi implementation of tufte title]
 }%
 }%
 }
-\let\autofootnoterule\relax
-\let\rightfootnoterule\relax
-\let\leftfootnoterule\relax
-\let\textwidthfootnoterule\relax
-\let\LRfootnoterule\relax
-\def\footnoterule{\kern-3\p@
-  \hrule \@width \columnwidth \kern 2.6\p@}
 \newcommand{\@preamnormalfmt}{%
   \parindent 1em%
   \noindent
@@ -16891,7 +16862,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{footnote-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{footnote-xetex-bidi.def}[2023/01/18 v1.2 bidi footnote macros for XeTeX engine]
+\ProvidesFile{footnote-xetex-bidi.def}[2023/02/19 v1.3 bidi footnote macros for XeTeX engine]
 \if@RTLmain\@RTL@footnotetrue\else\@RTL@footnotefalse\fi
 \newif\ifbidi@autofootnoterule
 \def\bidi@mpfootnoterule{\footnoterule}
@@ -17123,9 +17094,11 @@ bidi implementation of tufte title]
 \fi%
 }
 
+\bidi@AtEndPreamble{%
 \footdir@temp\footdir@ORG@bidi@footnotetext\@footnotetext{\bidi@footdir@footnote}%    
 \footdir@temp\footdir@ORG@bidi@RTLfootnotetext\@RTLfootnotetext{R}%
 \footdir@temp\footdir@ORG@bidi@LTRfootnotetext\@LTRfootnotetext{L}%
+}
 
 \long\def\@mpRTLfootnotetext#1{%
   \ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\global\let\bidi@mpfootnoterule\right@footnoterule\fi\fi%
@@ -20936,7 +20909,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{multicol-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{multicol-xetex-bidi.def}[2022/07/10 v1.4 bidi adaptations for multicol package for XeTeX engine]
+\ProvidesFile{multicol-xetex-bidi.def}[2023/02/19 v1.5 bidi adaptations for multicol package for XeTeX engine]
 \def\page@sofar{%
    \process@cols\mult@rightbox
        {\ifvoid\count@
@@ -21017,12 +20990,6 @@ bidi implementation of tufte title]
       \LTR@column@boxes}
 \newcommand\bidi@multicol@align@columns
     {\if@RTLmain\RTL@column@boxes\else\LTR@column@boxes\fi}
-\bidi@AtEndPreamble{%
-  \if@bidi@csdef{footinsv@l}{%
-    \def\footnoterule{\kern-3\p@
-      \hrule \@width \textwidth \kern 2.6\p@}%
-  }{}%
-}
 \def\multicols#1{\col@number#1\relax
   \ifnum\col@number<\tw@
      \PackageWarning{multicol}%
@@ -27564,7 +27531,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2022/07/04 v1.4.9 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2023/02/19 v1.5.0 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
@@ -28363,12 +28330,6 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
 \def\@eqnnum{{\normalfont \normalcolor \if@RTL\beginR\fi(\theequation)\if@RTL\endR\fi}}
 }
 \input{footnote-xetex-bidi.def}
-\if@twocolumn
-  \let\autofootnoterule\relax
-  \let\leftfootnoterule\relax
-  \let\rightfootnoterule\relax
-  \textwidthfootnoterule
-\fi
 \if@bidi@csundef{@idxitem}{}{%
 \renewcommand\@idxitem{\par\hangindent \if@RTL-\fi40\p@}%
 }
