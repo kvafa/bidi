@@ -27817,7 +27817,7 @@ to\rtside{\box\bslice\hfil}}
 \def\narrower{%
   \advance\if@RTL\rightskip\else\leftskip\fi\parindent
   \advance\if@RTL\leftskip\else\rightskip\fi\parindent}
-\def\underline#1{%
+\DeclareRobustCommand\underline[1]{%
   \relax
   \ifmmode\@@underline{#1}%
   \else
