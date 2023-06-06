@@ -986,6 +986,14 @@ by Vafa Khalighi.
     \nobreak
     \vskip 3ex
     \@afterheading}
+\def\@spart#1{%
+    {\parindent \z@ \if@RTL\raggedleft\else\raggedright\fi
+     \interlinepenalty \@M
+     \normalfont
+     \huge \bfseries #1\par}%
+     \nobreak
+     \vskip 3ex
+     \@afterheading}
 \renewenvironment{thebibliography}[1]
      {\section*{\refname}%
       \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
