@@ -827,7 +827,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{article-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{article-xetex-bidi.def}[2017/06/09 v0.6 bidi adaptations for standard article class for XeTeX engine]
+\ProvidesFile{article-xetex-bidi.def}[2023/10/29 v0.7 bidi adaptations for standard article class for XeTeX engine]
 \if@titlepage
   \renewcommand\maketitle{\begin{titlepage}%
   \let\footnotesize\small
@@ -16541,21 +16541,15 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{fancyhdr-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{fancyhdr-xetex-bidi.def}[2018/02/15 v0.7 bidi adaptations for fancyhdr package for XeTeX engine]
+\ProvidesFile{fancyhdr-xetex-bidi.def}[2023/10/29 v0.8 bidi adaptations for fancyhdr package for XeTeX engine]
 
 \let\f@nch@everypar\everypar
 
-\def\f@nch@head#1#2#3#4#5{#1\hbox to\headwidth{\f@nch@reset
-    \f@nch@vbox\headheight{\hbox
-      {\rlap{\parbox[b]{\headwidth}{\bidi@raggedright#2}}\hfill
-        \parbox[b]{\headwidth}{\centering#3}\hfill
-        \llap{\parbox[b]{\headwidth}{\bidi@raggedleft#4}}}\headrule}}#5}
+\bidi@patchcmd\f@nch@head\raggedright\bidi@raggedright{}{\bidi@warning{Patching '\string\f@nch@head' failed!}}
+\bidi@patchcmd\f@nch@head\raggedleft\bidi@raggedleft{}{\bidi@warning{Patching '\string\f@nch@head' failed!}}
 
-\def\f@nch@foot#1#2#3#4#5{#1\hbox to\headwidth{\f@nch@reset
-    \f@nch@vbox\footskip{\footrule
-      \hbox{\rlap{\parbox[t]{\headwidth}{\bidi@raggedright#2}}\hfill
-        \parbox[t]{\headwidth}{\centering#3}\hfill
-        \llap{\parbox[t]{\headwidth}{\bidi@raggedleft#4}}}}}#5}
+\bidi@patchcmd\f@nch@foot\raggedright\bidi@raggedright{}{\bidi@warning{Patching '\string\f@nch@foot' failed!}}
+\bidi@patchcmd\f@nch@foot\raggedleft\bidi@raggedleft{}{\bidi@warning{Patching '\string\f@nch@foot' failed!}}
 
 %    \end{macrocode}
 % \iffalse
@@ -27539,7 +27533,7 @@ to\rtside{\box\bslice\hfil}}
 %\fi
 % \section{File \texttt{latex-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-xetex-bidi.def}[2023/02/19 v1.5.0 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2023/10/29 v1.5.1 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
